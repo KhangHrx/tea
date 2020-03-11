@@ -69,6 +69,10 @@ a.btn-light:hover {
   background-color: rgba(14, 111, 56, 0.951);
   color: #F3DC0B;
 }
+#main-header {
+  position: sticky;
+  top: 0px;
+}
 #main-header .user-wrap {
   padding-right: 1.9rem;
 }
@@ -76,12 +80,14 @@ a[type="button"] {
   color: #fff;
 }
 #main-header a img{
-  width: 90px;
+  width: 50px;
 }
 #main-header .navbar-toggler-icon {
   color: #fff;
 }
-
+#main-header .navbar-nav li {
+  padding: 0 0.5rem;
+}
 section.home-page main.right-content .list-customer-header,
 section.home-page main.right-content .list-customer-order-details {
   display: flex;
@@ -157,7 +163,8 @@ section.home-page main.right-content .list-customer-order-details .form-group {
 }
 
 .sign .logo img {
-  width: 200px;
+  margin-top: 3rem;
+  width: 100px;
 }
 .sign .logo {
   margin-right: 3rem;
@@ -173,4 +180,16 @@ section.home-page main.right-content .list-customer-order-details .form-group {
 #create-new-order .order-header .order-header-left input[type="datetime-local"],
 #new-transaction .order-header .order-header-left input[type="datetime-local"] {
   width: 11.3rem;
+}
+/* report search */
+#report-day .list-customer-header form input{
+  width: 100px;
+  margin: 0 1rem;
+}
+#report-day .list-customer-header form input[type="datetime-local"] {
+  width: 200px;
+}
+#loan-control-customer table td input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }

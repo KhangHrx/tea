@@ -15,10 +15,10 @@ class Product extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->float('price');
             $table->integer('deduction');
-            $table->tinyInteger('state')->default(0);
+            $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });
     }

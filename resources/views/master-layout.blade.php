@@ -37,10 +37,10 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link current" href="index.html">Khách hàng</a>
+							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="list_type_tea.html"
+							<a class="nav-link" href="{{route('product.list')}}"
 								>Các loại chè</a
 							>
 						</li>
@@ -87,13 +87,28 @@
 						<!-- user info section -->
 						<div class="user-wrap dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-user-shield"></i> Admin</a>
+								<i class="fas fa-user-shield"></i> {{Auth::user()->name}}</a>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">0946284647</a>
-								<a class="dropdown-item" href="#">Quản trị viên</a>
+								<a class="dropdown-item" href="#">{{Auth::user()->phone}}</a>
+								<?php
+									$permission = "";
+									if(Auth::user()->permission==0)
+									{
+										$permission = "Quản trị viên";
+									}
+									else if(Auth::user()->permission==1)
+									{
+										$permission = "Nhân viên";
+									}
+									else if(Auth::user()->permission==2)
+									{
+										$permission = "Kế toán";
+									}
+								?>
+								<a class="dropdown-item" href="#">{{$permission}}</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="signin.html">Đăng xuất</a>
+								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
 							</div>
 						</div>
 			

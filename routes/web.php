@@ -13,34 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('customer.customer_list');
-});
+Route::get('/dang-nhap','UserController@login')->name('login');
+Route::post('/dang-nhap','UserController@post_login')->name('login');
 
-Route::group(['prefix'=>'/'],function(){
-    Route::group(['prefix'=>'/san-pham'],function(){
-        Route::get('/danh-sach','ProductController@index')->name('product.index');
-    });
+Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
+    Route::get('/dang-xuat','UserController@logout')->name('logout');
 
-    Route::group(['prefix'=>'/nong-ho'],function(){
-        Route::get('/danh-sach','CustomerController@index')->name('customer.index');
-        Route::get('/chi-tiet','CustomerController@detail')->name('customer.detail');
-    });
+    Route::get('/','CustomerController@index')->name('home');
+    Route::get('/trang-chu','CustomerController@index')->name('home');
 
-    Route::group(['prefix'=>'/cong-no'],function(){
-        Route::get('/danh-sach','OrderController@loan_list')->name('loan.list');
-        Route::get('/nong-ho','OrderController@loan_customer')->name('loan.customer');
-        Route::get('/chi-tiet','OrderController@loan_detail')->name('loan.detail');
-    });
-
-    Route::group(['prefix'=>'/don-hang'],function(){
-        Route::get('/them-moi','OrderController@order_add')->name('order.add');
-        Route::get('/chi-tiet','OrderController@order_detail')->name('order.detail');
-        Route::get('/khach-hang','OrderController@order_by_customer')->name('order.customer');
-    });
-
-    Route::group(['prefix'=>'/bao-cao'],function(){
-        Route::get('/danh-sach','CustomerController@index')->name('customer.index');
-        Route::get('/chi-tiet','CustomerController@detail')->name('customer.detail');
-    });
+    Route::get('/cac-loai-che','ProductController@index')->name('product.list');
+    Route::post('/cac-loai-che/tao-moi','ProductController@post_add')->name('product.add');
+    Route::post('/cac-loai-che/chinh-sua','ProductController@post_edit')->name('product.edit');
 });
