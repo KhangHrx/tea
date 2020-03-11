@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Order extends Migration
+class Loan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class Order extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('loan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('customer_id')->unsigned()->nullable();
-            $table->string('name')->nullable();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
+            $table->bigInteger('order_id')->unsigned();
+            $table->float('money');
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customer');
+            $table->foreign('order_id')->references('id')->on('order');
         });
     }
 
@@ -31,6 +29,6 @@ class Order extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('loan');
     }
 }

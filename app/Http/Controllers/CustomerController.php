@@ -9,11 +9,9 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customer.customer_list');
-    }
-
-    public function detail()
-    {
-        return view('customer.customer_order_detail');
+        $model = Customer::all();
+        return view('customer.customer-list',[
+            'model'=>$model
+        ]);
     }
 }

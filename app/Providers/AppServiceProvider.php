@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
+use DB;
+use App\Quotaion;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*',function($view){
+            $view->with([
+                'nowString' => Carbon::now()->toDateTimeString(),
+                'nowTimeStamp' => Carbon::now()->timestamp
+            ]);
+        });
     }
 }
