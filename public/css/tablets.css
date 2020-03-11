@@ -1,0 +1,14 @@
+@media (max-width : 812px) {
+  section.home-page .right-content {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+  section.home-page .right-content h3 {
+    font-size: 1rem;
+  }
+  section.home-page aside.left-content {
+    width: 20%;
+    font-size: 0.9rem;
+  }
+
+}

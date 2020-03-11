@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS tea;
+
+CREATE DATABASE tea DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+daily
+- ten sdt dia chi
+loai che
+- ten dongia khau tru ngay ap dung gia
+don
+- ma ngay nongho dathanhtoan
+chi tiet don
+- loai khoiluong khautru% khautrukhoiluong ghichu dongia thanhtien
