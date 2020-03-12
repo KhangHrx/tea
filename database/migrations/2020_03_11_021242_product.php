@@ -16,7 +16,7 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->float('price');
+            $table->bigInteger('price');
             $table->integer('deduction');
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
