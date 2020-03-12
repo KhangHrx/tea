@@ -173,8 +173,7 @@ section.home-page main.right-content .list-customer-order-details .form-group {
   background-color: rgb(54, 160, 226);
   border-radius: 3px;
   height: 70vh;
-  margin-top: 3rem;
-  width: 90%;
+  width: 375px;
 }
 
 #create-new-order .order-header .order-header-left input[type="datetime-local"],

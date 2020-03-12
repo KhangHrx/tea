@@ -16,7 +16,7 @@ class Loan extends Migration
         Schema::create('loan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned();
-            $table->float('money');
+            $table->bigInteger('money');
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('order');
         });
