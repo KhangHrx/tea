@@ -92,5 +92,54 @@ class TableSeeder extends Seeder
             'updated_at'=>now()
             ]
         ]);
+        DB::table('order')->insert([
+            [
+            'customer_id' => '1',
+            'name'=>'',
+            'phone'=>'',
+            'address'=>'',
+            'status' => '1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'customer_id' => null,
+            'name'=>'Đồng Như A',
+            'phone'=>'',
+            'address'=>'Xã A',
+            'status'=>'0',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ]
+        ]);
+        DB::table('order_detail')->insert([
+            [
+            'order_id' => '1',
+            'product_id'=>'1',
+            'weight'=>'100',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'price'=>'30',
+            'note'=>'nothong',
+            ],
+            [
+            'order_id' => '1',
+            'product_id'=>'2',
+            'weight'=>'200',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'price'=>'30',
+            'note'=>'nothong',
+            ],
+            [
+            'order_id' => '2',
+            'product_id'=>'2',
+            'weight'=>'200',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'price'=>'30',
+            'note'=>'nothong',
+            ]
+        ]);
     }
 }

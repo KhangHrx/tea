@@ -20,7 +20,7 @@ class OrderDetail extends Migration
             $table->integer('weight');
             $table->integer('deduction_per');
             $table->integer('deduction_kg');
-            $table->float('price');
+            $table->bigInteger('price');
             $table->text('note');
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('order');
