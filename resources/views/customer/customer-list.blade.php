@@ -17,7 +17,7 @@
 						/>					
 					</div>
 					<div class="new-customer">
-						<a href="customer_order_new.html" class="btn btn-primary">
+						<a href="{{route('order.add.new_customer')}}" class="btn btn-primary">
 							Tạo mới <i class="fas fa-plus"></i></a>
 					</div>
 					<div class="customer-table mt-3">
@@ -40,7 +40,10 @@
 										Thành tiền
 									</th>
 									<th>
-										Chi tiết
+										
+									</th>
+									<th>
+										
 									</th>
 									<th>
 
@@ -48,18 +51,70 @@
 								</tr>
 							</thead>
 							<tbody>
+								@foreach($model as $m)
 								<tr>
 									<td>
-										Nông hộ A
+										{{$m->name}}
 									</td>
-									<td>Thôn A</td>
-									<td>0837462632</td>
+									<td>{{$m->address}}</td>
+									<td>{{$m->phone}}</td>
 									<td>4000 <span class="mass-digit">kg</span></td>
 									<td>20.000.000đ</td>
-									<td><a href="customer_order_detail.html">View</a></td>
+									<td>
+										<button class="btn btn-primary" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
+										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h4 class="modal-title">Sửa thông tin</h4>
+														<button type="button" data-dismiss="modal">&times;</button>
+													</div>
+													<div class="modal-body">
+														<form action="{{route('customer.edit')}}" class="form-group-add-customer" method="post">
+															@csrf
+															<input type="text" name="id" value="{{$m->id}}" style="display: none;">
+															<div class="form-group">
+																Tên: {{$m->name}}
+															</div>
+															<div class="form-group">
+																<input
+																	type="text"
+																	class="form-control"
+																	value="{{$m->address}}" name="address"
+																/>
+															</div>
+															<div class="form-group">
+																<input
+																	type="text"
+																	class="form-control"
+																	value="{{$m->phone}}" name="phone"
+																/>
+															</div>
+															<input
+																type="submit"
+																class="btn btn-success d-block m-auto"
+																value="Xác nhận"
+															/>
+														</form>
+													</div>
+													<div class="modal-footer">
+														<button
+															type="button"
+															class="btn btn-secondary"
+															data-dismiss="modal"
+														>
+															Đóng
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</td>
+									<td><a href="customer_order_detail.html" class="btn btn-warning">Danh sách đơn</a></td>
 									<td><a href="order_add_by_customer.html" class="btn btn-success">Giao dịch mới
 										 <i class="fas fa-plus"></i></a></td>
 								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
@@ -82,26 +137,27 @@
 										<button type="button" data-dismiss="modal">&times;</button>
 									</div>
 									<div class="modal-body">
-										<form action="" class="form-group-add-customer">
+										<form action="{{route('customer.add')}}" class="form-group-add-customer" method="post">
+											@csrf
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Tên nông hộ"
+													placeholder="Tên nông hộ" name="name"
 												/>
 											</div>
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Địa chỉ"
+													placeholder="Địa chỉ" name="address"
 												/>
 											</div>
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Số điện thoại"
+													placeholder="Số điện thoại" name="phone"
 												/>
 											</div>
 											<input

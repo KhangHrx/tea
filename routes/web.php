@@ -22,7 +22,22 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::get('/','CustomerController@index')->name('home');
     Route::get('/trang-chu','CustomerController@index')->name('home');
 
-    Route::get('/cac-loai-che','ProductController@index')->name('product.list');
-    Route::post('/cac-loai-che/tao-moi','ProductController@post_add')->name('product.add');
-    Route::post('/cac-loai-che/chinh-sua','ProductController@post_edit')->name('product.edit');
+    Route::group(['prefix'=>'/nong-ho'],function(){
+        Route::get('/danh-sach','CustomerController@index')->name('customer.list');
+        Route::post('/them-moi','CustomerController@post_add')->name('customer.add');
+        Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit');
+    });
+
+    Route::group(['prefix'=>'/cac-loai-che'],function(){
+        Route::get('/danh-sach','ProductController@index')->name('product.list');
+        Route::post('/tao-moi','ProductController@post_add')->name('product.add');
+        Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit');
+    });
+
+    Route::group(['prefix'=>'/don-hang'],function(){
+        Route::group(['prefix'=>'/tao-moi'],function(){
+            Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
+            Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
+        });
+    });
 });
