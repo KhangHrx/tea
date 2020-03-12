@@ -19,6 +19,7 @@ class Order extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customer');
         });
