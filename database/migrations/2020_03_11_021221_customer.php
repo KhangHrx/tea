@@ -16,7 +16,7 @@ class Customer extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->text('address');
             $table->rememberToken();
             $table->timestamps();
