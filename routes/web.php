@@ -28,6 +28,14 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/huy','CartController@clear')->name('cart.clear');
     });
 
+    Route::group(['prefix'=>'cong-no'],function(){
+        Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
+        Route::get('don-chua-thanh-toan','LiabilityController@orderList')->name('liabilities.list_unpaid');
+        Route::get('chi-tiet-don-chua-thanh-toan','LiabilityController@detail')->name('liabilities.detail_unpaid');
+        Route::get('don-da-thanh-toan','LiabilityController@list')->name('liabilities.list_paid');
+        Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@list')->name('liabilities.detail_paid');
+    });
+
     Route::group(['prefix'=>'/nong-ho'],function(){
         Route::get('/danh-sach','CustomerController@index')->name('customer.list');
         Route::post('/them-moi','CustomerController@post_add')->name('customer.add');
