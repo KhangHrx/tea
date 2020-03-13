@@ -52,6 +52,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::group(['prefix'=>'/tao-moi'],function(){
             Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
             Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
+            Route::get('/nong-ho/{id}','OrderController@add_with_old_customer')->name('order.add.old_customer');
+            Route::post('/nong-ho/{id}','OrderController@post_add_with_old_customer')->name('order.add.old_customer');
         });
     });
 });

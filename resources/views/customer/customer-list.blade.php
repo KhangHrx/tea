@@ -82,6 +82,9 @@
 																	class="form-control"
 																	value="{{$m->address}}" name="address"
 																/>
+																@if($errors->has('address'))
+																	<div class="text-danger">{{$errors->first('address')}}</div>
+																@endif
 															</div>
 															<div class="form-group">
 																<input
@@ -89,6 +92,9 @@
 																	class="form-control"
 																	value="{{$m->phone}}" name="phone"
 																/>
+																@if($errors->has('phone'))
+																	<div class="text-danger">{{$errors->first('phone')}}</div>
+																@endif
 															</div>
 															<input
 																type="submit"
@@ -111,7 +117,7 @@
 										</div>
 									</td>
 									<td><a href="customer_order_detail.html" class="btn btn-warning">Danh sách đơn</a></td>
-									<td><a href="order_add_by_customer.html" class="btn btn-success">Giao dịch mới
+									<td><a href="{{route('order.add.old_customer',['id'=>($m->id)])}}" class="btn btn-success">Giao dịch mới
 										 <i class="fas fa-plus"></i></a></td>
 								</tr>
 								@endforeach
@@ -126,39 +132,51 @@
 							data-target="#add-customer"
 							type="button"
 						>
-							Thêm khách hàng
+							Thêm nông hộ
 						</button>
 						<!-- modal -->
 						<div class="modal fade" id="add-customer" role="dialog">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 class="modal-title">Thêm mới khách hàng</h4>
+										<h4 class="modal-title">Thêm mới nông hộ</h4>
 										<button type="button" data-dismiss="modal">&times;</button>
 									</div>
 									<div class="modal-body">
-										<form action="{{route('customer.add')}}" class="form-group-add-customer" method="post">
+										<form action="{{route('customer.add')}}" class="form-group-add-customer" method="post" onsubmit="return addCustomer()">
 											@csrf
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Tên nông hộ" name="name"
+													placeholder="Tên nông hộ" name="name" id="addCustomerName"
 												/>
+												<div class="text-danger" id="addCustomerNameMessage"></div>
+												@if($errors->has('name'))
+													<div class="text-danger">{{$errors->first('name')}}</div>
+												@endif
 											</div>
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Địa chỉ" name="address"
+													placeholder="Địa chỉ" name="address" id="addCustomerAddress"
 												/>
+												<div class="text-danger" id="addCustomerAddressMessage"></div>
+												@if($errors->has('address'))
+													<div class="text-danger">{{$errors->first('address')}}</div>
+												@endif
 											</div>
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Số điện thoại" name="phone"
+													placeholder="Số điện thoại" name="phone" id="addCustomerPhone"
 												/>
+												<div class="text-danger" id="addCustomerPhoneMessage"></div>
+												@if($errors->has('phone'))
+													<div class="text-danger">{{$errors->first('phone')}}</div>
+												@endif
 											</div>
 											<input
 												type="submit"
@@ -184,3 +202,29 @@
 			</main>
 		</section>
 @endsection
+
+<script>
+	function addCustomer(){
+		var name = document.getElementById('addCustomerName');
+		var nameMessage = document.getElementById('addCustomerNameMessage');
+		var address = document.getElementById('addCustomerAddress');
+		var addressMessage = document.getElementById('addCustomerAddressMessage');
+		var phone = document.getElementById('addCustomerPhone');
+		var phoneMessage = document.getElementById('addCustomerPhoneMessage');
+		var regName = /^[a-zA-Záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ ]{1,3}$/;
+		var regAddress = /^[0-9a-zA-Záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ \,\-]{1,3}$/;
+		var regPhone = /^0[0-9]{8}$/;
+		if(!regName.test(name.value.replace(/\s/g, ''))){
+			nameMessage.innerText = "Tên nông hộ không hợp lệ";
+			return false;
+		}
+		if(!regAddress.test(address.value.replace(/\s/g,''))){
+			addressMessage.innerText = "Địa chỉ không hợp lệ";
+			return false;
+		}
+		if(!phone.value.replace(/\s/g,'')=='' && !regPhone.test(phone.value.replace(/\s/g,''))){
+			phoneMessage.innerText = "Số điện thoại không hợp lệ";
+			return false;
+		}
+	}
+</script>

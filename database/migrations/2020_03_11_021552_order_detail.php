@@ -21,7 +21,7 @@ class OrderDetail extends Migration
             $table->float('deduction_per');
             $table->float('deduction_kg');
             $table->bigInteger('price');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('order');
             $table->foreign('product_id')->references('id')->on('product');

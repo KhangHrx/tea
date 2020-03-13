@@ -8,7 +8,7 @@
 			<main class="p-4 right-content container">
 				<h3 class="py-3">Tạo mới đơn</h3>
 				<!-- order header -->
-				<div class="order-header d-flex">
+				<div class="order-header d-flex justify-content-between">
 					<div class="order-header-left mr-3">
 						<p class="btn btn-danger">
 							Mã đơn số : <span class="order-code">{{$last_id+1}}</span>
@@ -27,28 +27,12 @@
 							</button>
 						</div>
 					</div>
-					<div class="order-header-right customer-info ml-5">
-						<div class="form-group">
-							<input
-								type="text"
-								class="form-control"
-								placeholder="Tên nông hộ" name="name"
-							/>
+					<div class="order-header-right customer-info">
+						<div class="customer-name">Tên nông hộ : {{$model->name}}</div>
+						<div class="customer-phone-number py-2">
+							Số điện thoại: {{$model->phone}}
 						</div>
-
-						<div class="form-group">
-							<input
-								type="text"
-								class="form-control"
-								placeholder="Số điện thoại" name="phone"
-							/>
-						</div>
-
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Địa chỉ" name="address" />
-						</div>
-
-					
+						<div class="customer-address">Địa chỉ : {{$model->address}}</div>
 					</div>
 				</div>
 				<!-- order body -->
