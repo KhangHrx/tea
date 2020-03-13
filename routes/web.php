@@ -21,6 +21,12 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
 
     Route::get('/','CustomerController@index')->name('home');
     Route::get('/trang-chu','CustomerController@index')->name('home');
+    
+    Route::group(['prefix'=>'/gio-hang'],function(){
+        Route::post('/them','CartController@post_add')->name('cart.add');
+        Route::get('/xoa/{id}','CartController@remove')->name('cart.remove');
+        Route::get('/huy','CartController@clear')->name('cart.clear');
+    });
 
     Route::group(['prefix'=>'/nong-ho'],function(){
         Route::get('/danh-sach','CustomerController@index')->name('customer.list');

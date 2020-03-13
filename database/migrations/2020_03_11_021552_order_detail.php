@@ -18,8 +18,8 @@ class OrderDetail extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
             $table->integer('weight');
-            $table->integer('deduction_per');
-            $table->integer('deduction_kg');
+            $table->float('deduction_per');
+            $table->float('deduction_kg');
             $table->bigInteger('price');
             $table->text('note');
             $table->timestamps();

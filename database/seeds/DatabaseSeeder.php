@@ -76,21 +76,45 @@ class TableSeeder extends Seeder
         
         DB::table('product')->insert([
             [
-            'name'=>'Chè búp 1',
-            'price'=>'100000',
+            'name'=>'Chè búp',
+            'price'=>'300000',
             'deduction'=>'35',
             'state'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
             [
-            'name'=>'Chè búp 2',
-            'price'=>'200000',
+            'name'=>'Chè móc câu',
+            'price'=>'450000',
             'deduction'=>'30',
+            'state'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'name'=>'Chè ướp hoa lài',
+            'price'=>'500000',
+            'deduction'=>'25',
+            'state'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'name'=>'Chè nõn tôm',
+            'price'=>'900000',
+            'deduction'=>'20',
+            'state'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'name'=>'Chè Đinh Ngọc',
+            'price'=>'2500000',
+            'deduction'=>'15',
             'state'=>'0',
             'created_at'=>now(),
             'updated_at'=>now()
-            ]
+            ],
         ]);
         DB::table('order')->insert([
             [

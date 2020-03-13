@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
 use DB;
 use App\Quotaion;
+use App\Helper\CartHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*',function($view){
             $view->with([
                 'nowString' => Carbon::now()->toDateTimeString(),
-                'nowTimeStamp' => Carbon::now()->timestamp
+                'nowTimeStamp' => Carbon::now()->timestamp,
+                'cart'=> new CartHelper()
             ]);
         });
     }

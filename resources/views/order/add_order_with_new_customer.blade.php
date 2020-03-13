@@ -10,10 +10,10 @@
 				<div class="order-header d-flex">
 					<div class="order-header-left mr-3">
 						<p class="btn btn-danger">
-							Mã đơn số : <span class="order-code">#f847574</span>
+							Mã đơn số : <span class="order-code">{{$last_id+1}}</span>
 						</p>
 						<div class="py-2">
-							Ngày : <span>12/2/2020</span>
+							Ngày : <span>{{date('d/m/Y',$nowTimeStamp)}}</span>
 						</div>
 						<div class="add-new-tea">
 							<button
@@ -22,78 +22,8 @@
 								data-target="#add-tea"
 								type="button"
 							>
-								Tạo mới <i class="fas fa-plus"></i>
+								Thêm sản phẩm <i class="fas fa-plus"></i>
 							</button>
-							<div class="modal text-dark" id="add-tea">
-								<div class="modal-dialoge">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title">Tạo mới giao dịch</h4>
-											<button type="button" data-dismiss="modal">
-												&times;
-											</button>
-										</div>
-										<div class="modal-body">
-											<form action="">
-												<div class="form-group">
-													<label for="tea-type">Loại chè</label>
-													<select class="form-control" id="tea-type" name="">
-														<option>Chè búp loại 1</option>
-														<option>Chè xanh loại 2</option>
-														<option>Chè xanh loại 3</option>
-														<option>Chè khô loại 3</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<input
-														type="text"
-														id="tea-mass"
-														class="form-control"
-														placeholder="Khối lượng"
-													/>
-												</div>
-												<div class="form-group">
-													<input
-														type="text"
-														id="tea-mass-rate"
-														class="form-control"
-														placeholder="Khấu trừ(%)"
-													/>
-												</div>
-												<div class="form-group">
-													<input
-														type="text"
-														id="tea-mass-rate"
-														class="form-control"
-														placeholder="Khấu trừ(kg)"
-													/>
-												</div>
-												<div class="form-group">
-													<label for="tea-price">Đơn giá</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label for="tea-message">Ghi chú</label>
-													<textarea
-														name="message"
-														class="form-control"
-														id="tea-message"
-														cols="30"
-														rows="2"
-														placeholder="Ghi chú"
-													></textarea>
-												</div>
-												<input
-													type="submit"
-													class="btn btn-success d-block m-auto"
-													value="Xác nhận"
-												/>
-											</form>
-										</div>
-									
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="order-header-right customer-info ml-5">
@@ -153,75 +83,36 @@
 							</tr>
 						</thead>
 						<tbody>
+						@foreach($cart->items as $c) 
 							<tr>
 								<td>
-									Chè thái nguyên
+									{{$c['name']}}
 								</td>
-								<td>300kg</td>
-								<td>5%</td>
-								<td>10kg</td>
-								<td>275kg</td>
-								<td>300.000đ</td>
-								<td>Đất, nước, sỏi</td>
-								<td>20.000.000đ</td>
+								<td>{{$c['weight']}}</td>
+								<td>{{$c['deduction_per']}}</td>
+								<td>{{$c['deduction_kg']}}</td>
+								<td>{{ $c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'] }}</td>
+								<td>{{number_format($c['price'])}}</td>
+								<td>{{$c['note']}}</td>
+								<td>{{number_format(($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'])*$c['price'])}}</td>
 								<td>						
-									<a
-										class="text-danger delete"
-										data-toggle="modal"
-										data-target="#delete-row"
-									>
+									<a class="text-danger delete" href="{{route('cart.remove',['id'=>$c['id']])}}" >
 										Xóa
 									</a>
-									<!-- Modal -->
-									<div
-										class="modal fade text-left"
-										id="delete-row"
-										role="dialog"
-									>
-										<div class="modal-dialog">
-											<!-- Modal content-->
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title">
-														Xóa phần này
-													</h4>
-												</div>
-												<div class="modal-body">
-													<form action="">
-														<input
-															type="submit"
-															class="btn btn-danger"
-															value="Xóa"
-														/>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button
-														type="button"
-														class="btn btn-default"
-														data-dismiss="modal"
-													>
-														Hủy
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								
-							</td>
+								</td>
 							</tr>
-							
+						@endforeach
 						</tbody>
 						<tfoot class="tfoot-light">
 							<tr>
 								<td class="font-weight-bold">Tổng</td>
-								<td>300kg</td>
+								<td>{{$cart->get_total_weight()}}</td>
 								<td>-</td>
-								<td>30kg</td>
-								<td>275kg</td>
+								<td>{{$cart->get_total_deduction_kg()}}</td>
+								<td>{{$cart->get_total_after_deduction()}}</td>
 								<td>-</td>
 								<td>-</td>
-								<td>20.000.000đ</td>
+								<td>{{number_format($cart->get_total_price())}}</td>
 								<td>-</td>
 							</tr>
 						</tfoot>
@@ -230,16 +121,100 @@
 				<!-- order footer -->
 				<div class="order-footer">
 					<a class="btn btn-success submit-btn" href="#">
-						Submit
+						Chuyển đơn cho kế toán
 					</a>
 					<a class="btn btn-success save-btn mx-2" type="submit" href="">
-						Lưu
+						Lưu đơn
 					</a>
-					<a class="btn btn-danger cancel-btn" href="#">
+					<a class="btn btn-danger cancel-btn" href="{{route('cart.clear')}}">
 						Hủy
 					</a>
 				</div>
 			</main>
 		</form>
+		<div class="modal text-dark" id="add-tea">
+			<div class="modal-dialoge">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Tạo mới giao dịch</h4>
+						<button type="button" data-dismiss="modal">
+							&times;
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="{{route('cart.add')}}" method="post">
+						@csrf
+							<div class="form-group">
+								<label for="tea-type">Loại chè</label>
+								<select class="form-control" id="tea-type" name="name" onchange="changeProduct()">
+								@foreach($products as $p)
+									<option>{{$p->name}}</option>
+								@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="tea-type">Khối lượng (kg)</label>
+								<input
+									type="text"
+									id="tea-mass"
+									class="form-control"
+									name="weight"
+								/>
+							</div>
+							<div class="form-group">
+								<label for="tea-type">Khấu trừ (%)</label>
+								<input
+									type="text"
+									id="tea-mass-rate-deduction"
+									class="form-control"
+									name="deduction_per" value="{{$products[0]->deduction}}"
+								/>
+							</div>
+							<div class="form-group">
+								<label for="tea-type">Khấu trừ(kg)</label>
+								<input
+									type="text"
+									id="tea-mass-rate"
+									class="form-control"
+									name="deduction_kg"
+								/>
+							</div>
+							<div class="form-group">
+								<label for="tea-price">Đơn giá</label>
+								<input type="text" name="price" class="form-control" id="tea-mass-rate-price" value="{{$products[0]->price}}">
+							</div>
+							<div class="form-group">
+								<label for="tea-message">Ghi chú</label>
+								<textarea
+									name="note"
+									class="form-control"
+									id="tea-message"
+									cols="30"
+									rows="2"
+									placeholder="Ghi chú"
+								></textarea>
+							</div>
+							<input type="text" id="productId" name="id" value="{{$products[0]->id}}" style="display:none;">
+							<input
+								type="submit"
+								class="btn btn-success d-block m-auto"
+								value="Xác nhận"
+							/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		</section>
 @endsection
+
+<script>
+	var products = @json($products->toArray());
+	function changeProduct(){
+		let select = document.getElementById('tea-type');
+		let product = products.find(product=>product.id == (select.selectedIndex+1));
+		document.getElementById('tea-mass-rate-deduction').value = product.deduction;
+		document.getElementById('tea-mass-rate-price').value = product.price;
+		document.getElementById('productId').value = product.id;
+	}
+</script>
