@@ -23,9 +23,7 @@ class UserController extends Controller
         }
         else
         {
-            return view('login',[
-                'message'=>'Tên đăng nhập hoặc mật khẩu không chính xác'
-            ]);
+            return redirect()->back()->with(['message'=>'Số điện thoại đăng nhập hoặc mật khẩu không chính xác']);
         }
     }
 
@@ -53,7 +51,6 @@ class UserController extends Controller
         //     'confirm_password.required'=>'Nhập mật khẩu xác nhận',
         //     'confirm_password.string'=>'Mật khẩu xác nhận không hợp lệ',
         // ]);
-        // session()->forget('message');
         if(Hash::check($request->old_password,Auth::user()->password))
         {
             if($request->new_password != $request->confirm_password)
@@ -74,6 +71,5 @@ class UserController extends Controller
         {
             return redirect()->back()->with('message', 'Mật khẩu hiện tại không đúng');
         }
-        dd($request->all());
     }
 }

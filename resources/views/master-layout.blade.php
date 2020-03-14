@@ -90,7 +90,7 @@
 								<i class="fas fa-user-shield"></i> {{Auth::user()->name}}</a>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">{{Auth::user()->phone}}</a>
+								<a class="dropdown-item" href="#">SĐT: {{Auth::user()->phone}}</a>
 								<?php
 									$permission = "";
 									if(Auth::user()->permission==0)
@@ -106,7 +106,7 @@
 										$permission = "Kế toán";
 									}
 								?>
-								<a class="dropdown-item" href="#">{{$permission}}</a>
+								<a class="dropdown-item" href="#">Quyền: {{$permission}}</a>
 								<a class="dropdown-item" href="{{route('change_password')}}">Đổi mật khẩu</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
