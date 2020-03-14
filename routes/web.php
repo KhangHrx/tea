@@ -30,10 +30,10 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
 
     Route::group(['prefix'=>'cong-no'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
-        Route::get('don-chua-thanh-toan','LiabilityController@orderList')->name('liabilities.list_unpaid');
-        Route::get('chi-tiet-don-chua-thanh-toan','LiabilityController@detail')->name('liabilities.detail_unpaid');
-        Route::get('don-da-thanh-toan','LiabilityController@list')->name('liabilities.list_paid');
-        Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@list')->name('liabilities.detail_paid');
+        Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');
+        Route::get('chi-tiet-don-chua-thanh-toan','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
+        Route::get('don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.list_paid');
+        Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.detail_paid');
     });
 
     Route::group(['prefix'=>'/nong-ho'],function(){
@@ -52,6 +52,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::group(['prefix'=>'/tao-moi'],function(){
             Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
             Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
+            Route::get('/nong-ho/{id}','OrderController@add_with_old_customer')->name('order.add.old_customer');
+            Route::post('/nong-ho/{id}','OrderController@post_add_with_old_customer')->name('order.add.old_customer');
         });
         Route::get('/list-order-save','OrderController@list_order_save')->name('order.list_order_save');
         Route::get('/list-order-save-change','OrderController@list_order_save_change')->name('order.list_order_save_change');
