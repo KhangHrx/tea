@@ -119,6 +119,7 @@ class TableSeeder extends Seeder
         DB::table('order')->insert([
             [
             'customer_id' => '1',
+            'total_weight' => '40';
             'total_money'=>'3000000',
             'total_money_paid'=>'1000000',
             'name'=>'',
@@ -130,10 +131,11 @@ class TableSeeder extends Seeder
             ],
             [
             'customer_id' => null,
-            'total_money'=>'3000000',
+            'total_weight' => '40';
+            'total_money'=>'5000000',
             'total_money_paid'=>'1500000',
-            'name'=>'Đồng Như A',
-            'phone'=>'',
+            'name'=>'Lò Văn Quân',
+            'phone'=>'0345659586',
             'address'=>'Xã A',
             'status'=>'0',
             'created_at'=>now(),
