@@ -16,7 +16,9 @@ class Order extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('customer_id')->unsigned()->nullable();
-            $table->bigInteger('total_price');
+            $table->float('total_weight');
+            $table->bigInteger('total_money');
+            $table->bigInteger('total_money_paid');
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
