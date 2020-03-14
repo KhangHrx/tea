@@ -17,7 +17,7 @@ class OrderDetail extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->integer('weight');
+            $table->float('weight');
             $table->float('deduction_per');
             $table->float('deduction_kg');
             $table->bigInteger('price');

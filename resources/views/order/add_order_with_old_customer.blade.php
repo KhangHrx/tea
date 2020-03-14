@@ -2,8 +2,8 @@
 @section('title','Tạo mới đơn với nông hộ không có trong danh sách')
 @section('content')
       <!-- main table -->
-		<section id="paid-order-admin" class="order home-page">
-		<form action="{{route('order.add.new_customer')}}" method="post">	
+		<section id="order-by-customer" class="order home-page">
+		<form action="{{route('order.add.old_customer',['id'=>$id])}}" method="post">	
 		@csrf
 			<main class="p-4 right-content container">
 				<h3 class="py-3">Tạo mới đơn</h3>

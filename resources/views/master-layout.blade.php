@@ -107,6 +107,7 @@
 									}
 								?>
 								<a class="dropdown-item" href="#">{{$permission}}</a>
+								<a class="dropdown-item" href="{{route('change_password')}}">Đổi mật khẩu</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
 							</div>
