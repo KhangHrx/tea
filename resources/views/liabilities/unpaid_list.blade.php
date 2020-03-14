@@ -50,7 +50,7 @@
 							<td>{{ number_format($row->total_money) }} đ</td>
 							<td>{{ number_format($row->total_money_paid) }} đ</td>
 							<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-							<td><a href="">View</a></td>
+							<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
 							<td><input type="checkbox" name="" id="" ></td>
 							
 						</tr>

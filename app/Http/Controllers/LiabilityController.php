@@ -28,4 +28,15 @@ class LiabilityController extends Controller
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
         return view('liabilities.unpaid_list',$data);
     }
+    public function unpaidDetail($id){
+        $data = [
+            'order' => Order::find($id),
+            'todetail' => Order::with('orderdetail')->get(),
+            'toproduct' => OrderDetail::where('order_id',$id)->get(),
+            'weightfirst' => OrderDetail::where('order_id',$id)->sum('weight'),
+            'weightlast' => OrderDetail::where('order_id',$id)->sum('weight_last'),
+            'total' => OrderDetail::where('order_id',$id)->sum('price'),
+        ];
+        return view('liabilities.detail_unpaid_list',$data);
+    }
 }

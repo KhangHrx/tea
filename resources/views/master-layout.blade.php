@@ -50,7 +50,7 @@
 								Công nợ
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Chưa thanh toán</a>
+								<a class="dropdown-item" href=" {{ route('liabilities.list_customer') }} ">Chưa thanh toán</a>
 								<a class="dropdown-item" href="#">Đã thanh toán</a>
 							</div>
 						</li>
