@@ -70,7 +70,7 @@
 									<td>{{$m['total_weight']}}<span class="mass-digit">kg</span></td>
 									<td>{{number_format($m['total_money'])}}đ</td>
 									<td class="text-danger">{{number_format($m['total_money']-$m['total_money_paid'])}}đ</td>
-									<td><a href="customer_order.html">View</a></td>
+									<td><a href="{{route('order.list_by_id',['id'=>$m['id']])}}">View</a></td>
 								</tr>
 								@endforeach
 							</tbody>

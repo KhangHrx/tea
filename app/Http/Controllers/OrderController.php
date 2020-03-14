@@ -59,7 +59,7 @@ class OrderController extends Controller
                 'weight'=>$c['weight'],
                 'deduction_per'=>$c['deduction_per'],
                 'deduction_kg'=>$c['deduction_kg'],
-                'price'=>$c['price'],
+                'price'=>(($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'])*$c['price']),
                 'note'=>$c['note'],
             ]);
         }
@@ -104,7 +104,7 @@ class OrderController extends Controller
                 'weight'=>$c['weight'],
                 'deduction_per'=>$c['deduction_per'],
                 'deduction_kg'=>$c['deduction_kg'],
-                'price'=>$c['price'],
+                'price'=>(($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'])*$c['price']),
                 'note'=>$c['note'],
             ]);
         }
@@ -118,6 +118,11 @@ class OrderController extends Controller
         return view('order.list_order_by_customer',[
             'model'=>$model
         ]);
+    }
+
+    public function list_by_id($id)
+    {
+        return view('order.list_order_by_id');
     }
 
     public function list_order_save()

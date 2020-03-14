@@ -60,6 +60,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         });
 
         Route::get('/nong-ho/{id}','OrderController@list_by_customer')->name('order.list_by_customer');
+        Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
 
         Route::get('/list-order-save','OrderController@list_order_save')->name('order.list_order_save');
         Route::get('/list-order-save-change','OrderController@list_order_save_change')->name('order.list_order_save_change');
