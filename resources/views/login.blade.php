@@ -33,7 +33,12 @@
 					</div>
 					<div id="sign-in-box" class="sign-box col-4 p-4">
 						<div class="container">
-              <p class="text-center lead">Đăng nhập vào hệ thống</p>
+						@if(session('message'))
+						<div class="alert alert-danger" role="alert">
+							{{session('message')}}
+						</div>
+						@endif
+							<p class="text-center lead">Đăng nhập vào hệ thống</p>
 							<form action="" method="post">
 								@csrf
 								<div class="form-group">
@@ -57,9 +62,6 @@
 									value="Đăng nhập"
 									class="btn btn-success m-auto d-block"
 								/>
-								@if(isset($message))
-									<div>{{$message}}</div>
-								@endif
 							</form>
 						</div>
 					</div>

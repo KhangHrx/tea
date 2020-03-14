@@ -58,8 +58,17 @@
 									</td>
 									<td>{{$m->address}}</td>
 									<td>{{$m->phone}}</td>
-									<td>4000 <span class="mass-digit">kg</span></td>
-									<td>20.000.000đ</td>
+									<td>
+									<?php
+									$total_weight = 0;
+									$total_money = 0;
+									foreach($m->customerOrders as $item)
+									{
+										$total_weight += $item->total_weight;
+										$total_money += $item->total_money;
+									}
+									?> <span class="mass-digit">{{$total_weight}}kg</span></td>
+									<td>{{number_format($total_money)}}đ</td>
 									<td>
 										<button class="btn btn-primary" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
 										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
@@ -116,7 +125,7 @@
 											</div>
 										</div>
 									</td>
-									<td><a href="customer_order_detail.html" class="btn btn-warning">Danh sách đơn</a></td>
+									<td><a href="{{route('order.list_by_customer',['id'=>($m->id)])}}" class="btn btn-warning">Danh sách đơn</a></td>
 									<td><a href="{{route('order.add.old_customer',['id'=>($m->id)])}}" class="btn btn-success">Giao dịch mới
 										 <i class="fas fa-plus"></i></a></td>
 								</tr>
