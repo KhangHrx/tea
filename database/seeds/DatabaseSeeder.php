@@ -163,6 +163,8 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'20',
             'price'=>'21000000',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
             [
             'order_id' => '1',
@@ -172,6 +174,8 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'20',
             'price'=>'72000000',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
             [
             'order_id' => '3',
@@ -181,6 +185,9 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'20',
             'price'=>'72000000',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ]
             ],
             [
             'order_id' => '3',
@@ -190,6 +197,8 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'25',
             'price'=>'130500000',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
         ]);
     }
