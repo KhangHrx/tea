@@ -187,7 +187,6 @@ class TableSeeder extends Seeder
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now()
-            ]
             ],
             [
             'order_id' => '3',
@@ -199,7 +198,7 @@ class TableSeeder extends Seeder
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now()
-            ]
+            ],
         ]);
     }
 }
