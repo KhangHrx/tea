@@ -10,10 +10,10 @@
 					<div class="order-header d-flex justify-content-between">
 						<div class="order-header-left">
 							<p class="btn btn-danger">
-								Mã đơn số : <span class="order-code">#f847574</span>
+								Mã đơn số : <span class="order-code">#{{ $order->id }}</span>
 							</p>
 							<div class="order-date pb-1">
-								Ngày : <span class="date-order">12/2/2020</span>
+								Ngày : <span class="date-order">{{ $order->create_at }}</span>
 							</div>
 							<div class="add-new-tea mt-2">
 								<button
@@ -101,17 +101,18 @@
 							<div>
 								Tên nông hộ :
 								<span class="customer-name">
-									Trần Đại Nghĩa
+								{{ isset($order->customer->name) ? $order->customer->name : $order->name }}
+
 								</span>
 							</div>
 							<div class="py-2">
 								Số điện thoại:
 								<span class="customer-phone-number">
-									0726828733
+								{{ isset($order->customer->phone) ? $order->customer->phone : $order->phone }}
 								</span>
 							</div>
 							<div>
-								Địa chỉ : <span class="user-address">Thôn A - Yên Bái</span>
+								Địa chỉ : <span class="user-address">{{ isset($order->customer->address) ? $order->customer->address : $order->address }}</span>
 							</div>
 						</div>
 					</div>
@@ -148,17 +149,19 @@
 								</tr>
 							</thead>
 							<tbody>
+							@foreach($toproduct as $product)
 								<tr>
+									
 									<td>
-										Chè thái nguyên
+										{{ $product->orderDetail->name }}
 									</td>
-									<td>300kg</td>
-									<td>5%</td>
-									<td>10kg</td>
-									<td>280kg</td>
-									<td>300.000đ</td>
-									<td>Đất, nước, sỏi</td>
-									<td>20.000.000đ</td>
+									<td>{{ $product->weight }}</td>
+									<td>{{ $product->deduction_per }}</td>
+									<td>{{ $product->deduction_kg }}</td>
+									<td>{{ $product->weight - ($product->weight * $product->deduction_per / 100) - $product->deduction_kg }}</td>
+									<td>{{ number_format($product->orderDetail->price).' '.'Đ' }}</td>
+									<td>{{ $product->note }}</td>
+									<td>{{ number_format($product->price).' '.'Đ' }}</td>
 									<td>						
 											<a
 												class="text-danger delete"
@@ -205,7 +208,7 @@
 										
 									</td>
 								</tr>
-								
+							@endforeach
 							</tbody>
 							<tfoot class="tfoot-light">
 								<tr>

@@ -2,7 +2,7 @@
 @section('title','Tạo mới đơn với nông hộ không có trong danh sách')
 @section('content')
       <!-- main table -->
-		<section id="paid-order-admin" class="order home-page">
+		<section id="order-new" class="order home-page">
 		<form action="{{route('order.add.new_customer')}}" method="post">	
 		@csrf
 			<main class="p-4 right-content container">
@@ -35,7 +35,9 @@
 								placeholder="Tên nông hộ" name="name"
 							/>
 						</div>
-
+						@if($errors->has('name'))
+						<div class="text-danger">{{$errors->first('name')}}</div>
+						@endif
 						<div class="form-group">
 							<input
 								type="text"
@@ -43,12 +45,15 @@
 								placeholder="Số điện thoại" name="phone"
 							/>
 						</div>
-
+						@if($errors->has('phone'))
+						<div class="text-danger">{{$errors->first('phone')}}</div>
+						@endif
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Địa chỉ" name="address" />
 						</div>
-
-					
+						@if($errors->has('address'))
+						<div class="text-danger">{{$errors->first('address')}}</div>
+						@endif
 					</div>
 				</div>
 				<!-- order body -->
@@ -167,6 +172,7 @@
 									<div class="text-danger">{{$errors->first('weight')}}</div>
 								@endif
 							</div>
+							<div class="form-inline">
 							<div class="form-group">
 								<label for="tea-type">Khấu trừ (%)</label>
 								<input
@@ -191,6 +197,8 @@
 									<div class="text-danger">{{$errors->first('deduction_kg')}}</div>
 								@endif
 							</div>
+							</div>
+							
 							<div class="form-group">
 								<label for="tea-price">Đơn giá</label>
 								<input type="text" name="price" class="form-control" id="tea-mass-rate-price" value="{{$products[0]->price}}">

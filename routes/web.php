@@ -22,6 +22,9 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::get('/','CustomerController@index')->name('home');
     Route::get('/trang-chu','CustomerController@index')->name('home');
     
+    Route::get('/doi-mat-khau','UserController@change_password')->name('change_password');
+    Route::post('/doi-mat-khau','UserController@post_change_password')->name('change_password');
+
     Route::group(['prefix'=>'/gio-hang'],function(){
         Route::post('/them','CartController@post_add')->name('cart.add');
         Route::get('/xoa/{id}','CartController@remove')->name('cart.remove');
@@ -55,7 +58,11 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
             Route::get('/nong-ho/{id}','OrderController@add_with_old_customer')->name('order.add.old_customer');
             Route::post('/nong-ho/{id}','OrderController@post_add_with_old_customer')->name('order.add.old_customer');
         });
-        Route::get('/list-order-save','OrderController@list_order_save')->name('order.list_order_save');
-        Route::get('/list-order-save-change','OrderController@list_order_save_change')->name('order.list_order_save_change');
     });
+
+    Route::group(['prefix'=>'/danh-sach-don'],function(){
+        Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
+        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+ });
+    
 });

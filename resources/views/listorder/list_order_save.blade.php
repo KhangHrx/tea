@@ -23,7 +23,6 @@
             <table class="table mt-4 text-center ">
               <thead class="thead-light">
                 <tr>
-                  <th>Mã đơn</th>
                   <th>Nông hộ</th>
                   <th>Địa chỉ</th>
                   <th>Tổng khối lượng</th>
@@ -34,10 +33,9 @@
               <tbody>
                 @foreach($orders as $order)
                 <tr>
-                  <td>#{{ $order->id }}</td>
-                  <td>{{ $order->name }}</td>
-                  <td>{{ $order->address }}</td>
-                  <td>{{ $order->order_detail->weight }}</td>
+                  <td>{{ isset($order->customer->name) ? $order->customer->name : $order->name }}</td>
+                  <td>{{ isset($order->customer->address) ? $order->customer->address : $order->address }}</td>
+                  <td>{{ number_format($order->total_weight) }}</td>
                   <td class="dropdown">
                     <a
                       type="button"
@@ -53,7 +51,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <a href="{{route('order.list_order_save_change')}}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ route('listorder.list_order_save_change',['id'=>$order->id]) }}"><i class="fas fa-edit"></i></a>
                   </td>
                 </tr>
                 @endforeach

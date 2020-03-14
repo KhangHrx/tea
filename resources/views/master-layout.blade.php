@@ -79,7 +79,7 @@
 							Danh sách đơn
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{route('order.list_order_save')}}">Đơn đã lưu</a>
+								<a class="dropdown-item" href="{{route('listorder.list_order_save')}}">Đơn đã lưu</a>
 								<a class="dropdown-item" href="#">Đơn đã gửi</a>
 							</div>
 						</li>
@@ -107,6 +107,7 @@
 									}
 								?>
 								<a class="dropdown-item" href="#">{{$permission}}</a>
+								<a class="dropdown-item" href="{{route('change_password')}}">Đổi mật khẩu</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
 							</div>
