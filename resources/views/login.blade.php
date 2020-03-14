@@ -33,31 +33,36 @@
 					</div>
 					<div id="sign-in-box" class="sign-box col-4 p-4">
 						<div class="container">
-						@if(session('message'))
-						<div class="alert alert-danger" role="alert">
-							{{session('message')}}
-						</div>
-						@endif
 							<p class="text-center lead">Đăng nhập vào hệ thống</p>
-							<form action="" method="post">
+							<form action="" method="post" onsubmit="return submitLogin()">
 								@csrf
 								<div class="form-group">
 									<label for="username">Số điện thoại</label>
 									<input
 										type="text"
 										placeholder="Số điện thoại"
-										class="form-control" name="phone"
+										class="form-control" name="phone" id="phone"
 									/>
+									<div class="text-danger mt-2" id="phoneMessage"></div>
 								</div>
 								<div class="form-group mt-4">
 									<label for="password">Mật khẩu</label>
 									<input
 										type="password"
 										placeholder="Mật khẩu"
-										class="form-control" name="password"
+										class="form-control" name="password" id="password"
 									/>
+									<div class="text-danger mt-2" id="passwordMessage"></div>
+								</div>
+								<div id="messageInfo">
+									@if(session('message'))
+									<div class="alert alert-danger" role="alert">
+										{{session('message')}}
+									</div>
+									@endif
 								</div>
 								<input
+								id="formSubmit"
 									type="submit"
 									value="Đăng nhập"
 									class="btn btn-success m-auto d-block"
@@ -83,5 +88,24 @@
 			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 			crossorigin="anonymous"
 		></script>
+		<script>
+			function submitLogin(){
+				var phone = document.getElementById('phone');
+				var phoneMessage = document.getElementById('phoneMessage');
+				var password = document.getElementById('password');
+				var passwordMessage = document.getElementById('passwordMessage');
+				phoneMessage.innerText = "";
+				passwordMessage.innerText = "";
+				var messageInfo = document.getElementById('messageInfo');
+				messageInfo.style.display = 'none';
+				if(phone.value == ""){
+					phoneMessage.innerText = "Số điện thoại không được để trống";
+					return false;
+				}else if(password.value == ""){
+					passwordMessage.innerText = "Mật khẩu không được để trống";
+					return false;
+				}
+			}
+		</script>
 	</body>
 </html>

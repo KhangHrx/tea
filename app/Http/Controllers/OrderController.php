@@ -113,4 +113,9 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
+    public function list_by_customer()
+    {
+        
+    }
+
 }
