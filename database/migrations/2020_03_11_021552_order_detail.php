@@ -20,6 +20,7 @@ class OrderDetail extends Migration
             $table->float('weight');
             $table->float('deduction_per');
             $table->float('deduction_kg');
+            $table->float('weight_last');
             $table->bigInteger('price');
             $table->text('note')->nullable();
             $table->timestamps();

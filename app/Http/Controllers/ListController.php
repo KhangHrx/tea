@@ -20,7 +20,10 @@ class ListController extends Controller
         $order = Order::find($id);
         $todetail = Order::with('orderdetail')->get();
         $toproduct = OrderDetail::where('order_id',$id)->get();
+        $weightfirst = OrderDetail::where('order_id',$id)->sum('weight');
+        $weightlast = OrderDetail::where('order_id',$id)->sum('weight_last');
+        $total = OrderDetail::where('order_id',$id)->sum('price');
 
-        return view('listorder.list_order_save_change',['order'=>$order,'todetail'=>$todetail,'toproduct'=>$toproduct ]);
+        return view('listorder.list_order_save_change',['order'=>$order,'todetail'=>$todetail,'toproduct'=>$toproduct, 'weightfirst'=>$weightfirst, 'weightlast'=>$weightlast, 'total'=>$total]);
     }
 }

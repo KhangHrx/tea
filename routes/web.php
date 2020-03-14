@@ -58,8 +58,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
             Route::get('/nong-ho/{id}','OrderController@add_with_old_customer')->name('order.add.old_customer');
             Route::post('/nong-ho/{id}','OrderController@post_add_with_old_customer')->name('order.add.old_customer');
             Route::get('/nong-ho/{id}','OrderController@list_by_customer')->name('order.list_by_customer');
-            Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
         });
+        Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
             });
 
     Route::group(['prefix'=>'/danh-sach-don'],function(){
