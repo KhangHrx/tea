@@ -130,8 +130,20 @@ class TableSeeder extends Seeder
             'updated_at'=>now()
             ],
             [
+            'customer_id' => '2',
+            'total_weight' => '45',
+            'total_money'=>'4000000',
+            'total_money_paid'=>'1500000',
+            'name'=>'',
+            'phone'=>'',
+            'address'=>'',
+            'status' => '1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
             'customer_id' => null,
-            'total_weight' => '40',
+            'total_weight' => '50',
             'total_money'=>'5000000',
             'total_money_paid'=>'1500000',
             'name'=>'Lò Văn Quân',
@@ -149,7 +161,7 @@ class TableSeeder extends Seeder
             'weight'=>'100',
             'deduction_per'=>'10',
             'deduction_kg'=>'20',
-            'price'=>'30',
+            'price'=>'21000000',
             'note'=>'nothong',
             ],
             [
@@ -158,18 +170,27 @@ class TableSeeder extends Seeder
             'weight'=>'200',
             'deduction_per'=>'10',
             'deduction_kg'=>'20',
-            'price'=>'30',
+            'price'=>'72000000',
             'note'=>'nothong',
             ],
             [
-            'order_id' => '2',
+            'order_id' => '3',
             'product_id'=>'2',
             'weight'=>'200',
             'deduction_per'=>'10',
             'deduction_kg'=>'20',
-            'price'=>'30',
+            'price'=>'72000000',
             'note'=>'nothong',
-            ]
+            ],
+            [
+            'order_id' => '3',
+            'product_id'=>'4',
+            'weight'=>'200',
+            'deduction_per'=>'15',
+            'deduction_kg'=>'25',
+            'price'=>'130500000',
+            'note'=>'nothong',
+            ],
         ]);
     }
 }
