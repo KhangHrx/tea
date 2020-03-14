@@ -125,7 +125,7 @@
 										Tên loại chè
 									</th>
 									<th>
-										Khối lượng
+										Khối lượng(kg)
 									</th>
 									<th>
 										Khấu trừ(%)
@@ -134,10 +134,10 @@
 										Khấu trừ(kg)
 									</th>
 									<th>
-										Khối lượng sau khấu trừ
+										Khối lượng sau khấu trừ(kg)
 									</th>
 									<th>
-										Đơn giá
+										Đơn giá (Đ)
 									</th>
 									<th>
 										Ghi chú
