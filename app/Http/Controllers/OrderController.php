@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -25,4 +26,15 @@ class OrderController extends Controller
         dd($last_id);
     }
 
+    public function list_order_save()
+    {   
+        
+        $orders = Order::with('order_detail:id,name,weight');
+        return view('order.list_order_save', ['orders'=>$orders]);
+    }
+
+    public function list_order_save_change()
+    {
+        return view('order.list_order_save_change');
+    }
 }

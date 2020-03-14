@@ -120,9 +120,9 @@ class TableSeeder extends Seeder
             [
             'customer_id' => '1',
             'total_price'=>'3000000',
-            'name'=>'',
-            'phone'=>'',
-            'address'=>'',
+            'name'=>'Trần Thị Thoa',
+            'phone'=>'0345697823',
+            'address'=>'xã M',
             'status' => '1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -130,8 +130,8 @@ class TableSeeder extends Seeder
             [
             'customer_id' => null,
             'total_price'=>'3000000',
-            'name'=>'Đồng Như A',
-            'phone'=>'',
+            'name'=>'Lò Văn Quân',
+            'phone'=>'0345659586',
             'address'=>'Xã A',
             'status'=>'0',
             'created_at'=>now(),
