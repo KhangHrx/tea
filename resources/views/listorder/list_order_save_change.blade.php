@@ -213,13 +213,19 @@
 							<tfoot class="tfoot-light">
 								<tr>
 									<td class="font-weight-bold">Tổng</td>
-									<td>300kg</td>
+									<td>
+										{{ $weightfirst }}
+									</td>
 									<td>-</td>
 									<td>-</td>
-									<td>280kg</td>
+									<td>
+										{{ $weightlast }}
+									</td>
 									<td>-</td>
 									<td>-</td>
-									<td>60.000.000đ</td>
+									<td>
+										{{ number_format($total).' '.'Đ' }}
+									</td>
 									<td>-</td>
 								
 								</tr>
