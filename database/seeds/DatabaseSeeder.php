@@ -199,7 +199,7 @@ class TableSeeder extends Seeder
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now()
-            ],
+            ]
         ]);
     }
 }
