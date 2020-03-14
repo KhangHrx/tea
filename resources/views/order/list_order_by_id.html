@@ -4,8 +4,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <base href="{{asset('')}}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -21,26 +20,26 @@
 		<link rel="stylesheet" href="./css/style.css" />
 		<link rel="stylesheet" href="./css/mobile.css" />
 		<link rel="stylesheet" href="./css/tablets.css" />
-		<title>@yield('title')</title>
+		<title>Chi tiết đơn | Admin</title>
 	</head>
 	<body>
-		<!-- admin home page -->
+    	<!-- admin home page -->
 		<header id="main-header">
 			<nav class="navbar navbar-expand-lg navbar-light bg-navbar">
 				<a class="navbar-brand" href="index.html">
-					<!-- <img src="./IMG/logo.png" alt=""> -->
+					<img src="./img/logo.png" alt="">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="fas fa-bars text-white fa-2x"></i>
+					<span class="navbar-toggler-icon"></span>
 				</button>
 			
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>
+							<a class="nav-link current" href="customer_list.html">Khách hàng</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{route('product.list')}}"
+							<a class="nav-link" href="product_list.html"
 								>Các loại chè</a
 							>
 						</li>
@@ -79,7 +78,7 @@
 							Danh sách đơn
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{route('order.list_order_save')}}">Đơn đã lưu</a>
+								<a class="dropdown-item" href="#">Đơn đã lưu</a>
 								<a class="dropdown-item" href="#">Đơn đã gửi</a>
 							</div>
 						</li>
@@ -87,29 +86,13 @@
 						<!-- user info section -->
 						<div class="user-wrap dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-user-shield"></i> {{Auth::user()->name}}</a>
+								<i class="fas fa-user-shield"></i> Admin</a>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">{{Auth::user()->phone}}</a>
-								<?php
-									$permission = "";
-									if(Auth::user()->permission==0)
-									{
-										$permission = "Quản trị viên";
-									}
-									else if(Auth::user()->permission==1)
-									{
-										$permission = "Nhân viên";
-									}
-									else if(Auth::user()->permission==2)
-									{
-										$permission = "Kế toán";
-									}
-								?>
-								<a class="dropdown-item" href="#">{{$permission}}</a>
-								<a class="dropdown-item" href="{{route('change_password')}}">Đổi mật khẩu</a>
+								<a class="dropdown-item" href="#">0946284647</a>
+								<a class="dropdown-item" href="#">Quản trị viên</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
+								<a class="dropdown-item" href="signin.html">Đăng xuất</a>
 							</div>
 						</div>
 			
@@ -118,16 +101,110 @@
 			
 			
 		</header>
-		<!-- show case -->
-		<section id="home-page-admin" class="home-page">
+    <!--  -->
+		<section id="pay-order" class="order home-page">
 			
-			@yield('content')
+			<main class="right-content">
+				<div class="container pt-4">
+					<!-- order header -->
+					<div class="order-header d-flex justify-content-between">
+						<div class="order-header-left">
+							<p class="btn btn-danger">
+								Mã đơn số : <span class="order-code">#f847574</span>
+							</p>
+							<div class="order-date pb-1">
+								Ngày : <span class="date-order">12/2/2020</span>
+							</div>
+						</div>
+						<!-- info customer -->
+						<div class="order-header-right customer-info">
+							<div class="customer-name">Tên nông hộ : Trần Đại Nghĩa</div>
+							<div class="customer-phone-number py-2">
+								Số điện thoại: 0726828733
+							</div>
+							<div class="customer-address">Địa chỉ : Thôn A - Yên Bái</div>
+						</div>
+					</div>
+					<!-- order body -->
+					<div class="create-order-body mt-3 bg-light">
+						<table class="table text-center">
+							<thead>
+								<tr>
+									<th>
+										Tên loại chè
+									</th>
+									<th>
+										Khối lượng
+									</th>
+									<th>
+										Khấu trừ(%)
+									</th>
+									<th>
+										Khấu trừ(kg)
+                  </th>
+                  <th>
+										Khối lượng sau khấu trừ
+									</th>
+									<th>
+										Đơn giá
+									</th>
+									<th>
+										Ghi chú
+									</th>
+									<th>
+										Thành tiền
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										Chè thái nguyên
+									</td>
+									<td>300kg</td>
+									<td>5%</td>
+                  <td>10kg</td>
+                  <td>270kg</td>
+									<td>300.000đ</td>
+									<td>Đất, nước, sỏi</td>
+									<td>20.000.000đ</td>
+								</tr>
+								
+							</tbody>
+							<tfoot class="tfoot-light">
+								<tr>
+									<td class="font-weight-bold">Tổng</td>
+									<td>200kg</td>
+									<td>-</td>
+                  <td>30kg</td>
+                  <td>270kg</td>
+									<td>-</td>
+									<td>-</td>
+									<td>60.000.000đ</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- order footer -->
+					<!-- payment status -->
+					<div class="d-flex payment-status justify-content-between">
+						<div class="employee-info">
+							Nhân viên thu mua : <span class="employee-name">Trần Văn Tú</span>
+						</div>
+						<div>
+							<p class="text-medium text-success">
+								Đã thanh toán : <span class="paid-money">20.000.000 đ</span>
+							</p>
+							<p class="text-medium text-danger">
+								Còn nợ : <span class="loan-money">40.000.000 đ</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</main>
 		</section>
 		<!-- JS  Bootsrap -->
-		<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+		<script src="./js/test1.js"></script>
 		<script
 			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

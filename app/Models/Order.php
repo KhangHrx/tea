@@ -8,7 +8,7 @@ use App\Models\OrderDetail;
 class Order extends Model
 {
     protected $table = 'order';
-    protected $fillable = ['customer_id','name','phone','address','status'];
+    protected $fillable = ['customer_id','total_weight','total_money','total_money_paid','name','phone','address','status'];
 
     public function order_detail()
     {
