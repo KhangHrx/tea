@@ -58,11 +58,21 @@
 								<td>{{ number_format($row->total_money) }} đ</td>
 								<td>{{ number_format($row->total_money_paid) }} đ</td>
 								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-								<td><a href="{{route('liabilities.unpaid_list',['id'=>$row->id])}}">View</a></td>
+								<td><a href="{{route('liabilities.unpaid_list',['id'=>$row->orderCustomer->id])}}">View</a></td>
 							</tr>	
 							@endif
+						@endforeach 
+						{{-- @php
+							$t = 0;
+						@endphp
+						@foreach($modal as $row)
+							@php
+								$t += $row->total_money;
+							@endphp
+							
+							
 						@endforeach
-					
+						{{ $t }} --}}
 					</tbody>
 					<tfoot class="tfoot-light">
 						<tr>

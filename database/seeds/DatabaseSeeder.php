@@ -130,6 +130,18 @@ class TableSeeder extends Seeder
             'updated_at'=>now()
             ],
             [
+            'customer_id' => '1',
+            'total_weight' => '100',
+            'total_money'=>'2000000',
+            'total_money_paid'=>'500000',
+            'name'=>'',
+            'phone'=>'',
+            'address'=>'',
+            'status' => '1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
             'customer_id' => null,
             'total_weight' => '40',
             'total_money'=>'5000000',
@@ -151,15 +163,19 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'20',
             'price'=>'30',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
             [
             'order_id' => '1',
             'product_id'=>'2',
-            'weight'=>'200',
-            'deduction_per'=>'10',
-            'deduction_kg'=>'20',
+            'weight'=>'200.7',
+            'deduction_per'=>'13',
+            'deduction_kg'=>'2.4',
             'price'=>'30',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
             [
             'order_id' => '2',
@@ -169,6 +185,8 @@ class TableSeeder extends Seeder
             'deduction_kg'=>'20',
             'price'=>'30',
             'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ]
         ]);
     }

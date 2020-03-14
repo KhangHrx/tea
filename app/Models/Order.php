@@ -12,7 +12,7 @@ class Order extends Model
 
     public function order_detail()
     {
-        return $this->belongsTo(OrderDetail::class, 'order_id');
+        return $this->hasMany(OrderDetail::class, 'order_id','id');
     }
     public function orderCustomer(){
         return $this->belongsTo(Customer::class,'customer_id','id');

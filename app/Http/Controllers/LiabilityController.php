@@ -13,13 +13,18 @@ class LiabilityController extends Controller
 {
     public function list(){
         $data['order'] = Order::all();
-        $data['totalMoney'] = Order::get()->sum('total_money');
-        $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
+        $data['customer'] = Customer::all();
+        // $data['modal'] = Order::where('customer_id','1')->get();
+        // dd($data['modal']);
+        $data['totalMoney'] = Order::sum('total_money');
+        $data['totalMoneyPaid'] = Order::sum('total_money_paid');
         return view('liabilities.customer_list',$data);
     }
     public function unpaidList($id){
-        $data['order_list'] = OrderDetail::where('order_id',$id)->get();
-        $data['totalMoney'] = Order::get()->sum('total_money');
+        $data['order_list'] = Order::where('customer_id',$id)->get();
+        $data['sum_weight'] = Order::where('customer_id',$id)->sum('total_weight');
+        $data['sum_money'] = Order::where('customer_id',$id)->sum('total_money');
+        $data['sum_paid'] = Order::where('customer_id',$id)->sum('total_money_paid');
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
         return view('liabilities.unpaid_list',$data);
     }
