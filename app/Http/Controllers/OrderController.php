@@ -27,6 +27,9 @@ class OrderController extends Controller
     public function post_add_with_new_customer(CartHelper $cart, Request $request)
     {
         $request->merge(['customer_id'=>null]);
+        $request->merge(['total_weight'=>($cart->get_total_after_deduction())]);
+        $request->merge(['total_money'=>($cart->get_total_price())]);
+        $request->merge(['total_money_paid'=>'0']);
         $request->offsetUnset('_token');
         if($request->action=="save")
         {
