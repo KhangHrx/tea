@@ -11,6 +11,7 @@ use App\Helper\CartHelper;
 use DB;
 use App\Quotation;
 
+
 class OrderController extends Controller
 {
 
@@ -94,15 +95,5 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-    public function list_order_save()
-    {   
-        
-        $orders = Order::with('order_detail:id,name,weight');
-        return view('order.list_order_save', ['orders'=>$orders]);
-    }
-
-    public function list_order_save_change()
-    {
-        return view('order.list_order_save_change');
-    }
+    
 }
