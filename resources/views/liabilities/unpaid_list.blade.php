@@ -7,7 +7,7 @@
 		
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
-				<h3>Công nợ của nông hộ X - thôn X</h3>
+				<h3>Công nợ của: {{ empty($order->customer_id) ? $order->name : $order->orderCustomer->name}} - {{ empty($order->customer_id) ? $order->address : $order->orderCustomer->address}}</h3>
 				<input type="text" class="search-box search-box-list-customer" id="" placeholder="Tìm kiếm..."/>
 			</div>
 			<!-- table info section -->

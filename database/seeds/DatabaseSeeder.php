@@ -152,6 +152,18 @@ class TableSeeder extends Seeder
             'status'=>'0',
             'created_at'=>now(),
             'updated_at'=>now()
+            ],
+            [
+            'customer_id' => '1',
+            'total_weight' => '40',
+            'total_money'=>'3000000',
+            'total_money_paid'=>'1000000',
+            'name'=>'',
+            'phone'=>'',
+            'address'=>'',
+            'status' => '1',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ]
         ]);
         DB::table('order_detail')->insert([
@@ -202,6 +214,18 @@ class TableSeeder extends Seeder
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now(),
+            ],
+            [
+            'order_id' => '4',
+            'product_id'=>'1',
+            'weight'=>'100',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'weight_last'=>'70',
+            'price'=>'21000000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
         ]);
     }
