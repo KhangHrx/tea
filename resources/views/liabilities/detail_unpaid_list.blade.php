@@ -26,7 +26,6 @@
 									Số điện thoại:
 									<span class="customer-phone-number">
 										{{ $order->phone }}
-									{{ empty($order->customer->phone) ? $order->phone : $order->orderCustomer->phone }}
 									</span>
 								</div>
 								@else
@@ -102,6 +101,30 @@
 							</tbody>
 							<tfoot class="tfoot-light">
 								<tr>
+									<td class="font-weight-bold">Đã thanh toán: </td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>{{ number_format($totalPay).' '.'đ' }}</td>
+								</tr>
+							</tfoot>
+							<tfoot class="tfoot-light">
+								<tr>
+									<td class="font-weight-bold">Số tiền còn nợ: </td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>{{ number_format($totalPrice-$totalPay).' '.'đ' }}</td>
+								</tr>
+							</tfoot>
+							<tfoot class="tfoot-light">
+								<tr>
 									<td class="font-weight-bold">Tổng</td>
 									<td>{{ $weightfirst }}</td>
 									<td>-</td>
@@ -109,51 +132,60 @@
 									<td>{{ $weightlast }}</td>
 									<td>-</td>
 									<td>-</td>
-									<td>{{ number_format($total).' '.'đ' }}</td>
+									<td>{{ number_format($totalPrice).' '.'đ' }}</td>
 								</tr>
 							</tfoot>
+							
 						</table>
 					</div>
 					<!-- order footer -->
 					<div class="order-footer">
-						<div class="pay-order mt-2">
-							<button class="btn btn-primary" data-toggle="modal" data-target="#order-loan-payment" type="button" >
-								Thanh toán nợ
-							</button>
-							<div class="modal fade text-dark" id="order-loan-payment" role="dialog" >
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title">Thanh toán nợ</h4>
-											<button type="button" data-dismiss="modal">
-												&times;
-											</button>
-										</div>
-										<div class="modal-body">
-											<form action="">
-												<div class="form-group">
-													Tổng giá trị đơn :
-													<span class="order-value"> 20.000.000 đ</span>
-												</div>
-												<div class="form-group d-block">
-													Còn nợ : <span class="order-loan">10.000.000 đ</span>
-												</div>
-												<div class="form-group">
-													<label for="tea-paid-money">Tiền thanh toán : </label>
-													<input type="text" id="tea-loan-money" class="form-control" />
-												</div>
-												<input type="submit" lass="btn btn-success d-block m-auto" value="Xác nhận thanh toán" />
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal" >
-												Đóng
-											</button>
+						<form method="post" action="{{route('liabilities.pay_unpaid',['id' => $order->id])}}" id="" enctype="multipart/form-data">
+						@csrf
+							<div class="pay-order mt-2">
+								<button class="btn btn-primary" data-toggle="modal" data-target="#order-loan-payment" type="button" >
+									Thanh toán nợ
+								</button>
+								<div class="modal fade text-dark" id="order-loan-payment" role="dialog" >
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title">Thanh toán nợ</h4>
+												<button type="button" data-dismiss="modal">
+													&times;
+												</button>
+											</div>
+											<div class="modal-body">
+												<form action="">
+													<div class="form-group">
+														Tổng giá trị đơn :
+														<span class="order-value"> {{ number_format($totalPrice).' '.'đ' }}</span>
+													</div>
+													<div class="form-group d-block">
+														Còn nợ : <span class="order-loan">10.000.000 đ</span>
+													</div>
+													<div class="form-group">
+														<label for="tea-paid-money">Tiền thanh toán : </label>
+														<input type="text" id="tea-loan-money" name="pay" class="form-control" />
+													</div>
+													@if ($errors->has('pay'))
+														<div class="alert alert-danger">
+															{{ $errors->first('pay') }}
+														</div>
+													@endif
+													<input type="submit" lass="btn btn-success d-block m-auto" value="Xác nhận thanh toán" />
+												</form>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal" >
+													Đóng
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</main>
