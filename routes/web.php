@@ -61,7 +61,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
             Route::get('/danh-sach-don/nong-ho/{id}','OrderController@list_by_customer')->name('order.list_by_customer');
         });
         Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
-            });
+    });
 
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');

@@ -36,6 +36,9 @@
 			
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('home')}}">TK Người dùng</a>
+						</li>
 						<li class="nav-item active">
 							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>
 						</li>
@@ -44,14 +47,13 @@
 								>Các loại chè</a
 							>
 						</li>
-
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Công nợ
+							Danh sách đơn
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href=" {{ route('liabilities.list_customer') }} ">Chưa thanh toán</a>
-								<a class="dropdown-item" href="#">Đã thanh toán</a>
+								<a class="dropdown-item" href="{{route('listorder.list_order_save')}}">Đơn đã lưu</a>
+								<a class="dropdown-item" href="#">Đơn đã gửi</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -65,6 +67,15 @@
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Công nợ
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href=" {{ route('liabilities.list_customer') }} ">Chưa thanh toán</a>
+								<a class="dropdown-item" href="#">Đã thanh toán</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Báo cáo
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -72,15 +83,6 @@
 								<a class="dropdown-item" href="#">Báo cáo tuần</a>
 								<a class="dropdown-item" href="#">Báo cáo tháng</a>
 								<a class="dropdown-item" href="#">Báo cáo năm</a>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Danh sách đơn
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{route('listorder.list_order_save')}}">Đơn đã lưu</a>
-								<a class="dropdown-item" href="#">Đơn đã gửi</a>
 							</div>
 						</li>
 					</ul>
@@ -106,7 +108,7 @@
 										$permission = "Kế toán";
 									}
 								?>
-								<a class="dropdown-item" href="#">Quyền: {{$permission}}</a>
+								<a class="dropdown-item" href="#">Quyền TK: {{$permission}}</a>
 								<a class="dropdown-item" href="{{route('change_password')}}">Đổi mật khẩu</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>

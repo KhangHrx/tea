@@ -172,35 +172,35 @@
 									<div class="text-danger">{{$errors->first('weight')}}</div>
 								@endif
 							</div>
-							<div class="form-inline">
-							<div class="form-group">
-								<label for="tea-type">Khấu trừ (%)</label>
-								<input
-									type="text"
-									id="tea-mass-rate-deduction"
-									class="form-control"
-									name="deduction_per" value="{{$products[0]->deduction}}"
-								/>
-								@if($errors->has('deduction_per'))
-									<div class="text-danger">{{$errors->first('deduction_per')}}</div>
-								@endif
-							</div>
-							<div class="form-group">
-								<label for="tea-type">Khấu trừ(kg)</label>
-								<input
-									type="text"
-									id="tea-mass-rate"
-									class="form-control"
-									name="deduction_kg"
-								/>
-								@if($errors->has('deduction_kg'))
-									<div class="text-danger">{{$errors->first('deduction_kg')}}</div>
-								@endif
-							</div>
+							<div class="">
+								<div class="form-group">
+									<label for="tea-type">Khấu trừ (%) - Tối đa: {{$products[0]->deduction}}%</label>
+									<input
+										type="text"
+										id="tea-mass-rate-deduction"
+										class="form-control"
+										name="deduction_per" value="{{$products[0]->deduction}}"
+									/>
+									@if($errors->has('deduction_per'))
+										<div class="text-danger">{{$errors->first('deduction_per')}}</div>
+									@endif
+								</div>
+								<div class="form-group">
+									<label for="tea-type">Khấu trừ(kg)</label>
+									<input
+										type="text"
+										id="tea-mass-rate"
+										class="form-control"
+										name="deduction_kg"
+									/>
+									@if($errors->has('deduction_kg'))
+										<div class="text-danger">{{$errors->first('deduction_kg')}}</div>
+									@endif
+								</div>
 							</div>
 							
 							<div class="form-group">
-								<label for="tea-price">Đơn giá</label>
+								<label for="tea-price">Đơn giá - Mặc định: {{number_format($products[0]->price)}}đ/kg)</label>
 								<input type="text" name="price" class="form-control" id="tea-mass-rate-price" value="{{$products[0]->price}}">
 								@if($errors->has('price'))
 									<div class="text-danger">{{$errors->first('price')}}</div>
