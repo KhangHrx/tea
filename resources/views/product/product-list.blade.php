@@ -24,36 +24,48 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 class="modal-title">Thêm mới loại chè</h4>
+										<h4 class="modal-title">Thêm mới sản phẩm</h4>
 										<button type="button" data-dismiss="modal">&times;</button>
 									</div>
-									<div class="modal-body">
-										<form action="{{route('product.add')}}" class="form-group-add-new-tea" method="post">
-											@csrf
+									<form action="{{route('product.add')}}" class="form-group-add-new-tea" method="post" onsubmit="return addSubmit()">
+										@csrf
+										<div class="modal-body">
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Tên loại chè" name="name"
+													placeholder="Tên loại chè" name="name" id="addName"
 												/>
+												<div class="text-danger mt-2" id="addNameMessage"></div>
+												@if($errors->has('name'))
+													<div class="text-danger">{{$errors->first('name')}}</div>
+												@endif
 											</div>
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Khấu trừ tối đa" name="deduction"
+													placeholder="Khấu trừ tối đa" name="deduction" id="addDeduction"
 												/>
+												<div class="text-danger mt-2" id="addDeductionMessage"></div>
+												@if($errors->has('deduction'))
+													<div class="text-danger">{{$errors->first('deduction')}}</div>
+												@endif
 											</div>
 											
 											<div class="form-group">
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Đơn giá" name="price"
+													placeholder="Đơn giá" name="price" id="addPrice"
 												/>
+												<div class="text-danger mt-2" id="addPriceMessage"></div>
+												@if($errors->has('price'))
+													<div class="text-danger">{{$errors->first('price')}}</div>
+												@endif
 											</div>
 											<div class="form-group">
-												<select name="state" id="">
+												<select name="state" class="form-control" style="width: 100%;">
 													<option value="1">Đang thu mua</option>
 													<option value="0">Ngừng thu mua</option>
 												</select>
@@ -61,22 +73,18 @@
 											<div class="py-2 text-left">
 												Ngày áp dụng <span class="date-apply">{{date('d/m/Y',$nowTimeStamp)}}</span>
 											</div>
-											<input
-												type="submit"
-												class="btn btn-success d-block m-auto"
-												value="Xác nhận"
-											/>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button
-											type="button"
-											class="btn btn-secondary"
-											data-dismiss="modal"
-										>
-											Đóng
-										</button>
-									</div>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-success">Thêm mới</button>
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-dismiss="modal"
+											>
+												Đóng
+											</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -128,19 +136,20 @@
 												<div class="modal-content">
 													<div class="modal-header">
 														<h4 class="modal-title">
-															Thay đổi thông tin loại chè
+															Thay đổi thông tin sản phẩm
 														</h4>
 													</div>
-													<div class="modal-body">
-														<form action="{{route('product.edit')}}" method="post">
-															@csrf
+													<form action="{{route('product.edit')}}" method="post" onsubmit="return editSubmit({{$m->id}})">
+														@csrf
+														<div class="modal-body">
 															<input type="text" value="{{$m->id}}" style="display: none;" name="id">
 															<div class="form-group">
 																<input
 																	type="text"
 																	class="form-control"
-																	value="{{$m->name}}" name="name"
+																	value="{{$m->name}}" name="name" id="editName{{$m->id}}"
 																/>
+																<div class="text-danger mt-2" id="editNameMessage{{$m->id}}"></div>
 																@if($errors->has('name'))
 																	<div class="text-danger">{{$errors->first('name')}}</div>
 																@endif
@@ -149,18 +158,26 @@
 																<input
 																	type="text"
 																	class="form-control"
-																	value="{{($m->price)}}" name="price"
+																	value="{{$m->deduction}}" name="deduction" id="editDeduction{{$m->id}}"
 																/>
+																<div class="text-danger mt-2" id="editDeductionMessage{{$m->id}}"></div>
+																@if($errors->has('deduction'))
+																	<div class="text-danger">{{$errors->first('deduction')}}</div>
+																@endif
 															</div>
 															<div class="form-group">
 																<input
 																	type="text"
 																	class="form-control"
-																	value="{{$m->deduction}}" name="deduction"
+																	value="{{($m->price)}}" name="price" id="editPrice{{$m->id}}"
 																/>
+																<div class="text-danger mt-2" id="editPriceMessage{{$m->id}}"></div>
+																@if($errors->has('price'))
+																	<div class="text-danger">{{$errors->first('price')}}</div>
+																@endif
 															</div>
 															<div class="form-group">
-																<select name="state" id="">
+																<select name="state" id="" class="form-control" style="width: 100%;">
 																	<option value="1" <?php echo ($m->state==1)?"selected":""; ?> >Đang thu mua</option>
 																	<option value="0" <?php echo ($m->state==0)?"selected":""; ?> >Ngừng thu mua</option>
 																</select>
@@ -169,22 +186,18 @@
 															<div class="py-2">
 																Ngày áp dụng <span class="date-apply">{{date('d/m/Y',strtotime($m->updated_at))}}</span>
 															</div>
-															<input
-																type="submit"
-																value="Chỉnh sửa"
-																class="btn btn-primary"
-															/>
-														</form>
-													</div>
-													<div class="modal-footer">
-														<button
-															type="button"
-															class="btn btn-default"
-															data-dismiss="modal"
-														>
-															Hủy
-														</button>
-													</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn btn-success">Lưu thay đổi</button>
+																<button
+																	type="button"
+																	class="btn btn-secondary"
+																	data-dismiss="modal"
+																>
+																	Đóng
+																</button>
+															</div>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -198,3 +211,52 @@
 			</main>
 		</section>
 @endsection
+
+<script>
+	function addSubmit(){
+		let regNumber = /^\d+$/;
+		let regFloat = /^\d+(\.\d+)?$/;
+		$('#addNameMessage').text("");
+		$('#addDeductionMessage').text("");
+		$('#addPriceMessage').text("");
+		if($('#addName').val().replace(/\s/g,'')==""){
+			$('#addNameMessage').text("Tên sản phẩm không được để trống");
+			return false;
+		}else if($('#addDeduction').val().replace(/\s/g,'')==""){
+			$('#addDeductionMessage').text("Khấu trừ tối đa không được để trống");
+			return false;
+		}else if(!regFloat.test($('#addDeduction').val())){
+			$('#addDeductionMessage').text("Khấu trừ tối đa không hợp lệ");
+			return false;
+		}else if($('#addPrice').val().replace(/\s/g,'')==""){
+			$('#addPriceMessage').text("Đơn giá không được để trống");
+			return false;
+		}else if(!regNumber.test($('#addPrice').val())){
+			$('#addPriceMessage').text("Đơn giá không hợp lệ");
+			return false;
+		}
+	}
+	function editSubmit(e){
+		let regNumber = /^\d+$/;
+		let regFloat = /^\d+(\.\d+)?$/;
+		$('#editNameMessage'+e).text("");
+		$('#editDeductionMessage'+e).text("");
+		$('#editPriceMessage'+e).text("");
+		if($('#editName'+e).val().replace(/\s/g,'')==""){
+			$('#editNameMessage'+e).text("Tên sản phẩm không được để trống");
+			return false;
+		}else if($('#editDeduction'+e).val().replace(/\s/g,'')==""){
+			$('#editDeductionMessage'+e).text("Khấu trừ tối đa không được để trống");
+			return false;
+		}else if(!regFloat.test($('#editDeduction'+e).val())){
+			$('#editDeductionMessage'+e).text("Khấu trừ tối đa không hợp lệ");
+			return false;
+		}else if($('#editPrice'+e).val().replace(/\s/g,'')==""){
+			$('#editPriceMessage'+e).text("Đơn giá không được để trống");
+			return false;
+		}else if(!regNumber.test($('#editPrice'+e).val())){
+			$('#editPriceMessage'+e).text("Đơn giá không hợp lệ");
+			return false;
+		}
+	}
+</script>

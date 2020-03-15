@@ -17,8 +17,8 @@
 						/>					
 					</div>
 					<div class="new-customer mt-2">
-						<a href="{{route('order.add.new_customer')}}" class="btn btn-primary">
-							Tạo mới đơn cho người không có tên trong danh sách <i class="fas fa-plus"></i></a>
+						<a href="{{route('order.add.new_customer')}}" class="btn btn-danger">
+							Tạo đơn cho nông hộ mới <i class="fas fa-plus"></i></a>
 					</div>
 					<div class="customer-table mt-3">
 						<table class="table text-center">
@@ -209,15 +209,15 @@
 @endsection
 
 <script>
-	var regPhone = /^0[0-9]*$/;
+	var regPhone = /^0[0-9]+$/;
 	function addCustomer(){
 		$('#addCustomerNameMessage').text("");
 		$('#addCustomerAddressMessage').text("");
 		$('#addCustomerPhoneMessage').text("");
-		if($('#addCustomerName').val()==""){
+		if($('#addCustomerName').val().replace(/\s/g,'')==""){
 			$('#addCustomerNameMessage').text("Tên nông hộ không được để trống");
 			return false;
-		}else if($('#addCustomerAddress').val()==""){
+		}else if($('#addCustomerAddress').val().replace(/\s/g,'')==""){
 			$('#addCustomerAddressMessage').text("Địa chỉ không được để trống");
 			return false;
 		}else if($('#addCustomerPhone').val().replace(/\s/g,'')!='' && !regPhone.test($('#addCustomerPhone').val().replace(/\s/g,''))){
@@ -229,12 +229,11 @@
 	function submitEdit(e){
 		$('#editAddressMessage'+e).text("");
 		$('#editPhoneMessage'+e).text("");
-		if($('#editAddress'+e).val()==""){
+		if($('#editAddress'+e).val().replace(/\s/g,'')==""){
 			$('#editAddressMessage'+e).text("Địa chỉ không được để trống");
 			return false;
 		}else if($('#editPhone'+e).val().replace(/\s/g,'')!='' && !regPhone.test($('#editPhone'+e).val().replace(/\s/g,''))){
 			$('#editPhoneMessage'+e).text("Số điện thoại không hợp lệ");
-			// console.log($('#editPhone'+e).val().replace(/\s/g,''));
 			return false;
 		}
 	}
