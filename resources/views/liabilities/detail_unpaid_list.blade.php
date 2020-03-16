@@ -89,10 +89,10 @@
 							@foreach($toproduct as $product)
 								<tr>
 									<td>{{ $product->orderDetail->name }}</td>
-									<td>{{ $product->weight }}</td>
-									<td>{{ $product->deduction_per }}</td>
-									<td>{{ $product->deduction_kg }}</td>
-									<td>{{ $product->weight - ($product->weight * $product->deduction_per / 100) - $product->deduction_kg }}</td>
+									<td>{{ $product->weight }} kg</td>
+									<td>{{ $product->deduction_per }} %</td>
+									<td>{{ $product->deduction_kg }} kg</td>
+									<td>{{ $product->weight - ($product->weight * $product->deduction_per / 100) - $product->deduction_kg }} kg</td>
 									<td>{{ number_format($product->orderDetail->price).' '.'đ' }}</td>
 									<td>{{ $product->note }}</td>
 									<td>{{ number_format($product->price).' '.'đ' }}</td>
@@ -100,6 +100,16 @@
 							@endforeach
 							</tbody>
 							<tfoot class="tfoot-light">
+								<tr>
+									<td class="font-weight-bold">Tổng</td>
+									<td>{{ $weightfirst }} kg</td>
+									<td>-</td>
+									<td>-</td>
+									<td>{{ $weightlast }} kg</td>
+									<td>-</td>
+									<td>-</td>
+									<td>{{ number_format($totalPrice).' '.'đ' }}</td>
+								</tr>
 								<tr>
 									<td class="font-weight-bold">Đã thanh toán: </td>
 									<td>-</td>
@@ -110,8 +120,6 @@
 									<td>-</td>
 									<td>{{ number_format($totalPay).' '.'đ' }}</td>
 								</tr>
-							</tfoot>
-							<tfoot class="tfoot-light">
 								<tr>
 									<td class="font-weight-bold">Số tiền còn nợ: </td>
 									<td>-</td>
@@ -121,18 +129,6 @@
 									<td>-</td>
 									<td>-</td>
 									<td>{{ number_format($totalPrice-$totalPay).' '.'đ' }}</td>
-								</tr>
-							</tfoot>
-							<tfoot class="tfoot-light">
-								<tr>
-									<td class="font-weight-bold">Tổng</td>
-									<td>{{ $weightfirst }}</td>
-									<td>-</td>
-									<td>-</td>
-									<td>{{ $weightlast }}</td>
-									<td>-</td>
-									<td>-</td>
-									<td>{{ number_format($totalPrice).' '.'đ' }}</td>
 								</tr>
 							</tfoot>
 							

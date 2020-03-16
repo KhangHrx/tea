@@ -43,17 +43,29 @@
 					</thead>
 					<tbody>
 						@foreach($order_list as $row)
-						<tr>
-							<td>#{{ $row->id }}</td>
-							<td>{{ date('H:i | d/m/Y', strtotime($row->created_at)) }}</td>
-							<td>{{ $row->total_weight }} kg</td>
-							<td>{{ number_format($row->total_money) }} đ</td>
-							<td>{{ number_format($row->total_money_paid) }} đ</td>
-							<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-							<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
-							<td><input type="checkbox" name="" id="" ></td>
-							
-						</tr>
+							@if(empty($row->customer_id))
+							<tr>
+								<td>#{{ $row->id }}</td>
+								<td>{{ date('H:i | d/m/Y', strtotime($row->created_at)) }}</td>
+								<td>{{ $row->total_weight }} kg</td>
+								<td>{{ number_format($row->total_money) }} đ</td>
+								<td>{{ number_format($row->total_money_paid) }} đ</td>
+								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
+								<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
+								<td><input type="checkbox" name="" id="" ></td>
+							</tr>
+							@else
+							<tr>
+								<td>#{{ $row->id }}</td>
+								<td>{{ date('H:i | d/m/Y', strtotime($row->created_at)) }}</td>
+								<td>{{ $row->total_weight }} kg</td>
+								<td>{{ number_format($row->total_money) }} đ</td>
+								<td>{{ number_format($row->total_money_paid) }} đ</td>
+								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
+								<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
+								<td><input type="checkbox" name="" id="" ></td>
+							</tr>
+							@endif
 						@endforeach
 					</tbody>
 					<tfoot class="tfoot-light">
