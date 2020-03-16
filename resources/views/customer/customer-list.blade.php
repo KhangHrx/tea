@@ -74,6 +74,7 @@
 									?> <span class="mass-digit">{{$total_weight}}kg</span></td>
 									<td>{{number_format($total_money)}}đ</td>
 									<td>
+										@can('admin')
 										<button class="btn btn-primary" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
 										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
 											<div class="modal-dialog">
@@ -125,6 +126,7 @@
 												</div>
 											</div>
 										</div>
+										@endcan
 									</td>
 									<td><a href="{{route('order.list_by_customer',['id'=>($m->id)])}}" class="btn btn-warning">Danh sách đơn</a></td>
 									<td><a href="{{route('order.add.old_customer',['id'=>($m->id)])}}" class="btn btn-success">Giao dịch mới
@@ -135,6 +137,7 @@
 						</table>
 					</div>
 					<!-- add new customer section -->
+					@can('admin')
 					<div class="add-new-customer">
 						<button
 							class="btn btn-primary"
@@ -207,6 +210,7 @@
 							</div>
 						</div>
 					</div>
+					@endcan
 				</div>
 			</main>
 		</section>

@@ -19,6 +19,13 @@ Route::post('/dang-nhap','UserController@post_login')->name('login');
 Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::get('/dang-xuat','UserController@logout')->name('logout');
 
+    Route::group(['prefix'=>'/tai-khoan'],function(){
+        Route::get('/','UserController@index')->name('user.index');
+        Route::get('/xoa/{id}','UserController@delete')->name('user.delete');
+        Route::get('/reset-mat-khau/{id}','UserController@reset_password')->name('user.reset_password');
+        Route::post('/them','UserController@insert')->name('user.insert');
+    });
+
     Route::get('/','CustomerController@index')->name('home');
     Route::get('/trang-chu','CustomerController@index')->name('home');
     
@@ -78,7 +85,9 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/hom-nay/nong-ho/{id}','OrderController@list_by_customer_today')->name('order.list_by_customer_today');
         Route::post('/ngay','OrderController@report_search_day')->name('report.search.day');
         // Báo cáo theo tuần
-        Route::get('/tuan-hien-tai','OrderController@report_week')->name('report.week');
+        Route::get('/tuan','OrderController@report_week')->name('report.week');
+        Route::post('/tuan','OrderController@post_report_week')->name('report.week');
+        Route::get('/ngay/{d}','OrderController@report_day')->name('report.day');
         //
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');

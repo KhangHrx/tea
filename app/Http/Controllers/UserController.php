@@ -72,4 +72,42 @@ class UserController extends Controller
             return redirect()->back()->with('message', 'Mật khẩu hiện tại không đúng');
         }
     }
+
+    public function index()
+    {
+        $model = User::where('permission','!=','0')->get();
+        return view('user.user-index',[
+            'model'=>$model
+        ]);
+    }
+
+    public function delete($id)
+    {
+        User::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function reset_password($id)
+    {
+        User::find($id)->update(['password'=>bcrypt('123')]);
+        return redirect()->back()->with(['message'=>'Mật khẩu được đặt lại thành 123']);
+    }
+
+    public function insert(Request $request)
+    {
+        $this->validate($request,[
+            'name'=>'required|string',
+            'email'=>'nullable|email',
+            'phone'=>'required|string|unique:users,phone'
+        ],[
+            'name.required'=>'Họ tên không được để trống',
+            'name.string'=>'Họ tên không hợp lệ',
+            'email.email'=>'Email không hợp lệ',
+            'phone.required'=>'Số điện thoại không được để trống',
+            'phone.string'=>'Số điện thoại không hợp lệ',
+            'phone.unique'=>'Số điện thoại đã tồn tại',
+        ]);
+        User::create($request->all());
+        return redirect()->back();
+    }
 }

@@ -25,6 +25,29 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin',function($user){
+            if($user->permission == 0){
+                return true;
+            }
+            return false;
+        });
+        Gate::define('employee',function($user){
+            if($user->permission == 0){
+                return true;
+            }
+            if($user->permission == 1){
+                return true;
+            }
+            return false;
+        });
+        Gate::define('accountant',function($user){
+            if($user->permission == 0){
+                return true;
+            }
+            if($user->permission == 2){
+                return true;
+            }
+            return false;
+        });
     }
 }
