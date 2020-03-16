@@ -66,9 +66,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
-        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
-        
-    });
+        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');});
     
     Route::group(['prefix'=>'/bao-cao'],function(){
         // Báo cáo theo ngày

@@ -137,7 +137,7 @@ class TableSeeder extends Seeder
             'name'=>'',
             'phone'=>'',
             'address'=>'',
-            'status' => '1',
+            'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
@@ -154,14 +154,14 @@ class TableSeeder extends Seeder
             'updated_at'=>now()
             ],
             [
-            'customer_id' => '1',
-            'total_weight' => '40',
-            'total_money'=>'3000000',
-            'total_money_paid'=>'1000000',
-            'name'=>'',
-            'phone'=>'',
-            'address'=>'',
-            'status' => '1',
+            'customer_id' => null,
+            'total_weight' => '45',
+            'total_money'=>'4500000',
+            'total_money_paid'=>'2500000',
+            'name'=>'Hồ Thị Hoa',
+            'phone'=>'0125151646',
+            'address'=>'Xã Sơn Châu',
+            'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
             ]
