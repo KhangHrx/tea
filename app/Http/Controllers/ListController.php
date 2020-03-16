@@ -12,6 +12,7 @@ class ListController extends Controller
     {   
         
         $orders = Order::with('orderCustomer')->where('status', 0)->get();
+
         return view('listorder.list_order_save', ['orders'=>$orders]);
     }
 
@@ -25,5 +26,12 @@ class ListController extends Controller
         $total = OrderDetail::where('order_id',$id)->sum('price');
 
         return view('listorder.list_order_save_change',['order'=>$order,'todetail'=>$todetail,'toproduct'=>$toproduct, 'weightfirst'=>$weightfirst, 'weightlast'=>$weightlast, 'total'=>$total]);
+    }
+    public function delete_item($id)
+    {
+        // $item = Order::find($id);
+        OrderDetail::destroy($id);
+        return redirect()->route('listorder.list_order_save_change'); 
+        
     }
 }

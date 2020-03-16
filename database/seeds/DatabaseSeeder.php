@@ -152,6 +152,18 @@ class TableSeeder extends Seeder
             'status'=>'0',
             'created_at'=>now(),
             'updated_at'=>now()
+            ],
+            [
+            'customer_id' => null,
+            'total_weight' => '45',
+            'total_money'=>'4500000',
+            'total_money_paid'=>'2500000',
+            'name'=>'Hồ Thị Hoa',
+            'phone'=>'0125151646',
+            'address'=>'Xã Sơn Châu',
+            'status' => '0',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ]
         ]);
         DB::table('order_detail')->insert([
