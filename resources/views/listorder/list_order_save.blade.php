@@ -45,9 +45,8 @@
                       Chi tiết
                     </a>
                     <div class="dropdown-menu bg-light p-2">
-                      <p class="drop-down-item">Chè sen 1</p>
-                      <p class="drop-down-item">Chè sen 2</p>
-                      <p class="drop-down-item">Chè búp 1</p>
+                      <p class="drop-down-item">
+                      </p>
                     </div>
                   </td>
                   <td class="text-center">

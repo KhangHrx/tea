@@ -185,7 +185,10 @@
 															</h4>
 														</div>
 														<div class="modal-body">
-															<form action="">
+															<form action="{{ route('listorder.delete_item',[$product->id]) }}" method="POST">
+															@csrf
+															@method('DELETE')
+
 																<input
 																	type="submit"
 																	class="btn btn-danger"
