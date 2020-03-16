@@ -34,8 +34,11 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::group(['prefix'=>'cong-no'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
         Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');
+        Route::post('don-chua-thanh-toan/{id}','LiabilityController@postPayOrder')->name('liabilities.unpaid_list');
+
         Route::get('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
         Route::post('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@postPayUnpaid')->name('liabilities.pay_unpaid');
+
         Route::get('don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.list_paid');
         Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.detail_paid');
     });
@@ -66,7 +69,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
-        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');});
+        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+    });
     
     Route::group(['prefix'=>'/bao-cao'],function(){
         // Báo cáo theo ngày
@@ -75,6 +79,12 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::post('/ngay','OrderController@report_search_day')->name('report.search.day');
         // Báo cáo theo tuần
         Route::get('/tuan-hien-tai','OrderController@report_week')->name('report.week');
+        //
+        Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
+        Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+        Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
+        Route::post('/sua-sp/{id}','ListController@edit_item')->name('listorder.edit_item');
+
     });
     
 });

@@ -119,7 +119,7 @@ class TableSeeder extends Seeder
         DB::table('order')->insert([
             [
             'customer_id' => '1',
-            'total_weight' => '40',
+            'total_weight' => '300',
             'total_money'=>'3000000',
             'total_money_paid'=>'1000000',
             'name'=>'',
@@ -168,7 +168,7 @@ class TableSeeder extends Seeder
         ]);
         DB::table('order_detail')->insert([
             [
-            'order_id' => '1',
+            'order_id' => '2',
             'product_id'=>'1',
             'weight'=>'100',
             'deduction_per'=>'10',

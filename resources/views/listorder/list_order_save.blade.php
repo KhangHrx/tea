@@ -45,8 +45,11 @@
                       Chi tiết
                     </a>
                     <div class="dropdown-menu bg-light p-2">
-                      <p class="drop-down-item">
-                      </p>
+                      @foreach($order->orderDetail as $or)
+                        <p class="drop-down-item">
+                          {{ $or->orderDetail->name }}
+                        </p>
+                      @endforeach
                     </div>
                   </td>
                   <td class="text-center">
