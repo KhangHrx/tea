@@ -34,7 +34,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::group(['prefix'=>'cong-no'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
         Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');
-        Route::get('chi-tiet-don-chua-thanh-toan','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
+        Route::get('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
+        Route::post('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@postPayUnpaid')->name('liabilities.pay_unpaid');
         Route::get('don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.list_paid');
         Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.detail_paid');
     });
@@ -57,10 +58,10 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
             Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
             Route::get('/nong-ho/{id}','OrderController@add_with_old_customer')->name('order.add.old_customer');
             Route::post('/nong-ho/{id}','OrderController@post_add_with_old_customer')->name('order.add.old_customer');
-            Route::get('/nong-ho/{id}','OrderController@list_by_customer')->name('order.list_by_customer');
+            Route::get('/danh-sach-don/nong-ho/{id}','OrderController@list_by_customer')->name('order.list_by_customer');
         });
         Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
-            });
+    });
 
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');

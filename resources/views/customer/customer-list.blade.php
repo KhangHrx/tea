@@ -16,9 +16,9 @@
 							placeholder="Tìm kiếm..."
 						/>					
 					</div>
-					<div class="new-customer">
-						<a href="{{route('order.add.new_customer')}}" class="btn btn-primary">
-							Tạo mới <i class="fas fa-plus"></i></a>
+					<div class="new-customer mt-2">
+						<a href="{{route('order.add.new_customer')}}" class="btn btn-danger">
+							Tạo đơn cho nông hộ mới <i class="fas fa-plus"></i></a>
 					</div>
 					<div class="customer-table mt-3">
 						<table class="table text-center">
@@ -74,53 +74,50 @@
 										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title">Sửa thông tin</h4>
-														<button type="button" data-dismiss="modal">&times;</button>
-													</div>
-													<div class="modal-body">
-														<form action="{{route('customer.edit')}}" class="form-group-add-customer" method="post">
-															@csrf
+													<form action="{{route('customer.edit')}}" class="form-group-add-customer" method="post" onsubmit="return submitEdit({{$m->id}})">
+													@csrf
+														<div class="modal-header">
+															<h4 class="modal-title">Tên: {{$m->name}}</h4>
+															<button type="button" data-dismiss="modal">&times;</button>
+														</div>
+														<div class="modal-body text-left">
 															<input type="text" name="id" value="{{$m->id}}" style="display: none;">
 															<div class="form-group">
-																Tên: {{$m->name}}
-															</div>
-															<div class="form-group">
+																<label for="">Địa chỉ:</label>
 																<input
 																	type="text"
 																	class="form-control"
-																	value="{{$m->address}}" name="address"
+																	value="{{$m->address}}" name="address" id="editAddress{{$m->id}}"
 																/>
 																@if($errors->has('address'))
 																	<div class="text-danger">{{$errors->first('address')}}</div>
 																@endif
+																<div class="text-danger mt-2" id="editAddressMessage{{$m->id}}"></div>
 															</div>
 															<div class="form-group">
+																<label for="">Số điện thoại</label>
 																<input
 																	type="text"
 																	class="form-control"
-																	value="{{$m->phone}}" name="phone"
+																	value="{{$m->phone}}" name="phone" id="editPhone{{$m->id}}"
 																/>
 																@if($errors->has('phone'))
 																	<div class="text-danger">{{$errors->first('phone')}}</div>
 																@endif
+																<div class="text-danger mt-2" id="editPhoneMessage{{$m->id}}"></div>
 															</div>
-															<input
-																type="submit"
-																class="btn btn-success d-block m-auto"
-																value="Xác nhận"
-															/>
-														</form>
-													</div>
-													<div class="modal-footer">
-														<button
-															type="button"
-															class="btn btn-secondary"
-															data-dismiss="modal"
-														>
-															Đóng
-														</button>
-													</div>
+														</div>
+														<div class="modal-footer d-flex justify-content-center">
+															<button class="btn btn-success">Lưu thay đổi</button>
+															<button
+																type="button"
+																class="btn btn-secondary"
+																data-dismiss="modal"
+															>
+																Đóng
+															</button>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -151,58 +148,57 @@
 										<h4 class="modal-title">Thêm mới nông hộ</h4>
 										<button type="button" data-dismiss="modal">&times;</button>
 									</div>
-									<div class="modal-body">
-										<form action="{{route('customer.add')}}" class="form-group-add-customer" method="post" onsubmit="return addCustomer()">
-											@csrf
+									<form action="{{route('customer.add')}}" class="form-group-add-customer" method="post" onsubmit="return addCustomer()">
+										@csrf
+										<div class="modal-body">
 											<div class="form-group">
+												<label for="">Tên nông hộ</label>
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Tên nông hộ" name="name" id="addCustomerName"
+													name="name" id="addCustomerName"
 												/>
-												<div class="text-danger" id="addCustomerNameMessage"></div>
+												<div class="text-danger mt-2" id="addCustomerNameMessage"></div>
 												@if($errors->has('name'))
 													<div class="text-danger">{{$errors->first('name')}}</div>
 												@endif
 											</div>
 											<div class="form-group">
+												<label for="">Địa chỉ</label>
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Địa chỉ" name="address" id="addCustomerAddress"
+													name="address" id="addCustomerAddress"
 												/>
 												<div class="text-danger" id="addCustomerAddressMessage"></div>
 												@if($errors->has('address'))
-													<div class="text-danger">{{$errors->first('address')}}</div>
+													<div class="text-danger mt-2">{{$errors->first('address')}}</div>
 												@endif
 											</div>
 											<div class="form-group">
+												<label for="">Số điện thoại</label>
 												<input
 													type="text"
 													class="form-control"
-													placeholder="Số điện thoại" name="phone" id="addCustomerPhone"
+													name="phone" id="addCustomerPhone"
 												/>
-												<div class="text-danger" id="addCustomerPhoneMessage"></div>
+												<div class="text-danger mt-2" id="addCustomerPhoneMessage"></div>
 												@if($errors->has('phone'))
 													<div class="text-danger">{{$errors->first('phone')}}</div>
 												@endif
 											</div>
-											<input
-												type="submit"
-												class="btn btn-success d-block m-auto"
-												value="Xác nhận"
-											/>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button
-											type="button"
-											class="btn btn-secondary"
-											data-dismiss="modal"
-										>
-											Đóng
-										</button>
-									</div>
+										</div>
+										<div class="modal-footer d-flex justify-content-center">
+											<button class="btn btn-success">Thêm mới</button>
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-dismiss="modal"
+											>
+												Đóng
+											</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -213,26 +209,31 @@
 @endsection
 
 <script>
+	var regPhone = /^0[0-9]+$/;
 	function addCustomer(){
-		var name = document.getElementById('addCustomerName');
-		var nameMessage = document.getElementById('addCustomerNameMessage');
-		var address = document.getElementById('addCustomerAddress');
-		var addressMessage = document.getElementById('addCustomerAddressMessage');
-		var phone = document.getElementById('addCustomerPhone');
-		var phoneMessage = document.getElementById('addCustomerPhoneMessage');
-		var regName = /^[a-zA-Záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ ]{1,3}$/;
-		var regAddress = /^[0-9a-zA-Záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ \,\-]{1,3}$/;
-		var regPhone = /^0[0-9]{8}$/;
-		if(!regName.test(name.value.replace(/\s/g, ''))){
-			nameMessage.innerText = "Tên nông hộ không hợp lệ";
+		$('#addCustomerNameMessage').text("");
+		$('#addCustomerAddressMessage').text("");
+		$('#addCustomerPhoneMessage').text("");
+		if($('#addCustomerName').val().replace(/\s/g,'')==""){
+			$('#addCustomerNameMessage').text("Tên nông hộ không được để trống");
+			return false;
+		}else if($('#addCustomerAddress').val().replace(/\s/g,'')==""){
+			$('#addCustomerAddressMessage').text("Địa chỉ không được để trống");
+			return false;
+		}else if($('#addCustomerPhone').val().replace(/\s/g,'')!='' && !regPhone.test($('#addCustomerPhone').val().replace(/\s/g,''))){
+			$('#addCustomerPhoneMessage').text("Số điện thoại không hợp lệ");
 			return false;
 		}
-		if(!regAddress.test(address.value.replace(/\s/g,''))){
-			addressMessage.innerText = "Địa chỉ không hợp lệ";
+		
+	}
+	function submitEdit(e){
+		$('#editAddressMessage'+e).text("");
+		$('#editPhoneMessage'+e).text("");
+		if($('#editAddress'+e).val().replace(/\s/g,'')==""){
+			$('#editAddressMessage'+e).text("Địa chỉ không được để trống");
 			return false;
-		}
-		if(!phone.value.replace(/\s/g,'')=='' && !regPhone.test(phone.value.replace(/\s/g,''))){
-			phoneMessage.innerText = "Số điện thoại không hợp lệ";
+		}else if($('#editPhone'+e).val().replace(/\s/g,'')!='' && !regPhone.test($('#editPhone'+e).val().replace(/\s/g,''))){
+			$('#editPhoneMessage'+e).text("Số điện thoại không hợp lệ");
 			return false;
 		}
 	}

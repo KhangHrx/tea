@@ -39,7 +39,7 @@ class TableSeeder extends Seeder
             'name'=>'Nguyễn Văn B',
             'email'=>'order@gmail.com',
             'email_verified_at'=>now(),
-            'phone'=>'111',
+            'phone'=>'222',
             'password'=>bcrypt('123'),
             'permission'=>'1',
             'created_at'=>now(),
@@ -49,7 +49,7 @@ class TableSeeder extends Seeder
             'name'=>'Nguyễn Văn C',
             'email'=>'money@gmail.com',
             'email_verified_at'=>now(),
-            'phone'=>'111',
+            'phone'=>'333',
             'password'=>bcrypt('123'),
             'permission'=>'2',
             'created_at'=>now(),
@@ -214,6 +214,18 @@ class TableSeeder extends Seeder
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now(),
+            ],
+            [
+            'order_id' => '4',
+            'product_id'=>'1',
+            'weight'=>'100',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'weight_last'=>'70',
+            'price'=>'21000000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
             ],
         ]);
     }

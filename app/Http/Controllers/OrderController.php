@@ -60,12 +60,13 @@ class OrderController extends Controller
                 'weight'=>$c['weight'],
                 'deduction_per'=>$c['deduction_per'],
                 'deduction_kg'=>$c['deduction_kg'],
+                'weight_last'=>($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg']),
                 'price'=>(($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'])*$c['price']),
                 'note'=>$c['note'],
             ]);
         }
         session(['cart'=>[]]);
-        return redirect()->back();
+        return redirect()->route('order.list_by_id',['id'=>$order_id])->with('message','Tạo đơn hàng thành công');
     }
 
     public function add_with_old_customer($id)
@@ -105,12 +106,29 @@ class OrderController extends Controller
                 'weight'=>$c['weight'],
                 'deduction_per'=>$c['deduction_per'],
                 'deduction_kg'=>$c['deduction_kg'],
+                'weight_last'=>($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg']),
                 'price'=>(($c['weight']*(100-$c['deduction_per'])/100-$c['deduction_kg'])*$c['price']),
                 'note'=>$c['note'],
             ]);
         }
         session(['cart'=>[]]);
-        return redirect()->back();
+        return redirect()->route('order.list_by_id',['id'=>$order_id])->with('message','Tạo đơn hàng thành công');
+    }
+
+    public function list_by_customer($id)
+    {
+        $model = Order::where('customer_id',$id)->get();
+        return view('order.list_order_by_customer',[
+            'model'=>$model
+        ]);
+    }
+
+    public function list_by_id($id)
+    {
+        $model = Order::find($id);
+        return view('order.list_order_by_id',[
+            'model'=>$model
+        ]);
     }
 
 }
