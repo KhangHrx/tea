@@ -101,18 +101,18 @@
 							<div>
 								Tên nông hộ :
 								<span class="customer-name">
-								{{ isset($order->customer->name) ? $order->customer->name : $order->name }}
+								{{ isset($order->orderCustomer->name) ? $order->orderCustomer->name : $order->name }}
 
 								</span>
 							</div>
 							<div class="py-2">
 								Số điện thoại:
 								<span class="customer-phone-number">
-								{{ isset($order->customer->phone) ? $order->customer->phone : $order->phone }}
+								{{ isset($order->orderCustomer->phone) ? $order->orderCustomer->phone : $order->phone }}
 								</span>
 							</div>
 							<div>
-								Địa chỉ : <span class="user-address">{{ isset($order->customer->address) ? $order->customer->address : $order->address }}</span>
+								Địa chỉ : <span class="user-address">{{ isset($order->orderCustomer->address) ? $order->orderCustomer->address : $order->address }}</span>
 							</div>
 						</div>
 					</div>
