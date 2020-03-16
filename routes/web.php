@@ -47,6 +47,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/danh-sach','CustomerController@index')->name('customer.list');
         Route::post('/them-moi','CustomerController@post_add')->name('customer.add');
         Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit');
+        Route::get('/tim-kiem','CustomerController@search')->name('customer.search');
     });
 
     Route::group(['prefix'=>'/cac-loai-che'],function(){
@@ -65,8 +66,20 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         });
         Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
     });
-
+    
     Route::group(['prefix'=>'/danh-sach-don'],function(){
+        Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
+        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+    });
+    
+    Route::group(['prefix'=>'/bao-cao'],function(){
+        // Báo cáo theo ngày
+        Route::get('/hom-nay','OrderController@report_today')->name('report.today');
+        Route::get('/hom-nay/nong-ho/{id}','OrderController@list_by_customer_today')->name('order.list_by_customer_today');
+        Route::post('/ngay','OrderController@report_search_day')->name('report.search.day');
+        // Báo cáo theo tuần
+        Route::get('/tuan-hien-tai','OrderController@report_week')->name('report.week');
+        //
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
         Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');

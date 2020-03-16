@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Helper\CartHelper;
 use DB;
 use App\Quotation;
-
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -131,4 +131,48 @@ class OrderController extends Controller
         ]);
     }
 
+    // Báo cáo theo ngày
+    public function report_today()
+    {
+        $model = Order::whereDate('created_at',Carbon::today())->groupBy('customer_id')->select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')->get();
+        return view('report.report_today',[
+            'model'=>$model
+        ]);
+    }
+
+    public function list_by_customer_today($id)
+    {
+        $model = Order::where('customer_id',$id)->whereDate('created_at',Carbon::today())->orderBy('id')->get();
+        return view('order.list_order_by_customer',[
+            'model'=>$model
+        ]);
+    }
+
+    public function report_search_day(Request $request){
+        if($request->date == null)
+        {
+            return redirect()->route('report.today');
+        }
+        else
+        {
+            $model = Order::whereDate('created_at',$request->date)->groupBy('customer_id')->select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')->get();
+            return view('report.report_search_day',[
+                'date'=>$request->date,
+                'model'=>$model
+            ]);
+        }
+    }
+
+    //Báo cáo theo tuần
+    public function report_week()
+    {
+        $now = Carbon::now();
+        $startWeek = $now->startOfWeek()->format('Y-m-d H:i:s');
+        $endWeek = $now->endOfWeek()->format('Y-m-d H:i:s');
+        $model = Order::where('created_at','>=',$startWeek)->where('created_at','<=',$endWeek)->get();
+        dd($model);
+        return view('report.report_week',[
+            'model'=>$model
+        ]);
+    }
 }

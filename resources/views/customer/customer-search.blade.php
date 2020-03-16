@@ -14,12 +14,17 @@
 							<input
 								type="text"
 								class="search-box search-box-list-customer"
-								id="key"
-								placeholder="Nhập tên nông hộ ..." name="key"
+								id="search"
+								placeholder="Nhập tên nông hộ ..." name="key" value="{{$key}}"
 							/>	
 							<button class="btn btn-primary" type="submit">Tìm</button>	
 						</form>			
 					</div>
+					@if($model->count()==0)
+						<div class="container">
+							<div class="alert alert-danger mt-4">Không có kết quả tìm kiếm phù hợp</div>
+						</div>
+					@else
 					<div class="new-customer mt-2">
 						<a href="{{route('order.add.new_customer')}}" class="btn btn-danger">
 							Tạo đơn cho nông hộ mới <i class="fas fa-plus"></i></a>
@@ -206,13 +211,15 @@
 								</div>
 							</div>
 						</div>
+					@endif
 					</div>
 				</div>
 			</main>
 		</section>
 @endsection
-
+@section('script')
 <script>
+	$('#search').focus();
 	var regPhone = /^0[0-9]+$/;
 	function addCustomer(){
 		$('#addCustomerNameMessage').text("");
@@ -242,3 +249,4 @@
 		}
 	}
 </script>
+@endsection
