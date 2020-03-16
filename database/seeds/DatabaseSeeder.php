@@ -137,7 +137,7 @@ class TableSeeder extends Seeder
             'name'=>'',
             'phone'=>'',
             'address'=>'',
-            'status' => '1',
+            'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
             ],

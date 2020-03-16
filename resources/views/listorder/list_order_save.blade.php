@@ -33,8 +33,8 @@
               <tbody>
                 @foreach($orders as $order)
                 <tr>
-                  <td>{{ isset($order->customer->name) ? $order->customer->name : $order->name }}</td>
-                  <td>{{ isset($order->customer->address) ? $order->customer->address : $order->address }}</td>
+                  <td>{{ isset($order->orderCustomer->name) ? $order->orderCustomer->name : $order->name }}</td>
+                  <td>{{ isset($order->orderCustomer->address) ? $order->orderCustomer->address : $order->address }}</td>
                   <td>{{ number_format($order->total_weight) }}</td>
                   <td class="dropdown">
                     <a
