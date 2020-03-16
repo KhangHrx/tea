@@ -46,4 +46,21 @@ class CustomerController extends Controller
         Customer::find($request->id)->update($request->only('address','phone'));
         return redirect()->back();
     }
+
+    public function search(Request $request)
+    {
+        $key = $request->key;
+        if($key == '')
+        {
+            return redirect()->route('home');
+        }
+        else
+        {
+            $model = Customer::where('name','like','%'.$key.'%')->get();
+            return view('customer.customer-search',[
+                'key'=>$key,
+                'model'=>$model
+            ]);
+        }
+    }
 }
