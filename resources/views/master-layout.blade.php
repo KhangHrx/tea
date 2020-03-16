@@ -37,7 +37,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="{{route('home')}}">TK Người dùng</a>
+							<a class="nav-link" href="{{route('user.index')}}">TK Người dùng</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>

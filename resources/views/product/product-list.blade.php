@@ -10,6 +10,7 @@
 					</h3>
 					<!-- add new tea type -->
 					<!-- add new customer section -->
+					@can('admin')
 					<div class="add-new-customer">
 						<button
 							class="btn btn-primary"
@@ -89,6 +90,7 @@
 							</div>
 						</div>
 					</div>
+					@endcan
 					</div>
 					<table class="table">
 						<thead>
@@ -98,7 +100,9 @@
 								<th>Khấu trừ tối đa(%)</th>
 								<th>Ngày áp dụng giá</th>
 								<th>Trang thái</th>
+								@can('admin')
 								<th>Chỉnh sửa</th>
+								@endcan
 							</tr>
 						</thead>
 						<tbody>
@@ -115,6 +119,7 @@
 										<button class="btn btn-success">Đang thu mua</button>
 									@endif
 								</td>
+								@can('admin')
 								<td>
 									<div class="container d-inline">
 										<button
@@ -203,6 +208,7 @@
 										</div>
 									</div>
 								</td>
+								@endcan
 							</tr>
 							@endforeach
 						</tbody>

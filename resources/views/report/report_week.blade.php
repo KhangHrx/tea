@@ -1,6 +1,22 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
+@if(session('message'))
+<div class="container">
+	<div class="list-customer-header pt-3 d-flex justify-content-between">
+		<h3></h3>
+		<div>
+			<form action="" class="form-inline" method="post">
+				@csrf
+				<input type="number" min="1" max="5" value="1" class="form-control w-20" name="week">
+				<input type="month" class="form-control mx-2" name="month">
+				<button type="submit">Tìm</button>
+			</form>
+		</div>
+	</div>
+	<div class="alert alert-danger mt-4">{{session('message')}}</div>
+</div>
+@else
 		<section id="home-page-admin" class="home-page">
 			<main class="right-content list-customer-content">
 				
@@ -8,12 +24,13 @@
 				<!-- table info section -->
 				<div class="container mt-4">
 					<div class="list-customer-header pt-3 d-flex justify-content-between">
-						<h3>Báo cáo thống kê tuần 1/2/2020</h3>
+						<h3>Báo cáo thống kê tuần từ {{date('d/m/Y',strtotime($start))}} đến {{date('d/m/Y',strtotime($end))}}</h3>
 						<div>
-							<form action="" class="form-inline">
-								<input type="text" placeholder="Tuần" class="form-control w-20">
-								<input type="text" placeholder="Tháng" class="form-control mx-2">
-								<input type="submit" value="Tìm kiếm" class="form-control btn btn-secondary">
+							<form action="" class="form-inline" method="post">
+								@csrf
+								<input type="number" min="1" max="5" value="1" class="form-control w-20" name="week">
+								<input type="month" class="form-control mx-2" name="month">
+								<button type="submit">Tìm</button>
 							</form>
 						</div>
 					</div>
@@ -40,16 +57,23 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $sum_t = 0; $sum_p = 0; $sum_pp =0; ?>
+								@foreach($model as $m)
 								<tr>
+									<?php 
+										$sum_t+=$m['t']; 
+										$sum_p+=$m['p']; 
+										$sum_pp+=$m['pp']; 
+									?>
 									<td>
-										3/5/2020
+										{{date('d/m/Y',strtotime($m['created_at']))}}
 									</td>
-									<td>300 kg</td>
-									<td>100.000.000 đ</td>
-									<td>30.000.000 đ</td>
-									<td><a href="report_time_day.html">View</a></td>
+									<td>{{$m['t']}} kg</td>
+									<td>{{number_format($m['p'])}} đ</td>
+									<td>{{number_format($m['p']-$m['pp'])}} đ</td>
+									<td><a href="{{route('report.day',['d'=>date('d-m-Y',strtotime($m['created_at']))])}}">View</a></td>
 								</tr>
-								
+								@endforeach
 							</tbody>
 							<tfoot class="tfoot-light">
 								<tr>
@@ -57,18 +81,19 @@
 										Tổng
 									</td>
 
-									<td>300kg</td>
-									<td>500.000.000đ</td>
-									<td>300.000.000đ</td>
+									<td>{{$sum_t}} kg</td>
+									<td>{{number_format($sum_p)}} đ</td>
+									<td>{{number_format($sum_p-$sum_pp)}} đ</td>
 									<td>-</td>
 								</tr>
 							</tfoot>
 						</table>
 					</div>
 					<div class="get-info">
-						<button class="btn btn-primary">Xuất ra excel</button>
+						<!-- <button class="btn btn-primary">Xuất ra excel</button> -->
 					</div>
 				</div>
 			</main>
 		</section>
+@endif
 @endsection

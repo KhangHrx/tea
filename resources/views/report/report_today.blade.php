@@ -100,7 +100,7 @@
 						</table>
 					</div>
 					<div class="get-info">
-						<button class="btn btn-primary">Xuất ra excel</button>
+						<!-- <button class="btn btn-primary">Xuất ra excel</button> -->
 					</div>
 				</div>
 			</main>
