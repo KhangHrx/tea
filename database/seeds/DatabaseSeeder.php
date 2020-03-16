@@ -168,7 +168,7 @@ class TableSeeder extends Seeder
         ]);
         DB::table('order_detail')->insert([
             [
-            'order_id' => '1',
+            'order_id' => '2',
             'product_id'=>'1',
             'weight'=>'100',
             'deduction_per'=>'10',

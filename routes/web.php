@@ -64,9 +64,10 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'/danh-sach-don'],function(){
-        Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
-        Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
-        Route::delete('/delete-item/{id}','ListController@delete_item')->name('listorder.delete_item');
+        Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
+        Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+        Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
+        Route::post('/sua-sp/{id}','ListController@edit_item')->name('listorder.edit_item');
 
     });
     
