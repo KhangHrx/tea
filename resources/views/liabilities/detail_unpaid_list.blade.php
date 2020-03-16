@@ -158,7 +158,7 @@
 														<span class="order-value"> {{ number_format($totalPrice).' '.'đ' }}</span>
 													</div>
 													<div class="form-group d-block">
-														Còn nợ : <span class="order-loan">10.000.000 đ</span>
+														Còn nợ : <span class="order-loan">{{ number_format($totalPrice-$totalPay).' '.'đ' }}</span>
 													</div>
 													<div class="form-group">
 														<label for="tea-paid-money">Tiền thanh toán : </label>
