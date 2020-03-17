@@ -91,6 +91,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         // Báo cáo theo tháng
         Route::get('/thang','OrderController@report_month')->name('report.month');
         Route::post('/thang','OrderController@post_report_month')->name('report.month');
+        Route::get('/thang/{m}','OrderController@report_by_month')->name('report.by_month');
         // Báo cáo theo năm
         Route::get('/năm','OrderController@report_year')->name('report.year');
         Route::post('/năm','OrderController@post_report_year')->name('report.year');
