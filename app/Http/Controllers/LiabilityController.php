@@ -17,7 +17,7 @@ class LiabilityController extends Controller
         $data['order'] = Order::select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
         ->groupBy('customer_id')
         ->get();
-         
+        // dd($data['order']);
         $data['customer'] = Customer::all();
         // $data['modal'] = Order::where('customer_id','1')->get();
         // dd($data['modal']); 
@@ -68,9 +68,12 @@ class LiabilityController extends Controller
     }
     public function postPayUnpaid($id,Request $req){
         $this->validate($req,[
-            'pay' => 'required',
+            'pay' => 'required|numeric|min:0',
+            // 'pay' => 'required|numeric|min:0|lt:price',
         ],[
             'pay.required' => 'Số tiền cần thanh toán không được để trống !',
+            'pay.lt' => 'Số tiền cần thanh toán phải nhỏ hơn giá trị đơn',
+            'pay.min' => 'Số tiền cần thanh toán không được để số âm',
         ]);
         $newPay = new Pay;
         $newPay->order_id = $id;

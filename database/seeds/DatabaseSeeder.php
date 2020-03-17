@@ -62,6 +62,7 @@ class TableSeeder extends Seeder
             'name'=>'Nông hộ A',
             'phone'=>'0837 462 632',
             'address'=>'Thôn A',
+            'state'=>1,
             'created_at'=>now(),
             'updated_at'=>now()
             ],
@@ -69,9 +70,26 @@ class TableSeeder extends Seeder
             'name'=>'Nông hộ B',
             'phone'=>'0947 166 772',
             'address'=>'Thôn B',
+            'state'=>1,
             'created_at'=>now(),
             'updated_at'=>now()
-            ]
+            ],
+            [
+            'name'=>'Khách hàng vãng lai 1',
+            'phone'=>'0947 166 772',
+            'address'=>'Thôn B',
+            'state'=>0,
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'name'=>'Khách hàng vãng lai 2',
+            'phone'=>'0947 166 772',
+            'address'=>'Thôn Bc',
+            'state'=>0,
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
         ]);
         
         DB::table('product')->insert([
@@ -121,10 +139,7 @@ class TableSeeder extends Seeder
             'customer_id' => '1',
             'total_weight' => '300',
             'total_money'=>'268000000',
-            'total_money_paid'=>'10500000',
-            'name'=>'',
-            'phone'=>'',
-            'address'=>'',
+            'total_money_paid'=>'163000000',
             'status' => '1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -133,34 +148,25 @@ class TableSeeder extends Seeder
             'customer_id' => '2',
             'total_weight' => '45',
             'total_money'=>'151500000',
-            'total_money_paid'=>'1700000',
-            'name'=>'',
-            'phone'=>'',
-            'address'=>'',
+            'total_money_paid'=>'1345000000',
             'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
             [
-            'customer_id' => null,
+            'customer_id' => 3,
             'total_weight' => '50',
             'total_money'=>'202500000',
-            'total_money_paid'=>'1800000',
-            'name'=>'Lò Văn Quân',
-            'phone'=>'0345659586',
-            'address'=>'Xã A',
+            'total_money_paid'=>'200700000',
             'status'=>'0',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
             [
-            'customer_id' => null,
+            'customer_id' => 4,
             'total_weight' => '45',
             'total_money'=>'63000000',
-            'total_money_paid'=>'1900000',
-            'name'=>'Hồ Thị Hoa',
-            'phone'=>'0125151646',
-            'address'=>'Xã Sơn Châu',
+            'total_money_paid'=>'61100000',
             'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -169,10 +175,7 @@ class TableSeeder extends Seeder
             'customer_id' => '1',
             'total_weight' => '190',
             'total_money'=>'261000000',
-            'total_money_paid'=>'0',
-            'name'=>'',
-            'phone'=>'',
-            'address'=>'',
+            'total_money_paid'=>'261000000',
             'status' => '1',
             'created_at'=>now(),
             'updated_at'=>now()

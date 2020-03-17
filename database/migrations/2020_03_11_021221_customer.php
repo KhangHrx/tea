@@ -18,6 +18,7 @@ class Customer extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->text('address');
+            $table->tinyInteger('state')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
