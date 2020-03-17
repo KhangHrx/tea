@@ -82,6 +82,8 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
         Route::get('/sua-sp/{id}','ListController@edit_item')->name('listorder.edit_item');
         Route::post('/sua-sp/{id}','ListController@update_item')->name('listorder.update_item');
+        // Route::get('/them-sp','ListController@add_item')->name('listorder.add_item');
+        Route::post('/them-sp/{id}','ListController@save_add')->name('listorder.save_add');
     });
     
     Route::group(['prefix'=>'/bao-cao'],function(){
