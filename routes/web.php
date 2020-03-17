@@ -19,7 +19,7 @@ Route::post('/dang-nhap','UserController@post_login')->name('login');
 Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::get('/dang-xuat','UserController@logout')->name('logout');
 
-    Route::group(['prefix'=>'/tai-khoan'],function(){
+    Route::group(['prefix'=>'/tai-khoan','middleware'=>'can:admin'],function(){
         Route::get('/','UserController@index')->name('user.index');
         Route::get('/xoa/{id}','UserController@delete')->name('user.delete');
         Route::get('/reset-mat-khau/{id}','UserController@reset_password')->name('user.reset_password');
@@ -38,7 +38,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/huy','CartController@clear')->name('cart.clear');
     });
 
-    Route::group(['prefix'=>'cong-no'],function(){
+    Route::group(['prefix'=>'cong-no','middleware'=>'can:accountant'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
         Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');
         Route::post('don-chua-thanh-toan/{id}','LiabilityController@postPayOrder')->name('liabilities.unpaid_list');
@@ -53,18 +53,18 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
 
     Route::group(['prefix'=>'/nong-ho'],function(){
         Route::get('/danh-sach','CustomerController@index')->name('customer.list');
-        Route::post('/them-moi','CustomerController@post_add')->name('customer.add');
-        Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit');
+        Route::post('/them-moi','CustomerController@post_add')->name('customer.add')->middleware(['can:admin']);
+        Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit')->middleware(['can:admin']);
         Route::get('/tim-kiem','CustomerController@search')->name('customer.search');
     });
 
     Route::group(['prefix'=>'/cac-loai-che'],function(){
         Route::get('/danh-sach','ProductController@index')->name('product.list');
-        Route::post('/tao-moi','ProductController@post_add')->name('product.add');
-        Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit');
+        Route::post('/tao-moi','ProductController@post_add')->name('product.add')->middleware(['can:admin']);
+        Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit')->middleware(['can:admin']);
     });
 
-    Route::group(['prefix'=>'/don-hang'],function(){
+    Route::group(['prefix'=>'/don-hang','middleware'=>'can:employee'],function(){
         Route::group(['prefix'=>'/tao-moi'],function(){
             Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
             Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
@@ -75,7 +75,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
     });
     
-    Route::group(['prefix'=>'/danh-sach-don'],function(){
+    Route::group(['prefix'=>'/danh-sach-don','middleware'=>'can:employee'],function(){
         // Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
         // Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
