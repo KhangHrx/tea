@@ -154,7 +154,7 @@
 								{{ $product->orderDetail->name }}
 							</td>
 							<td>{{ $product->weight }}</td>
-							<td>{{ $product->deduction_per }}</td>
+							<td>{{ $product->orderDetail->deduction }}</td>
 							<td>{{ $product->deduction_kg }}</td>
 							<td>{{ $product->weight - ($product->weight * $product->deduction_per / 100) - $product->deduction_kg }}</td>
 							<td>{{ number_format($product->orderDetail->price).' '.'Đ' }}</td>
@@ -210,7 +210,7 @@
 								
 							</td>
 							<td>
-								<a href="{{route('listorder.edit_item',[$product->orderDetail->id])}}">	Sửa</a>
+								<a href="{{route('listorder.edit_item',[$product->id])}}">	Sửa</a>
 							</td>
 						</tr>
 					@endforeach

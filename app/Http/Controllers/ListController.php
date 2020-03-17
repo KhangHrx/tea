@@ -34,22 +34,32 @@ class ListController extends Controller
     public function edit_item($id)
     {
 
-        $cate = Product::all();
-        $todetail = OrderDetail::with('orderDetail')->get();
-        return view('listorder.edit_item',['todetail'=>$todetail,'cate'=>$cate]);
+        $cate =  OrderDetail::find($id);
+        $sp = Product::all()->toArray();
+
+        // $todetail = OrderDetail::with('orderDetail')->get();
+        return view('listorder.edit_item',['sp'=>$sp,'cate'=>$cate]);
     }
     public function update_item(Request $request,$id)
     {
+        $id_product = Product::find($request->item_id);
+        // dd($id_product);
+        // $id_order = OrderDetail::find($id);
         $new = OrderDetail::find($id);
+        $new->order_id = $new->orderDetail->id;
+        // dd($new->orderDetail->id);
         $new->product_id = $request->item_id;
         $new->weight = $request->weight;
         $new->deduction_per = $request->deduction_per;
         $new->deduction_kg = $request->deduction_kg;
         $new->weight_last = $request->weight - (($request->weight)*($request->deduction_per)/100) - $request->deduction_kg;
         $new->note = $request->note;
+        $new->price = $id_product->price * ($request->weight - (($request->weight)*($request->deduction_per)/100) - $request->deduction_kg);
+        
+
 
         $new->save();
-        return redirect()->back(); 
+        return redirect()->route('listorder.list_order_save_change',['id'=>$new->orderDetail->id]); 
     }
     public function delete_item($id)
     {
