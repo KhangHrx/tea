@@ -34,59 +34,90 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										<form action="">
+									<form action="{{route('listorder.update_item')}}" method="post">
+										@csrf
+										<div class="dev-hoa">
+											<input type="text" id="productId" style="display: none;" name="id">
 											<div class="form-group">
-												<label for="tea-type">Loại chè</label>
-												<select class="form-control" id="tea-type" name="" >
-														@foreach($sp as $item)
-															<option	value="{{$item['id']}}">
-																{{$item['name']}}
-															</option>
-														@endforeach
+												<label for="item_id">Tên loại chè</label>
+												<select class="form-control" id="item_id" name="item_id" onchange="changeProduct()">
+													@foreach($sp as $s)
+													<option value="{{$s['id']}}">{{$s['name']}}</option>
+													@endforeach
 												</select>
 											</div>
+
 											<div class="form-group">
+											<label for="weight">Khối lượng</label>
 												<input
 													type="text"
-													id="tea-mass"
 													class="form-control"
+													value="{{$cate->weight}}" name="weight"
+													id="weight"
 												/>
+												<div class="text-danger mt-2"></div>
+													<div class="text-danger"></div>
 											</div>
+
 											<div class="form-group">
+											<label for="weight">Khấu trừ (%) - Tối đa: <span id="defaultDeduction">{{$products[0]->deduction}}</span>%</label>
 												<input
 													type="text"
-													id="tea-mass-rate"
-													class="form-control"
+													class="form-control"									
+													id="tea-mass-rate-deduction"
+													value="{{$cate->orderDetail->deduction}}" name="deduction_per"
 												/>
+												<div class="text-danger mt-2"></div>
+													<div class="text-danger"></div>
 											</div>
+
 											<div class="form-group">
+											<label for="weight">Khấu trừ khối lượng</label>
 												<input
 													type="text"
-													id="tea-mass-rate"
 													class="form-control"
+													value="{{$cate->deduction_kg}}" name="deduction_kg"
 												/>
+												<div class="text-danger mt-2"></div>
+													<div class="text-danger"></div>
 											</div>
+
 											<div class="form-group">
-												<label for="tea-price">Đơn giá</label>
-												<input type="text" class="form-control">
-											</div>
-											<div class="form-group">
-												<label for="tea-message">Ghi chú</label>
-												<textarea
-													name="message"
+											<label for="unit_price">Đơn giá - Mặc định: <span id="defaultPrice">{{ number_format($products[0]->price) }}</span>đ/kg)</label>
+												<input
+													type="text"
 													class="form-control"
-													id="tea-message"
-													cols="30"
-													rows="2"
-													placeholder="Ghi chú"
-												></textarea>
+													value="{{ number_format($products[0]->price) }}"
+													id="tea-mass-rate-price"
+													name="unit_price"
+												/>
+												<div class="text-danger mt-2"></div>
+													<div class="text-danger"></div>
 											</div>
-											<input
-												type="submit"
-												class="btn btn-success d-block m-auto"
-												value="Xác nhận"
-											/>
-										</form>
+
+											<div class="form-group">
+											<label for="note">Ghi chú</label>
+												<input
+													type="text"
+													class="form-control"
+													value="{{$cate->note}}" name="note"
+												/>
+												<div class="text-danger mt-2"></div>
+													<div class="text-danger"></div>
+											</div>
+
+											<div class="modal-footer">
+												<button type="submit" class="btn btn-success">Lưu thay đổi</button>
+												<button
+													type="button"
+													class="btn btn-secondary"
+													data-dismiss="modal"
+												>
+													Đóng
+												</button>
+											</div>
+										</div>
+									</form>
 									</div>
 									
 								</div>
@@ -119,6 +150,7 @@
 				<table class="table text-center">
 					<thead>
 						<tr>
+							<th>#</th>
 							<th>
 								Tên loại chè
 							</th>
@@ -149,7 +181,7 @@
 					<tbody>
 					@foreach($toproduct as $product)
 						<tr>
-							
+							<td>{{ $product->id}}</td>
 							<td>
 								{{ $product->orderDetail->name }}
 							</td>
@@ -217,6 +249,7 @@
 					</tbody>
 					<tfoot class="tfoot-light">
 						<tr>
+							<td></td>
 							<td class="font-weight-bold">Tổng</td>
 							<td>
 								{{ $weightfirst }}

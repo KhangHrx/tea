@@ -17,14 +17,14 @@
                         <form action="{{route('listorder.update_item',[$cate->id])}}" method="post">
                             @csrf
                             <div class="dev-hoa">
-                                <input type="text" value="" style="display: none;" name="id">
+                                <input type="text" value="{{$products[0]->id}}" id="productId" style="display: none;" name="id">
                                 <div class="form-group">
                                     <label for="item_id">Tên loại chè</label>
-                                    <select class="form-control" id="item_id" name="item_id" >
-                                    @foreach($sp as $item)
-                                        <option {{ $cate['id']==$item['id']?'selected':''}}
-                                        value="{{$item['id']}}">{{$item['name']}}</option>
-                                    @endforeach
+                                    <select class="form-control" id="item_id" name="item_id" onchange="changeProduct()">
+                                        @foreach($sp as $s)
+                                        <option <?php echo ($cate['product_id']==$s['id'])?"selected":''; ?> 
+                                        value="{{$s['id']}}">{{$s['name']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -41,10 +41,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label for="weight">Khấu trừ %</label>
+                                <label for="weight">Khấu trừ (%) - Tối đa: <span id="defaultDeduction">{{$products[0]->deduction}}</span>%</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control"									
+                                        id="tea-mass-rate-deduction"
                                         value="{{$cate->orderDetail->deduction}}" name="deduction_per"
                                     />
                                     <div class="text-danger mt-2"></div>
@@ -52,7 +53,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label for="weight">Khấu trừ kg</label>
+                                <label for="weight">Khấu trừ khối lượng</label>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -63,11 +64,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label for="unit_price">Đơn giá</label>
+                                <label for="unit_price">Đơn giá - Mặc định: <span id="defaultPrice">{{ number_format($products[0]->price) }}</span>đ/kg)</label>
                                     <input
                                         type="text"
                                         class="form-control"
-                                        value="{{number_format($cate->orderDetail->price).' '.'Đ' }}" name="unit_price"
+                                        value="{{ number_format($products[0]->price) }}"
+                                        id="tea-mass-rate-price"
+                                        name="unit_price"
                                     />
                                     <div class="text-danger mt-2"></div>
                                         <div class="text-danger"></div>
@@ -102,4 +105,19 @@
         </div>
     </main>
 </section>
+@endsection
+@section('script')
+
+<script>
+	var products = @json($products->toArray());
+	function changeProduct(){
+		let select = document.getElementById('item_id');
+		let product = products.find(product=>product.id == (select.selectedIndex+1));
+		document.getElementById('tea-mass-rate-deduction').value = product.deduction;
+		$('#defaultDeduction').text(product.deduction);
+		document.getElementById('tea-mass-rate-price').value = product.price;
+		$('#defaultPrice').text(product.price);
+		document.getElementById('productId').value = product.id;
+	}
+</script>
 @endsection
