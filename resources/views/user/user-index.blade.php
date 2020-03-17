@@ -8,6 +8,7 @@
 @endcannot
 @can('admin')
 <section>
+a
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-12">
