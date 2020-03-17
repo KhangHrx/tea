@@ -30,7 +30,7 @@
 								@csrf
 								<input type="number" min="1" max="5" value="1" class="form-control w-20" name="week">
 								<input type="month" class="form-control mx-2" name="month">
-								<button type="submit">Tìm</button>
+								<button type="submit" class="btn btn-secondary">Tìm</button>
 							</form>
 						</div>
 					</div>

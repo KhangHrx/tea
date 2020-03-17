@@ -280,14 +280,28 @@ class OrderController extends Controller
         ]);
     }
 
+    public function report_by_month($m)
+    {
+        $month = date('m',strtotime('01-'.$m));
+        // dd($month);
+        $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->whereMonth('created_at','=',$month)->get();
+        return view('report.report_month',[
+            'model'=>$model,
+            'time'=>'01-'.$m
+        ]);
+    }
+
     // Báo cáo theo năm
     public function report_year()
     {
         $now = Carbon::now();
         $year = $now->year;
         $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
-            ->groupBy(DB::raw('Date(created_at)'))
+            ->groupBy(DB::raw('Month(created_at)'))
             ->whereYear('created_at','=',$year)->get();
+        // dd($model);
         return view('report.report_year',[
             'model'=>$model,
             'time'=>$now
@@ -296,21 +310,22 @@ class OrderController extends Controller
 
     public function post_report_year(Request $request)
     {
-        if($request->month == null)
+        if($request->year == null)
         {
-            return redirect()->route('report.month');
+            return redirect()->route('report.year');
         }
         else
         {
-            $month = date('m',strtotime($request->month));
-            $year = date('Y',strtotime($request->month));
+            $year = $request->year;
+            $now = '01/01/'.$year;
         }
         $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
-            ->groupBy(DB::raw('Date(created_at)'))
-            ->whereMonth('created_at','=',$month)->get();
-        return view('report.report_month',[
+            ->groupBy(DB::raw('Month(created_at)'))
+            ->whereYear('created_at','=',$year)->get();
+        return view('report.report_year',[
             'model'=>$model,
-            'time'=>$request->month
+            'time'=>$now,
+            'yearBack'=>$request->year
         ]);
     }
 }
