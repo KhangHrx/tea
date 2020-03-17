@@ -105,5 +105,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         
 
     });
+
+    Route::get('/export','OrderController@export')->name('export');
     
 });
