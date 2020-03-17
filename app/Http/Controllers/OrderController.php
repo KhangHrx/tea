@@ -38,10 +38,12 @@ class OrderController extends Controller
             'address.required'=>'Địa chỉ không được để trống',
             'address.string'=>'Địa chỉ chỉ chứa văn bản'
         ]);
-        $request->merge(['customer_id'=>null]);
+        Customer::create(['name'=>$request->name,'phone'=>$request->phone,'address'=>$request->address,'state'=>0]);
+        $last_customer = Customer::max('id');
+        $request->merge(['customer_id'=>$last_customer]);
         $request->merge(['total_weight'=>($cart->get_total_after_deduction())]);
         $request->merge(['total_money'=>($cart->get_total_price())]);
-        $request->merge(['total_money_paid'=>'0']);
+        $request->merge(['total_money_paid'=>($cart->get_total_price())]);
         $request->offsetUnset('_token');
         if($request->action=="save")
         {
@@ -87,7 +89,7 @@ class OrderController extends Controller
         $request->merge(['customer_id'=>$id]);
         $request->merge(['total_weight'=>($cart->get_total_after_deduction())]);
         $request->merge(['total_money'=>($cart->get_total_price())]);
-        $request->merge(['total_money_paid'=>'0']);
+        $request->merge(['total_money_paid'=>($cart->get_total_price())]);
         $request->offsetUnset('_token');
         if($request->action=="save")
         {

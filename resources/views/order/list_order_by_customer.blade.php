@@ -60,7 +60,7 @@
 								<?php
 								$total_weight+=$m['total_weight']; 
 								$total_money+=$m['total_money'];
-								$total_money_paid+=($m['total_money']-$m['total_money_paid']);
+								$total_money_paid+=($m['total_money_paid']);
 								?>
 								<tr>
 									<td>
@@ -69,7 +69,7 @@
 									<td>{{date('d/m/Y',strtotime($m['created_at']))}}</td>
 									<td>{{$m['total_weight']}}<span class="mass-digit">kg</span></td>
 									<td>{{number_format($m['total_money'])}}đ</td>
-									<td class="text-danger">{{number_format($m['total_money']-$m['total_money_paid'])}}đ</td>
+									<td class="text-danger">{{number_format($m['total_money_paid'])}}đ</td>
 									<td><a href="{{route('order.list_by_id',['id'=>$m['id']])}}">View</a></td>
 								</tr>
 								@endforeach
