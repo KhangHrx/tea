@@ -35,10 +35,15 @@ class ListController extends Controller
     {
 
         $cate =  OrderDetail::find($id);
-        $sp = Product::all()->toArray();
-
+        $sp = Product::all();
+        $products = Product::where('state',1)->get(['id','name','deduction','price']);
+        // dd($cate);
         // $todetail = OrderDetail::with('orderDetail')->get();
-        return view('listorder.edit_item',['sp'=>$sp,'cate'=>$cate]);
+        return view('listorder.edit_item',[
+            'sp'=>$sp,
+            'cate'=>$cate,
+            'products'=>$products
+            ]);
     }
     public function update_item(Request $request,$id)
     {
@@ -60,6 +65,14 @@ class ListController extends Controller
 
         $new->save();
         return redirect()->route('listorder.list_order_save_change',['id'=>$new->orderDetail->id]); 
+    }
+    public function add_item()
+    {
+        
+    }
+    public function save_add()
+    {
+        
     }
     public function delete_item($id)
     {

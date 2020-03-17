@@ -176,7 +176,7 @@
 								@endif
 							</div>
 							<div class="form-group">
-								<label for="tea-price">Đơn giá - Mmặc định: {{number_format($products[0]->price)}}đ/kg)</label>
+								<label for="tea-price">Đơn giá - Mặc định: {{ number_format($products[0]->price) }}đ/kg)</label>
 								<input type="text" name="price" class="form-control" id="tea-mass-rate-price" value="{{$products[0]->price}}">
 								@if($errors->has('price'))
 									<div class="text-danger">{{$errors->first('price')}}</div>
