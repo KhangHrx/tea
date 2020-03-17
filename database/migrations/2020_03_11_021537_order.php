@@ -19,9 +19,6 @@ class Order extends Migration
             $table->float('total_weight');
             $table->bigInteger('total_money');
             $table->bigInteger('total_money_paid');
-            $table->string('name')->nullable();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customer');
