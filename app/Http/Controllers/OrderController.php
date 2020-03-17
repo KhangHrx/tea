@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Helper\CartHelper;
 use DB;
 use App\Quotation;
-
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -131,4 +131,116 @@ class OrderController extends Controller
         ]);
     }
 
+    // Báo cáo theo ngày
+    public function report_today()
+    {
+        $model = Order::whereDate('created_at',Carbon::today())->groupBy('customer_id')
+            ->select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')->get();
+        return view('report.report_today',[
+            'model'=>$model
+        ]);
+    }
+
+    public function list_by_customer_today($id)
+    {
+        $model = Order::where('customer_id',$id)->whereDate('created_at',Carbon::today())->orderBy('id')->get();
+        return view('order.list_order_by_customer',[
+            'model'=>$model
+        ]);
+    }
+
+    public function report_search_day(Request $request){
+        if($request->date == null)
+        {
+            return redirect()->route('report.today');
+        }
+        else
+        {
+            $model = Order::whereDate('created_at',$request->date)->groupBy('customer_id')
+                ->select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')->get();
+            return view('report.report_search_day',[
+                'date'=>$request->date,
+                'model'=>$model
+            ]);
+        }
+    }
+
+    //Báo cáo theo tuần
+    public function report_week()
+    {
+        $now = Carbon::now();
+        $startWeek = $now->startOfWeek()->format('Y-m-d H:i:s');
+        $endWeek = $now->endOfWeek()->format('Y-m-d H:i:s');
+        $model = Order::select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->where('created_at','>=',$startWeek)->where('created_at','<=',$endWeek)->get();
+        return view('report.report_week',[
+            'model'=>$model,
+            'start'=>$startWeek,
+            'end'=>$endWeek
+        ]);
+    }
+
+    public function post_report_week(Request $request)
+    {
+        if($request->month == null)
+        {
+            return redirect()->route('report.week');
+        }
+        else
+        {
+            $dayStart = '01'; 
+            $dayEnd = '07'; 
+            $month = date('m',strtotime($request->month));
+            $year = date('Y',strtotime($request->month));
+            if($request->week == 2)
+            {
+                $dayStart = '08'; 
+                $dayEnd = '14';
+            }
+            else if($request->week == 3)
+            {
+                $dayStart = '15'; 
+                $dayEnd = '21';
+            }
+            else if($request->week == 4)
+            {
+                $dayStart = '22'; 
+                $dayEnd = '28';
+            }
+            else if($request->week == 5)
+            {
+                $dayStart = '29'; 
+                if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
+                    $dayEnd = '31';
+                }else if($month==4||$month==6||$month==9||$month==11){
+                    $dayEnd = '30';
+                }else if($year%4==0){
+                    $dayEnd = '29';
+                }else{
+                    return redirect()->back()->with(['message'=>'Tuần không tồn tại']);
+                }
+            }
+            $startWeek=($request->month).'-'.$dayStart;
+            $endWeek=($request->month).'-'.$dayEnd.' 23:59:59';
+        }
+        $model = Order::select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->where('created_at','>=',$startWeek)->where('created_at','<=',$endWeek)->get();
+        return view('report.report_week',[
+            'model'=>$model,
+            'start'=>$startWeek,
+            'end'=>$endWeek
+        ]);
+    }
+
+    public function report_day($d){
+        $day = date('Y-m-d',strtotime($d));
+        $model = Order::whereDate('created_at',$day)->groupBy('customer_id')
+            ->select(DB::raw('*, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')->get();
+        return view('report.report_search_day',[
+            'date'=>$day,
+            'model'=>$model
+        ]);
+    }
 }

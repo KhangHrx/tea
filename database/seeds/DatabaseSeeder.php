@@ -119,9 +119,9 @@ class TableSeeder extends Seeder
         DB::table('order')->insert([
             [
             'customer_id' => '1',
-            'total_weight' => '40',
-            'total_money'=>'3000000',
-            'total_money_paid'=>'1000000',
+            'total_weight' => '300',
+            'total_money'=>'268000000',
+            'total_money_paid'=>'10500000',
             'name'=>'',
             'phone'=>'',
             'address'=>'',
@@ -132,8 +132,8 @@ class TableSeeder extends Seeder
             [
             'customer_id' => '2',
             'total_weight' => '45',
-            'total_money'=>'4000000',
-            'total_money_paid'=>'1500000',
+            'total_money'=>'151500000',
+            'total_money_paid'=>'1700000',
             'name'=>'',
             'phone'=>'',
             'address'=>'',
@@ -144,8 +144,8 @@ class TableSeeder extends Seeder
             [
             'customer_id' => null,
             'total_weight' => '50',
-            'total_money'=>'5000000',
-            'total_money_paid'=>'1500000',
+            'total_money'=>'202500000',
+            'total_money_paid'=>'1800000',
             'name'=>'Lò Văn Quân',
             'phone'=>'0345659586',
             'address'=>'Xã A',
@@ -156,16 +156,28 @@ class TableSeeder extends Seeder
             [
             'customer_id' => null,
             'total_weight' => '45',
-            'total_money'=>'4500000',
-            'total_money_paid'=>'2500000',
+            'total_money'=>'63000000',
+            'total_money_paid'=>'1900000',
             'name'=>'Hồ Thị Hoa',
             'phone'=>'0125151646',
             'address'=>'Xã Sơn Châu',
             'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()
-            ]
-        ]);
+            ],
+            [
+            'customer_id' => '1',
+            'total_weight' => '190',
+            'total_money'=>'261000000',
+            'total_money_paid'=>'0',
+            'name'=>'',
+            'phone'=>'',
+            'address'=>'',
+            'status' => '1',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+    ]);
         DB::table('order_detail')->insert([
             [
             'order_id' => '2',
@@ -222,11 +234,99 @@ class TableSeeder extends Seeder
             'deduction_per'=>'10',
             'deduction_kg'=>'20',
             'weight_last'=>'70',
+            'price'=>'63000000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'order_id' => '1',
+            'product_id'=>'4',
+            'weight'=>'100',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'weight_last'=>'70',
             'price'=>'21000000',
             'note'=>'nothong',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
+            [
+            'order_id' => '1',
+            'product_id'=>'5',
+            'weight'=>'100',
+            'deduction_per'=>'10',
+            'deduction_kg'=>'20',
+            'weight_last'=>'70',
+            'price'=>'175000000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'order_id' => '2',
+            'product_id'=>'4',
+            'weight'=>'200',
+            'deduction_per'=>'15',
+            'deduction_kg'=>'25',
+            'weight_last'=>'145',
+            'price'=>'130500000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            ],
+            [
+            'order_id' => '5',
+            'product_id'=>'4',
+            'weight'=>'200',
+            'deduction_per'=>'15',
+            'deduction_kg'=>'25',
+            'weight_last'=>'145',
+            'price'=>'130500000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            ],
+            [
+            'order_id' => '5',
+            'product_id'=>'4',
+            'weight'=>'200',
+            'deduction_per'=>'15',
+            'deduction_kg'=>'25',
+            'weight_last'=>'145',
+            'price'=>'130500000',
+            'note'=>'nothong',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            ],
+        ]);
+
+        DB::table('pays')->insert([
+            [
+            'order_id'=>'1',
+            'money'=>'10500000',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'order_id'=>'2',
+            'money'=>'1700000',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'order_id'=>'3',
+            'money'=>'1800000',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            [
+            'order_id'=>'4',
+            'money'=>'1900000',
+            'created_at'=>now(),
+            'updated_at'=>now()
+            ],
+            
         ]);
     }
 }

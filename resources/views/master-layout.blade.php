@@ -37,7 +37,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="{{route('home')}}">TK Người dùng</a>
+							<a class="nav-link" href="{{route('user.index')}}">TK Người dùng</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>
@@ -79,8 +79,8 @@
 							Báo cáo
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Báo cáo ngày</a>
-								<a class="dropdown-item" href="#">Báo cáo tuần</a>
+								<a class="dropdown-item" href="{{route('report.today')}}">Báo cáo ngày</a>
+								<a class="dropdown-item" href="{{route('report.week')}}">Báo cáo tuần</a>
 								<a class="dropdown-item" href="#">Báo cáo tháng</a>
 								<a class="dropdown-item" href="#">Báo cáo năm</a>
 							</div>
@@ -145,5 +145,6 @@
 			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 			crossorigin="anonymous"
 		></script>
+		@yield('script')
 	</body>
 </html>
