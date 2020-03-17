@@ -71,7 +71,7 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href=" {{ route('liabilities.list_customer') }} ">Chưa thanh toán</a>
-								<a class="dropdown-item" href="#">Đã thanh toán</a>
+								<a class="dropdown-item" href="{{ route('liabilities.customer_paid_list') }}">Đã thanh toán</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">

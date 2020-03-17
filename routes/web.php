@@ -46,8 +46,9 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
         Route::post('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@postPayUnpaid')->name('liabilities.pay_unpaid');
 
-        Route::get('don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.list_paid');
-        Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.detail_paid');
+        Route::get('danh-sach-da-thanh-toan','LiabilityController@customerPaidList')->name('liabilities.customer_paid_list');
+        Route::get('da-thanh-toan/{id}','LiabilityController@paidList')->name('liabilities.paid_List');
+        Route::get('chi-tiet-da-thanh-toan/{id}','LiabilityController@detaiPaidlList')->name('liabilities.detail_paid');
     });
 
     Route::group(['prefix'=>'/nong-ho'],function(){
