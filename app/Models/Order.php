@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = 'order';
-    protected $fillable = ['customer_id','total_weight','total_money','total_money_paid','name','phone','address','status'];
+    protected $fillable = ['customer_id','total_weight','total_money','total_money_paid','status'];
 
     public function orderCustomer(){
         return $this->belongsTo(Customer::class,'customer_id','id');

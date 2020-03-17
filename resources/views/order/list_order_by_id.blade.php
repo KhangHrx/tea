@@ -96,10 +96,10 @@
 						<div class="text-success font-weight-bold"><?php echo ($model['status']==0)?"Đơn chưa chuyển cho kế toán":"Đơn đã chuyển cho kế toán" ?></div>
 						<div>
 							<p class="text-medium text-success">
-								Đã thanh toán : <span class="paid-money">{{number_format($model['total_money_paid'])}} đ</span>
+								Đã thanh toán : <span class="paid-money">{{number_format($model['total_money']-$model['total_money_paid'])}} đ</span>
 							</p>
 							<p class="text-medium text-danger">
-								Còn nợ : <span class="loan-money">{{number_format($model['total_money']-$model['total_money_paid'])}} đ</span>
+								Còn nợ : <span class="loan-money">{{number_format($model['total_money_paid'])}} đ</span>
 							</p>
 						</div>
 					</div>

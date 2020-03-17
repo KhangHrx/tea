@@ -148,7 +148,7 @@ class TableSeeder extends Seeder
             'customer_id' => '2',
             'total_weight' => '45',
             'total_money'=>'151500000',
-            'total_money_paid'=>'1345000000',
+            'total_money_paid'=>'134500000',
             'status' => '0',
             'created_at'=>now(),
             'updated_at'=>now()

@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $model = Customer::all();
+        $model = Customer::where('state','1')->get();
         return view('customer.customer-list',[
             'model'=>$model
         ]);
@@ -29,6 +29,7 @@ class CustomerController extends Controller
             'address.string'=>'Địa chỉ chỉ gồm văn bản',
             'phone.string'=>'Số điện thoại chỉ gồm văn bản'
         ]);
+        $request->merge(['state'=>'1']);
         Customer::create($request->all());
         return redirect()->back();
     }
@@ -56,7 +57,7 @@ class CustomerController extends Controller
         }
         else
         {
-            $model = Customer::where('name','like','%'.$key.'%')->get();
+            $model = Customer::where('state','1')->where('name','like','%'.$key.'%')->get();
             return view('customer.customer-search',[
                 'key'=>$key,
                 'model'=>$model

@@ -70,7 +70,7 @@
 									</td>
 									<td>{{$m['t']}} kg</td>
 									<td>{{number_format($m['p'])}} đ</td>
-									<td>{{number_format($m['p']-$m['pp'])}} đ</td>
+									<td>{{number_format($m['pp'])}} đ</td>
 									<td><a href="{{route('report.day',['d'=>date('d-m-Y',strtotime($m['created_at']))])}}">View</a></td>
 								</tr>
 								@endforeach
@@ -83,7 +83,7 @@
 
 									<td>{{$sum_t}} kg</td>
 									<td>{{number_format($sum_p)}} đ</td>
-									<td>{{number_format($sum_p-$sum_pp)}} đ</td>
+									<td>{{number_format($sum_pp)}} đ</td>
 									<td>-</td>
 								</tr>
 							</tfoot>

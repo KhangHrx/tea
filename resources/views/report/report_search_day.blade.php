@@ -55,39 +55,21 @@
 								$sum_money_paid = 0;
 							?>
 							@foreach($model as $m)
-							@if($m->customer_id)
-								<?php
-									$sum_weight+=$m->t;
-									$sum_money+=$m->p;
-									$sum_money_paid+=$m->pp;
-								?>
-								<tr>
-									<td>
-										{{$m->orderCustomer->name}}
-									</td>
-									<td>{{$m->orderCustomer->address}}</td>
-									<td>{{$m->t}} kg</td>
-									<td>{{number_format($m->p)}}đ</td>
-									<td>{{number_format($m->p-$m->pp)}}đ</td>
-									<td><a href="{{route('order.list_by_customer_today',['id'=>$m->customer_id])}}">View</a></td>
-								</tr>
-							@else
-								<?php
-									$sum_weight+=$m->total_weight;
-									$sum_money+=$m->total_money;
-									$sum_money_paid+=$m->total_money_paid;
-								?>
-								<tr>
-									<td>
-										{{$m->name}}
-									</td>
-									<td>{{$m->address}}</td>
-									<td>{{$m->total_weight}} kg</td>
-									<td>{{number_format($m->total_money)}}đ</td>
-									<td>{{number_format($m->total_money-$m->total_money_paid)}}đ</td>
-									<td><a href="{{route('order.list_by_id',['id'=>$m->id])}}">View</a></td>
-								</tr>
-							@endif
+							<?php
+								$sum_weight+=$m->t;
+								$sum_money+=$m->p;
+								$sum_money_paid+=$m->pp;
+							?>
+							<tr>
+								<td>
+									{{$m->orderCustomer->name}}
+								</td>
+								<td>{{$m->orderCustomer->address}}</td>
+								<td>{{$m->t}} kg</td>
+								<td>{{number_format($m->p)}}đ</td>
+								<td>{{number_format($m->pp)}}đ</td>
+								<td><a href="{{route('order.list_by_customer_today',['id'=>$m->customer_id])}}">View</a></td>
+							</tr>
 							@endforeach	
 							</tbody>
 							<tfoot class="tfoot-light">
@@ -98,7 +80,7 @@
 									<td>-</td>
 									<td>{{$sum_weight}}kg</td>
 									<td>{{number_format($sum_money)}}đ</td>
-									<td>{{number_format($sum_money-$sum_money_paid)}}đ</td>
+									<td>{{number_format($sum_money_paid)}}đ</td>
 									<td>-</td>
 								</tr>
 							</tfoot>
