@@ -99,18 +99,18 @@
 					<div>
 						Tên nông hộ :
 						<span class="customer-name">
-						{{ isset($order->orderCustomer->name) ? $order->orderCustomer->name : $order->name }}
+						{{  $order->orderCustomer->name }}
 
 						</span>
 					</div>
 					<div class="py-2">
 						Số điện thoại:
 						<span class="customer-phone-number">
-						{{ isset($order->orderCustomer->phone) ? $order->orderCustomer->phone : $order->phone }}
+						{{ $order->orderCustomer->phone }}
 						</span>
 					</div>
 					<div>
-						Địa chỉ : <span class="user-address">{{ isset($order->orderCustomer->address) ? $order->orderCustomer->address : $order->address }}</span>
+						Địa chỉ : <span class="user-address">{{ $order->orderCustomer->address }}</span>
 					</div>
 				</div>
 			</div>
@@ -210,115 +210,7 @@
 								
 							</td>
 							<td>
-							<div class="container d-inline">
-								<button
-									class="change-btn"
-									type="button"
-									data-toggle="modal"
-									data-target="#change-tea-type"
-								>
-									<i class="fas fa-edit text-primary"></i>
-								</button>
-								<!-- Modal -->
-								<div
-									class="modal fade text-left"
-									id="change-tea-type"
-									role="dialog"
-								>
-									<div class="modal-dialog">
-										<!-- Modal content-->
-										<div class="modal-content">
-											<div class="modal-header">
-												<h4 class="modal-title">
-													Thay đổi thông tin đơn hàng
-												</h4>
-											</div>
-											<form action="{{ route('listorder.edit_item',[$product->orderDetail->id]) }}" method="post">
-												@csrf
-												<div class="modal-body">
-													<input type="text" value="" style="display: none;" name="id">
-													<div class="form-group">
-														<label for="item_id">Tên loại chè</label>
-														<select class="form-control" id="item_id" name="item_id" >
-														@foreach($sp as $item)
-															<option {{ $product['product_id']==$item['id']?'selected':''}}
-															value="{{$item['id']}}">{{$item['name']}}</option>
-														@endforeach
-														</select>
-													</div>
-
-													<div class="form-group">
-													<label for="weight">Khối lượng</label>
-														<input
-															type="text"
-															class="form-control"
-															value="{{$product->weight}}" name="weight"
-															id="weight"
-														/>
-														<div class="text-danger mt-2"></div>
-															<div class="text-danger"></div>
-													</div>
-
-													<div class="form-group">
-													<label for="weight">Khấu trừ %</label>
-														<input
-															type="text"
-															class="form-control"
-															value="{{$product->deduction_per}}" name="deduction_per"
-														/>
-														<div class="text-danger mt-2"></div>
-															<div class="text-danger"></div>
-													</div>
-
-													<div class="form-group">
-													<label for="weight">Khấu trừ kg</label>
-														<input
-															type="text"
-															class="form-control"
-															value="{{$product->deduction_kg}}" name="deduction_kg"
-														/>
-														<div class="text-danger mt-2"></div>
-															<div class="text-danger"></div>
-													</div>
-
-													<!-- <div class="form-group">
-													<label for="unit_price">Đơn giá</label>
-														<input
-															type="text"
-															class="form-control"
-															value="{{number_format($product->orderDetail->price).' '.'Đ' }}" name="unit_price"
-														/>
-														<div class="text-danger mt-2"></div>
-															<div class="text-danger"></div>
-													</div> -->
-
-													<div class="form-group">
-													<label for="note">Ghi chú</label>
-														<input
-															type="text"
-															class="form-control"
-															value="{{$product->note}}" name="note"
-														/>
-														<div class="text-danger mt-2"></div>
-															<div class="text-danger"></div>
-													</div>
-
-													<div class="modal-footer">
-														<button type="submit" class="btn btn-success">Lưu thay đổi</button>
-														<button
-															type="button"
-															class="btn btn-secondary"
-															data-dismiss="modal"
-														>
-															Đóng
-														</button>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
+								<a href="{{route('listorder.edit_item',[$product->orderDetail->id])}}">	Sửa</a>
 							</td>
 						</tr>
 					@endforeach

@@ -31,7 +31,14 @@ class ListController extends Controller
 
         return view('listorder.list_order_save_change',['order'=>$order,'todetail'=>$todetail,'toproduct'=>$toproduct, 'weightfirst'=>$weightfirst, 'weightlast'=>$weightlast, 'total'=>$total, 'orders'=>$orders, 'sp'=>$sp]);
     }
-    public function edit_item(Request $request,$id)
+    public function edit_item($id)
+    {
+
+        $cate = Product::all();
+        $todetail = OrderDetail::with('orderDetail')->get();
+        return view('listorder.edit_item',['todetail'=>$todetail,'cate'=>$cate]);
+    }
+    public function update_item(Request $request,$id)
     {
         $new = OrderDetail::find($id);
         $new->product_id = $request->item_id;
@@ -42,7 +49,7 @@ class ListController extends Controller
         $new->note = $request->note;
 
         $new->save();
-        return redirect()->back();    
+        return redirect()->back(); 
     }
     public function delete_item($id)
     {
