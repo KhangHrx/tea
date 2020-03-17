@@ -245,4 +245,72 @@ class OrderController extends Controller
             'model'=>$model
         ]);
     }
+
+    // Báo cáo theo tháng
+    public function report_month()
+    {
+        $now = Carbon::now();
+        $month = $now->month;
+        $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->whereMonth('created_at','=',$month)->get();
+        return view('report.report_month',[
+            'model'=>$model,
+            'time'=>$now
+        ]);
+    }
+
+    public function post_report_month(Request $request)
+    {
+        if($request->month == null)
+        {
+            return redirect()->route('report.month');
+        }
+        else
+        {
+            $month = date('m',strtotime($request->month));
+            $year = date('Y',strtotime($request->month));
+        }
+        $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->whereMonth('created_at','=',$month)->get();
+        return view('report.report_month',[
+            'model'=>$model,
+            'time'=>$request->month
+        ]);
+    }
+
+    // Báo cáo theo năm
+    public function report_year()
+    {
+        $now = Carbon::now();
+        $year = $now->year;
+        $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->whereYear('created_at','=',$year)->get();
+        return view('report.report_year',[
+            'model'=>$model,
+            'time'=>$now
+        ]);
+    }
+
+    public function post_report_year(Request $request)
+    {
+        if($request->month == null)
+        {
+            return redirect()->route('report.month');
+        }
+        else
+        {
+            $month = date('m',strtotime($request->month));
+            $year = date('Y',strtotime($request->month));
+        }
+        $model = Order::select(DB::raw('created_at, sum(total_weight) as t, sum(total_money) as p, sum(total_money_paid) as pp'))->orderBy('id')
+            ->groupBy(DB::raw('Date(created_at)'))
+            ->whereMonth('created_at','=',$month)->get();
+        return view('report.report_month',[
+            'model'=>$model,
+            'time'=>$request->month
+        ]);
+    }
 }
