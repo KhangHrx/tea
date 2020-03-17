@@ -42,51 +42,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($orders as $row)
-							{{-- {{ $row->orderCustomer->name}}
-							{{ $row->sum_weight}} --}}
-							@if(empty($row->customer_id))
-							<tr>
-								<td>{{ $row->name }}</td>
-								<td>{{ $row->address }}</td>
-								<td>{{ number_format($row->total_money) }} đ</td>
-								<td>{{ number_format($row->total_money_paid) }} đ</td>
-								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-							<td><a href="{{route('liabilities.unpaid_list',['id'=>$row->id])}}">View</a></td>
-							@else
-							@foreach($order as $value)
-							<tr>
-								{{-- {{ dd($value) }} --}}
-								<td>{{ $value->name }}</td>
-								{{-- <td>{{ $value->address }}</td>
-								<td>{{ number_format($value->sum_money) }} đ</td>
-								<td>{{ number_format($value->sum_money_paid) }} đ</td>
-								<td>{{ number_format($value->sum_money - $value->sum_money_paid) }} đ</td>
-								<td><a href="{{route('liabilities.unpaid_list',['id'=>$value->orderCustomer->id])}}">View</a></td> --}}
-							</tr>
-							@endforeach
-							@endif
+						
+						@foreach($order as $value)
+						<tr>
+							{{-- {{ dd($value) }} --}}
+							<td>{{ $value->orderCustomer->name }}</td>
+							<td>{{ $value->orderCustomer->address }}</td>
+							<td>{{ number_format($value->sum_money) }} đ</td>
+							<td>{{ number_format($value->sum_money - $value->sum_money_paid) }} đ</td>
+							<td>{{ number_format($value->sum_money_paid) }} đ</td>
+							<td><a href="{{route('liabilities.unpaid_list',['id'=>$value->orderCustomer->id])}}">View</a></td>
+						</tr>
 						@endforeach
-						{{-- @foreach($order as $row)
-							@if(empty($row->customer_id))
-							<tr>
-								<td>{{ $row->name }}</td>
-								<td>{{ $row->address }}</td>
-								<td>{{ number_format($row->total_money) }} đ</td>
-								<td>{{ number_format($row->total_money_paid) }} đ</td>
-								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-							<td><a href="{{route('liabilities.unpaid_list',['id'=>$row->id])}}">View</a></td>
-							@else
-							<tr>
-								<td>{{ $row->orderCustomer->name }}</td>
-								<td>{{ $row->orderCustomer->address }}</td>
-								<td>{{ number_format($row->total_money) }} đ</td>
-								<td>{{ number_format($row->total_money_paid) }} đ</td>
-								<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-								<td><a href="{{route('liabilities.unpaid_list',['id'=>$row->orderCustomer->id])}}">View</a></td>
-							</tr>	
-							@endif
-						@endforeach  --}}
+						
 						{{-- @php
 							$t = 0;
 						@endphp
@@ -103,8 +71,8 @@
 							<td class="font-weight-bold">Tổng</td>
 							<td>-</td>
 							<td>{{ number_format($totalMoney) }} đ</td>
-							<td>{{ number_format($totalMoneyPaid) }} đ</td>
 							<td>{{ number_format($totalMoney - $totalMoneyPaid) }} đ</td>
+							<td>{{ number_format($totalMoneyPaid) }} đ</td>
 							<td>-</td>
 						</tr>
 					</tfoot>
