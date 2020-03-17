@@ -11,6 +11,8 @@ use App\Helper\CartHelper;
 use DB;
 use App\Quotation;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrderExport;
 
 class OrderController extends Controller
 {
@@ -327,5 +329,12 @@ class OrderController extends Controller
             'time'=>$now,
             'yearBack'=>$request->year
         ]);
+    }
+
+
+    // Để function này dưới cùng
+    public function export()
+    {
+        return Excel::download(new OrderExport, 'order.xlsx');
     }
 }
