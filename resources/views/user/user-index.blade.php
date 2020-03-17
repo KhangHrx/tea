@@ -1,14 +1,7 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
-@cannot('admin')
-<div class="container">
-	<div class="alert alert-danger mt-4">Bạn không có quyền thao tác tại đây</div>
-</div>
-@endcannot
-@can('admin')
 <section>
-a
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-12">
@@ -79,5 +72,4 @@ a
 		</div>
 	</div>
 </section>
-@endcan
 @endsection

@@ -174,7 +174,7 @@
 							</div>
 							<div class="">
 								<div class="form-group">
-									<label for="tea-type">Khấu trừ (%) - Tối đa: {{$products[0]->deduction}}%</label>
+									<label for="tea-type">Khấu trừ (%) - Tối đa: <span id="default_deduction">{{$products[0]->deduction}}</span>%</label>
 									<input
 										type="text"
 										id="tea-mass-rate-deduction"
@@ -200,7 +200,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label for="tea-price">Đơn giá - Mặc định: {{number_format($products[0]->price)}}đ/kg)</label>
+								<label for="tea-price">Đơn giá - Mặc định: <span id="default_price">{{number_format($products[0]->price)}}</span> đ/kg</label>
 								<input type="text" name="price" class="form-control" id="tea-mass-rate-price" value="{{$products[0]->price}}">
 								@if($errors->has('price'))
 									<div class="text-danger">{{$errors->first('price')}}</div>
@@ -233,14 +233,17 @@
 		</div>
 		</section>
 @endsection
-
+@section('script')
 <script>
 	var products = @json($products->toArray());
 	function changeProduct(){
 		let select = document.getElementById('tea-type');
 		let product = products.find(product=>product.id == (select.selectedIndex+1));
 		document.getElementById('tea-mass-rate-deduction').value = product.deduction;
+		$('#default_deduction').text(product.deduction);
 		document.getElementById('tea-mass-rate-price').value = product.price;
+		$('#default_price').text(product.price);
 		document.getElementById('productId').value = product.id;
 	}
 </script>
+@endsection
