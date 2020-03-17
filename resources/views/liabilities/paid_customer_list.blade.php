@@ -8,7 +8,7 @@
 	
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
-				<h3>Danh sách công nợ</h3>
+				<h3>Danh sách công nợ đã thanh toán</h3>
 				<input
 					type="text"
 					class="search-box search-box-list-customer"
@@ -31,13 +31,10 @@
 								Tổng khối lượng
 							</th>
 							<th>
-								Tổng Tiền
+								Thành tiền
 							</th>
 							<th>
-								Thanh toán
-							</th>
-							<th>
-								Dư nợ
+								Trạng thái
 							</th>
 							<th>
 								Chi tiết
@@ -51,11 +48,14 @@
 							{{-- {{ dd($value) }} --}}
 							<td>{{ $value->orderCustomer->name }}</td>
 							<td>{{ $value->orderCustomer->address }}</td>
-							<td>{{ $value->sum_weight }} kg</td>
+							<td>{{ number_format($value->sum_weight) }} kg</td>
 							<td>{{ number_format($value->sum_money) }} đ</td>
-							<td class="text-success">{{ number_format($value->sum_money - $value->sum_money_paid) }} đ</td>
-							<td class="text-danger">{{ number_format($value->sum_money_paid) }} đ</td>
-							<td><a href="{{route('liabilities.unpaid_list',['id'=>$value->orderCustomer->id])}}">View</a></td>
+							<td class="text-success">
+								@if($value->total_money_paid == 0)
+									Đã thanh toán
+								@endif
+							</td>
+							<td><a href="{{route('liabilities.paid_List',['id'=>$value->orderCustomer->id])}}">View</a></td>
 						</tr>
 						@endforeach
 						
@@ -74,10 +74,9 @@
 						<tr>
 							<td class="font-weight-bold">Tổng</td>
 							<td>-</td>
-							<td>{{ $totalWeight }} đ</td>
-							<td>{{ number_format($totalMoney) }} kg</td>
-							<td class="text-success font-weight-bold">{{ number_format($totalMoney - $totalMoneyPaid) }} đ</td>
-							<td class="text-danger font-weight-bold">{{ number_format($totalMoneyPaid) }} đ</td>
+							<td class="font-weight-bold">{{ number_format($totalWeight) }} kg</td>
+							<td class="font-weight-bold">{{ number_format($totalMoney - $totalMoneyPaid) }} đ</td>
+							<td>-</td>
 							<td>-</td>
 						</tr>
 					</tfoot>

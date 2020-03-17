@@ -7,7 +7,7 @@
 		
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
-				<h3>Công nợ của: {{ empty($order->customer_id) ? $order->name : $order->orderCustomer->name}} - {{ empty($order->customer_id) ? $order->address : $order->orderCustomer->address}}</h3>
+				<h3>Công nợ của: {{ $order->orderCustomer->name }} - {{ $order->orderCustomer->address }}</h3>
 				<input type="text" class="search-box search-box-list-customer" id="" placeholder="Tìm kiếm..."/>
 			</div>
 			<!-- table info section -->
@@ -45,20 +45,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								@if($order->customer_id)
+								{{-- @if($order->customer_id) --}}
 									@foreach($order_list as $row)
 									<tr>
 										<td>#{{ $row->id }}</td>
 										<td>{{ date('H:i | d/m/Y', strtotime($row->created_at)) }}</td>
 										<td>{{ $row->total_weight }} kg</td>
 										<td>{{ number_format($row->total_money) }} đ</td>
-										<td>{{ number_format($row->total_money_paid) }} đ</td>
-										<td>{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
+										<td class="text-success">{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
+										<td class="text-danger">{{ number_format($row->total_money_paid) }} đ</td>
 										<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
 										<td><input type="checkbox" class="select_id" name="id_order[]" value="{{$row->id}}" ></td>
 									</tr>
 									@endforeach
-								@else
+								{{-- @else
 									<tr>
 										<td>#{{ $order->id }}</td>
 										<td>{{ date('H:i | d/m/Y', strtotime($order->created_at)) }}</td>
@@ -69,7 +69,7 @@
 										<td><a href="{{route('liabilities.detail_unpaid',['id'=>$order->id])}}">View</a></td>
 										<td><input type="checkbox" class="select_id" name="id_order[]" value="{{$order->id}}" ></td>
 									</tr>
-								@endif
+								@endif --}}
 								<input type="hidden" id="array_order" value="" name="">
 							</tbody>
 							<tfoot class="tfoot-light">
@@ -78,8 +78,8 @@
 									<td>-</td>
 									<td>{{ $sum_weight }} kg</td>
 									<td>{{ number_format($sum_money) }} đ</td>
-									<td>{{ number_format($sum_paid) }} đ</td>
-									<td>{{ number_format($sum_money - $sum_paid) }} đ</td>
+									<td class="text-success font-weight-bold">{{ number_format($sum_money - $sum_paid) }} đ</td>
+									<td class="text-danger font-weight-bold">{{ number_format($sum_paid) }} đ</td>
 									<td>-</td>
 									<td>-</td>
 								</tr>

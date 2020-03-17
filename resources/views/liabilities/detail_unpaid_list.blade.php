@@ -62,19 +62,19 @@
 										Tên loại chè
 									</th>
 									<th>
-										Khối lượng(kg)
+										Khối lượng<br>(kg)
 									</th>
 									<th>
-										Khấu trừ(%)
+										Khấu trừ<br>(%)
 									</th>
 									<th>
-										Khấu trừ(kg)
+										Khấu trừ<br>(kg)
 									</th>
 									<th>
-										Khối lượng sau khấu trừ(kg)
+										Khối lượng sau khấu trừ<br>(kg)
 									</th>
 									<th>
-										Đơn giá (Đ)
+										Đơn giá<br>(Đ)
 									</th>
 									<th>
 										Ghi chú
@@ -118,7 +118,7 @@
 									<td>-</td>
 									<td>-</td>
 									<td>-</td>
-									<td>{{ number_format($totalPay).' '.'đ' }}</td>
+									<td class="text-success font-weight-bold">{{ number_format($totalPay).' '.'đ' }}</td>
 								</tr>
 								<tr>
 									<td class="font-weight-bold">Số tiền còn nợ: </td>
@@ -128,7 +128,7 @@
 									<td>-</td>
 									<td>-</td>
 									<td>-</td>
-									<td>{{ number_format($totalPrice-$totalPay).' '.'đ' }}</td>
+									<td class="text-danger font-weight-bold">{{ number_format($totalPrice-$totalPay).' '.'đ' }}</td>
 								</tr>
 							</tfoot>
 							
@@ -155,10 +155,10 @@
 												<form action="">
 													<div class="form-group">
 														Tổng giá trị đơn :
-														<span class="order-value"> {{ number_format($totalPrice).' '.'đ' }}</span>
+														<span class="order-value font-weight-bold"> {{ number_format($totalPrice).' '.'đ' }}</span>
 													</div>
 													<div class="form-group d-block">
-														Còn nợ : <span class="order-loan">{{ number_format($totalPrice-$totalPay).' '.'đ' }}</span>
+														Còn nợ : <span class="order-loan font-weight-bold text-danger">{{ number_format($totalPrice-$totalPay).' '.'đ' }}</span>
 													</div>
 													<div class="form-group">
 														<label for="tea-paid-money">Tiền thanh toán : </label>
