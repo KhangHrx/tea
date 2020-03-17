@@ -88,6 +88,12 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/tuan','OrderController@report_week')->name('report.week');
         Route::post('/tuan','OrderController@post_report_week')->name('report.week');
         Route::get('/ngay/{d}','OrderController@report_day')->name('report.day');
+        // Báo cáo theo tháng
+        Route::get('/thang','OrderController@report_month')->name('report.month');
+        Route::post('/thang','OrderController@post_report_month')->name('report.month');
+        // Báo cáo theo năm
+        Route::get('/năm','OrderController@report_year')->name('report.year');
+        Route::post('/năm','OrderController@post_report_year')->name('report.year');
         //
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');

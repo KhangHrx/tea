@@ -81,8 +81,8 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="{{route('report.today')}}">Báo cáo ngày</a>
 								<a class="dropdown-item" href="{{route('report.week')}}">Báo cáo tuần</a>
-								<a class="dropdown-item" href="#">Báo cáo tháng</a>
-								<a class="dropdown-item" href="#">Báo cáo năm</a>
+								<a class="dropdown-item" href="{{route('report.month')}}">Báo cáo tháng</a>
+								<a class="dropdown-item" href="{{route('report.year')}}">Báo cáo năm</a>
 							</div>
 						</li>
 					</ul>
