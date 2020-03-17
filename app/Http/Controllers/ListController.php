@@ -34,11 +34,13 @@ class ListController extends Controller
     public function edit_item(Request $request,$id)
     {
         $new = OrderDetail::find($id);
-        $new->product_id = $request->product_id;
+        $new->product_id = $request->item_id;
         $new->weight = $request->weight;
         $new->deduction_per = $request->deduction_per;
         $new->deduction_kg = $request->deduction_kg;
-        $new->weight_last = $request->weight - ($request->weight*$request->deduction_per) - $request->deduction_kg;
+        $new->weight_last = $request->weight - (($request->weight)*($request->deduction_per)/100) - $request->deduction_kg;
+        $new->note = $request->note;
+
         $new->save();
         return redirect()->back();    
     }
