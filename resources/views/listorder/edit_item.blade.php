@@ -46,7 +46,7 @@
                                         type="text"
                                         class="form-control"									
                                         id="tea-mass-rate-deduction"
-                                        value="{{$cate->orderDetail->deduction}}" name="deduction_per"
+                                        value="{{$cate->deduction_per}}" name="deduction_per"
                                     />
                                     <div class="text-danger mt-2"></div>
                                         <div class="text-danger"></div>
