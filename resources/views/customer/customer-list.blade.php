@@ -21,8 +21,10 @@
 						</form>			
 					</div>
 					<div class="new-customer mt-2">
+						@can('employee')
 						<a href="{{route('order.add.new_customer')}}" class="btn btn-danger">
 							Tạo đơn cho nông hộ mới <i class="fas fa-plus"></i></a>
+						@endcan
 					</div>
 					<div class="customer-table mt-3">
 						<table class="table text-center">
@@ -129,8 +131,10 @@
 										@endcan
 									</td>
 									<td><a href="{{route('order.list_by_customer',['id'=>($m->id)])}}" class="btn btn-warning">Danh sách đơn</a></td>
+									@can('employee')
 									<td><a href="{{route('order.add.old_customer',['id'=>($m->id)])}}" class="btn btn-success">Giao dịch mới
 										 <i class="fas fa-plus"></i></a></td>
+									@endcan
 								</tr>
 								@endforeach
 							</tbody>

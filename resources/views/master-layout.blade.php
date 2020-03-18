@@ -36,9 +36,11 @@
 			
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+						@can('admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{route('user.index')}}">TK Người dùng</a>
 						</li>
+						@endcan
 						<li class="nav-item active">
 							<a class="nav-link current" href="{{route('home')}}">Khách hàng</a>
 						</li>
@@ -47,6 +49,7 @@
 								>Các loại chè</a
 							>
 						</li>
+						@can('employee')
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Danh sách đơn
@@ -56,6 +59,8 @@
 								<a class="dropdown-item" href="{{route('listorder.list_order_send')}}">Đơn đã gửi</a>
 							</div>
 						</li>
+						@endcan
+						@can('accountant')
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Thanh toán đơn
@@ -71,9 +76,10 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href=" {{ route('liabilities.list_customer') }} ">Chưa thanh toán</a>
-								<a class="dropdown-item" href="#">Đã thanh toán</a>
+								<a class="dropdown-item" href="{{ route('liabilities.customer_paid_list') }}">Đã thanh toán</a>
 							</div>
 						</li>
+						@endcan
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Báo cáo

@@ -8,10 +8,11 @@
 				<div class="container mt-3">
 					<div class="list-customer-header pt-3 d-flex justify-content-between">
 						<h3>Báo cáo thống kê năm <span class="year-report">{{date('Y',strtotime($time))}}</span></h3>
-						<form action="" class="form-inline" method="post">
+						<form action="" class="form-inline" method="post" onsubmit="return searchSubmit()">
 							@csrf
-							<input type="text" class="form-control mx-2" name="year">
-							<button type="submit" class="btn btn-primary">Tìm</button>
+							<input type="number" class="form-control mx-2" name="year" id="year" <?php echo (isset($yearBack))?"value='$yearBack'":"" ?>>
+							<button type="submit" class="btn btn-secondary">Tìm</button>
+							<div class="text-danger mt-2 ml-2" id="yearMessage"></div>
 						</form>
 					</div>
 					<div class="customer-table mt-3">
@@ -36,16 +37,22 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $sum_t=$sum_p=$sum_pp=0; ?>
 								@foreach($model as $m)
+								<?php
+									$sum_t+=$m['t'];
+									$sum_p+=$m['p'];
+									$sum_pp+=$m['pp'];
+								?>
 								<tr>
 									<td>
-										1
+										{{date('m/Y',strtotime($m['created_at']))}}
 									</td>
 
-									<td>300 kg</td>
-									<td>100.000.000 đ</td>
-									<td>30.000.000 đ</td>
-									<td><a href="report_time_month.html">View</a></td>
+									<td>{{$m['t']}} kg</td>
+									<td>{{number_format($m['p'])}} đ</td>
+									<td>{{number_format($m['pp'])}} đ</td>
+									<td><a href="{{route('report.by_month',['m'=>date('m-Y',strtotime($m['created_at']))])}}">View</a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -56,9 +63,9 @@
 										Tổng
 									</td>
 
-									<td>2.500kg</td>
-									<td>500.000.000đ</td>
-									<td>300.000.000đ</td>
+									<td>{{$sum_t}}kg</td>
+									<td>{{number_format($sum_p)}}đ</td>
+									<td>{{number_format($sum_pp)}}đ</td>
 									<td>-</td>
 								</tr>
 							</tfoot>
@@ -68,4 +75,18 @@
 				</div>
 			</main>
 		</section>
+@endsection
+
+@section('script')
+<script>
+	function searchSubmit(){
+		var year = $('#year').val();
+		$('#yearMessage').text("");
+		var reg = /^\d{4}$/;
+		if(year != "" && !reg.test(year)){
+			$('#yearMessage').text("Năm nhập vào không hợp lệ");
+			return false;
+		}
+	}
+</script>
 @endsection

@@ -307,13 +307,13 @@ class TableSeeder extends Seeder
         DB::table('pays')->insert([
             [
             'order_id'=>'1',
-            'money'=>'10500000',
+            'money'=>'105000000',
             'created_at'=>now(),
             'updated_at'=>now()
             ],
             [
             'order_id'=>'2',
-            'money'=>'1700000',
+            'money'=>'134500000',
             'created_at'=>now(),
             'updated_at'=>now()
             ],

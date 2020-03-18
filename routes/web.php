@@ -19,7 +19,7 @@ Route::post('/dang-nhap','UserController@post_login')->name('login');
 Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::get('/dang-xuat','UserController@logout')->name('logout');
 
-    Route::group(['prefix'=>'/tai-khoan'],function(){
+    Route::group(['prefix'=>'/tai-khoan','middleware'=>'can:admin'],function(){
         Route::get('/','UserController@index')->name('user.index');
         Route::get('/xoa/{id}','UserController@delete')->name('user.delete');
         Route::get('/reset-mat-khau/{id}','UserController@reset_password')->name('user.reset_password');
@@ -38,7 +38,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/huy','CartController@clear')->name('cart.clear');
     });
 
-    Route::group(['prefix'=>'cong-no'],function(){
+    Route::group(['prefix'=>'cong-no','middleware'=>'can:accountant'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
         Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');
         Route::post('don-chua-thanh-toan/{id}','LiabilityController@postPayOrder')->name('liabilities.unpaid_list');
@@ -46,24 +46,25 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@unpaidDetail')->name('liabilities.detail_unpaid');
         Route::post('chi-tiet-don-chua-thanh-toan/{id}','LiabilityController@postPayUnpaid')->name('liabilities.pay_unpaid');
 
-        Route::get('don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.list_paid');
-        Route::get('chi-tiet-don-da-thanh-toan','LiabilityController@paidList')->name('liabilities.detail_paid');
+        Route::get('danh-sach-da-thanh-toan','LiabilityController@customerPaidList')->name('liabilities.customer_paid_list');
+        Route::get('da-thanh-toan/{id}','LiabilityController@paidList')->name('liabilities.paid_List');
+        Route::get('chi-tiet-da-thanh-toan/{id}','LiabilityController@detaiPaidlList')->name('liabilities.detail_paid');
     });
 
     Route::group(['prefix'=>'/nong-ho'],function(){
         Route::get('/danh-sach','CustomerController@index')->name('customer.list');
-        Route::post('/them-moi','CustomerController@post_add')->name('customer.add');
-        Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit');
+        Route::post('/them-moi','CustomerController@post_add')->name('customer.add')->middleware(['can:admin']);
+        Route::post('/chinh-sua','CustomerController@post_edit')->name('customer.edit')->middleware(['can:admin']);
         Route::get('/tim-kiem','CustomerController@search')->name('customer.search');
     });
 
     Route::group(['prefix'=>'/cac-loai-che'],function(){
         Route::get('/danh-sach','ProductController@index')->name('product.list');
-        Route::post('/tao-moi','ProductController@post_add')->name('product.add');
-        Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit');
+        Route::post('/tao-moi','ProductController@post_add')->name('product.add')->middleware(['can:admin']);
+        Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit')->middleware(['can:admin']);
     });
 
-    Route::group(['prefix'=>'/don-hang'],function(){
+    Route::group(['prefix'=>'/don-hang','middleware'=>'can:employee'],function(){
         Route::group(['prefix'=>'/tao-moi'],function(){
             Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
             Route::post('/khach-hang-moi','OrderController@post_add_with_new_customer')->name('order.add.new_customer');
@@ -98,6 +99,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         // Báo cáo theo tháng
         Route::get('/thang','OrderController@report_month')->name('report.month');
         Route::post('/thang','OrderController@post_report_month')->name('report.month');
+        Route::get('/thang/{m}','OrderController@report_by_month')->name('report.by_month');
         // Báo cáo theo năm
         Route::get('/năm','OrderController@report_year')->name('report.year');
         Route::post('/năm','OrderController@post_report_year')->name('report.year');
@@ -105,5 +107,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         
 
     });
+
+    Route::get('/export','OrderController@export')->name('export');
     
 });
