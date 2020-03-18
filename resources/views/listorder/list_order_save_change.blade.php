@@ -187,7 +187,7 @@
 								{{ $product->orderDetail->name }}
 							</td>
 							<td>{{ $product->weight }}</td>
-							<td>{{ $product->orderDetail->deduction }}</td>
+							<td>{{ $product->deduction_per }}</td>
 							<td>{{ $product->deduction_kg }}</td>
 							<td>{{ $product->weight - ($product->weight * $product->deduction_per / 100) - $product->deduction_kg }}</td>
 							<td>{{ number_format($product->orderDetail->price).' '.'Đ' }}</td>
