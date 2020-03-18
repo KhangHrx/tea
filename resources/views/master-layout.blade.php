@@ -91,6 +91,9 @@
 								<a class="dropdown-item" href="{{route('report.year')}}">Báo cáo năm</a>
 							</div>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('report.excel')}}">Xuất Excel</a>
+						</li>
 					</ul>
 						<!-- user info section -->
 						<div class="user-wrap dropdown">

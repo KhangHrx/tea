@@ -103,11 +103,11 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         // Báo cáo theo năm
         Route::get('/năm','OrderController@report_year')->name('report.year');
         Route::post('/năm','OrderController@post_report_year')->name('report.year');
-        //
-        
+        //Xuất execl
+        Route::get('/excel','OrderController@excel')->name('report.excel');
+        Route::post('/export','OrderController@export')->name('report.export');
 
     });
 
-    Route::get('/export','OrderController@export')->name('export');
     
 });
