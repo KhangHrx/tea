@@ -91,6 +91,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
+        Route::post('/chi-tiet/{id}/send-to-accounttant','ListController@send_to_accountant')->name('listorder.send_to_accountant');
         Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
         Route::get('/sua-sp/{id}','ListController@edit_item')->name('listorder.edit_item');
         Route::post('/sua-sp/{id}','ListController@update_item')->name('listorder.update_item');

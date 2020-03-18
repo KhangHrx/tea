@@ -290,6 +290,7 @@
 						>
 							<div class="modal-dialog">
 								<!-- Modal content-->
+
 								<div class="modal-content">
 									<div class="modal-header">
 										<h4 class="modal-title">
@@ -297,7 +298,8 @@
 										</h4>
 									</div>
 									<div class="modal-body">
-										<form action="">
+										<form action="{{ route('listorder.send_to_accountant', ['id'=>$order->id]) }}" method="POST">
+											@csrf
 											<input
 												type="submit"
 												class="btn btn-primary"
@@ -319,12 +321,6 @@
 						</div>
 					</div>
 				</td>
-				<a
-					class="btn btn-success save-btn mx-2"
-					href="save_list_order.html"
-				>
-					Lưu
-				</a>
 				<a class="btn btn-danger cancel-btn" href="save_list_order.html">
 					Hủy
 				</a>

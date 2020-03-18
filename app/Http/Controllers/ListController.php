@@ -96,6 +96,14 @@ class ListController extends Controller
         return redirect()->back(); 
     }
 
+    public function send_to_accountant($id)
+    {
+        $update_order = Order::find($id);
+        $update_order->status = 1;
+        $update_order->save();
+        return redirect()->route('listorder.list_order_send');
+    }
+
 
     public function list_order_send()
     {   
