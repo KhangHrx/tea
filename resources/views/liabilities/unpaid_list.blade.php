@@ -59,6 +59,11 @@
 										<td><input type="checkbox" class="select_id" name="id_order[]" value="{{$row->id}}" ></td>
 									</tr>
 									@endforeach
+									@if ($errors->has('id_order'))
+										<div class="alert alert-danger">
+											{{ $errors->first('id_order') }}
+										</div>
+									@endif
 								@else
 									<tr>
 										<td>
