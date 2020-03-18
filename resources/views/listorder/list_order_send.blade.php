@@ -9,7 +9,7 @@
 					<!-- table section -->
           <div class="container mt-3">
             <div class="d-flex justify-content-between">
-              <h3>Danh sách đơn đã lưu</h3>
+              <h3>Danh sách đơn đã gửi</h3>
               <div>
                 <input
                   type="text"
@@ -55,7 +55,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <a href="{{ route('listorder.list_order_save_change',['id'=>$order->id]) }}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ route('listorder.list_order_send_detail',['id'=>$order->id]) }}">Xem</i></a>
                   </td>
                 </tr>
                 @endforeach

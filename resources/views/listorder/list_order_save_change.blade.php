@@ -280,7 +280,7 @@
 							data-toggle="modal"
 							data-target="#change-order-info"
 						>
-							Chỉnh sửa
+							Gửi cho kế toán
 						</a>
 						<!-- Modal -->
 						<div

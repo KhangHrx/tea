@@ -75,15 +75,15 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
     });
     
     Route::group(['prefix'=>'/danh-sach-don'],function(){
-        // Route::get('/list-order-save','ListController@list_order_save')->name('listorder.list_order_save');
-        // Route::get('/list-order-save-change/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
         Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
         Route::get('/sua-sp/{id}','ListController@edit_item')->name('listorder.edit_item');
         Route::post('/sua-sp/{id}','ListController@update_item')->name('listorder.update_item');
-        // Route::get('/them-sp','ListController@add_item')->name('listorder.add_item');
         Route::post('/them-sp/{id}','ListController@save_add')->name('listorder.save_add');
+
+        Route::get('/danh-sach-da-gui','ListController@list_order_send')->name('listorder.list_order_send');
+        Route::get('/chi-tiet-don-gui/{id}','ListController@list_order_send_detail')->name('listorder.list_order_send_detail');
     });
     
     Route::group(['prefix'=>'/bao-cao'],function(){
