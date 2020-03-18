@@ -58,10 +58,10 @@
 										</td>
 										<td class="text-danger">
 											{{ number_format($row->total_money_paid) }} đ
-											<input class="checkinput" type="number" value="{{$row->total_money_paid}}" style="display: none;">
+											<input class="checkinput action_input" type="number" value="{{$row->total_money_paid}}" style="display: none;">
 										</td>
 										<td><a href="{{route('pays.detail_unpaid',['id'=>$row->id])}}">View</a></td>
-										<td class=""><input type="checkbox" class="select_id checkv" name="id_order[]" value="{{$row->id}}" ></td>
+										<td class="action_check"><input type="checkbox" class="select_id" name="id_order[]" value="{{$row->id}}" ></td>
 									</tr>
 									@endforeach
 									@if ($errors->has('id_order'))
@@ -111,7 +111,7 @@
 				<!-- pay many order same time -->
 				<!-- payment section -->
 				<div class="pay-order mt-2 d-flex justify-content-end">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#order-loan-payment" type="button" onclick="check()">
+					<button class="btn btn-primary"  data-toggle="modal" data-target="#order-loan-payment" type="button" onclick="action_pay()">
 						Thanh toán đơn đã chọn
 					</button>
 					<div class="modal fade text-dark" id="order-loan-payment" role="dialog">
@@ -124,6 +124,9 @@
 									</button>
 								</div>
 								<div class="modal-body">
+									<table id="table_model" class="table table-bordered">
+									
+									</table>
 									<div class="form-group">
 										Bạn có chắc chắn thanh toán các đơn đã chọn !
 									</div>
@@ -144,13 +147,25 @@
 @endsection
 @section('script')
 <script>
-	function check(){
-		var t = 0;
-		var check = document.getElementsByClassName('.checkv');
-		console.log(check);
-		for(i = 0; i < check.length; i++){ 
-			console.log(check[i].checked);
+	function action_pay(){
+		var check = document.getElementsByClassName('action_check');
+		var data = [];
+		var item = [];
+		for(i=0;i<check.length;i++){
+			if(check[i].parentNode.children[7].children[0].checked==true){
+				item.push(check[i].parentNode.children[0].innerText,check[i].parentNode.children[5].children[0].value);
+				data.push(item);
+				item = [];
+			}
 		}
+		var html = '<tr> <th>Mã đơn hàng</th> <th>Số tiền</th> </tr>';
+		var t = 0;
+		for (i = 0; i < data.length; i++) {
+			html += '<tr> <td>'+data[i][0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')+'</td> <td>'+data[i][1].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')+' đ</td> </tr>';
+			t += parseInt(data[i][1]);
+		}
+		html += '<tr> <th>Tổng</th> <th>'+t.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')+' đ</th> </tr>';
+		$('#table_model').html(html);
 	}
 </script>
 @endsection
