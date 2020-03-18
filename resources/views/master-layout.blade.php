@@ -66,8 +66,8 @@
 							Thanh toán đơn
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Chưa thanh toán</a>
-								<a class="dropdown-item" href="#">Đã thanh toán</a>
+								<a class="dropdown-item" href="{{ route('pays.list_customer') }}">Chưa thanh toán</a>
+								<a class="dropdown-item" href="{{ route('pays.customer_paid_list') }}">Đã thanh toán</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
