@@ -109,6 +109,11 @@
 					</tfoot>
 				</table>
 			</div>
+			<div class="order-footer">
+				<a class="btn btn-danger cancel-btn" href="save_list_order.html">
+					Hủy
+				</a>
+			</div>
 		</div>
 	</main>
 </section>
