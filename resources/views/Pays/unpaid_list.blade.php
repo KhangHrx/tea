@@ -1,5 +1,5 @@
 @extends('master-layout')
-@section('title','Danh sách công nợ')
+@section('title','Danh sách đơn hàng')
 @section('content')
 <section id="loan-control-customer" class="home-page">
 			
@@ -7,11 +7,11 @@
 		
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
-				<h3>Công nợ của: {{ $order->orderCustomer->name }} - {{ $order->orderCustomer->address }}</h3>
+				<h3>Đơn hàng của: {{ $order->orderCustomer->name }} - {{ $order->orderCustomer->address }}</h3>
 				<input type="text" class="search-box search-box-list-customer" id="" placeholder="Tìm kiếm..."/>
 			</div>
 			<!-- table info section -->
-			<form action="{{ route('liabilities.unpaid_list',['id'=>$order->id]) }} " method="post" enctype="multipart/form-data" >
+			<form action="{{ route('pays.unpaid_list',['id'=>$order->id]) }} " method="post" enctype="multipart/form-data" >
 			@csrf
 				<div class="customer-table pt-3">
 					
@@ -53,12 +53,22 @@
 										<td>{{ date('H:i | d/m/Y', strtotime($row->created_at)) }}</td>
 										<td>{{ $row->total_weight }} kg</td>
 										<td>{{ number_format($row->total_money) }} đ</td>
-										<td class="text-success">{{ number_format($row->total_money - $row->total_money_paid) }} đ</td>
-										<td class="text-danger">{{ number_format($row->total_money_paid) }} đ</td>
-										<td><a href="{{route('liabilities.detail_unpaid',['id'=>$row->id])}}">View</a></td>
-										<td><input type="checkbox" class="select_id" name="id_order[]" value="{{$row->id}}" ></td>
+										<td class="text-success">
+											{{ number_format($row->total_money - $row->total_money_paid) }} đ
+										</td>
+										<td class="text-danger">
+											{{ number_format($row->total_money_paid) }} đ
+											<input class="checkinput" type="number" value="{{$row->total_money_paid}}" style="display: none;">
+										</td>
+										<td><a href="{{route('pays.detail_unpaid',['id'=>$row->id])}}">View</a></td>
+										<td class=""><input type="checkbox" class="select_id checkv" name="id_order[]" value="{{$row->id}}" ></td>
 									</tr>
 									@endforeach
+									@if ($errors->has('id_order'))
+										<div class="alert alert-danger">
+											{{ $errors->first('id_order') }}
+										</div>
+									@endif
 								@else
 									<tr>
 										<td>
@@ -77,7 +87,7 @@
 										<td>{{ number_format($order->total_money) }} đ</td>
 										<td>{{ number_format($order->total_money_paid) }} đ</td>
 										<td>{{ number_format($order->total_money - $order->total_money_paid) }} đ</td>
-										<td><a href="{{route('liabilities.detail_unpaid',['id'=>$order->id])}}">View</a></td>
+										<td><a href="{{route('pays.detail_unpaid',['id'=>$order->id])}}">View</a></td>
 										<td><input type="checkbox" class="select_id" name="id_order[]" value="{{$order->id}}" ></td>
 									</tr>
 								@endif --}}
@@ -101,7 +111,7 @@
 				<!-- pay many order same time -->
 				<!-- payment section -->
 				<div class="pay-order mt-2 d-flex justify-content-end">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#order-loan-payment" type="button">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#order-loan-payment" type="button" onclick="check()">
 						Thanh toán đơn đã chọn
 					</button>
 					<div class="modal fade text-dark" id="order-loan-payment" role="dialog">
@@ -130,5 +140,17 @@
 </section>
 <script type="text/javascript">
 	
+</script>
+@endsection
+@section('script')
+<script>
+	function check(){
+		var t = 0;
+		var check = document.getElementsByClassName('.checkv');
+		console.log(check);
+		for(i = 0; i < check.length; i++){ 
+			console.log(check[i].checked);
+		}
+	}
 </script>
 @endsection

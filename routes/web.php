@@ -37,7 +37,20 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::get('/xoa/{id}','CartController@remove')->name('cart.remove');
         Route::get('/huy','CartController@clear')->name('cart.clear');
     });
+    //--------------------Thanh toán--------------------
+    Route::group(['prefix'=>'thanh-toan'],function(){
+        Route::get('danh-sach-khach-hang','PayController@list')->name('pays.list_customer');
+        Route::get('don-chua-thanh-toan/{id}','PayController@unpaidList')->name('pays.unpaid_list');
+        Route::post('don-chua-thanh-toan/{id}','PayController@postPayOrder')->name('pays.unpaid_list');
 
+        Route::get('chi-tiet-don-chua-thanh-toan/{id}','PayController@unpaidDetail')->name('pays.detail_unpaid');
+        Route::post('chi-tiet-don-chua-thanh-toan/{id}','PayController@postPayUnpaid')->name('pays.pay_unpaid');
+
+        Route::get('danh-sach-da-thanh-toan','PayController@customerPaidList')->name('pays.customer_paid_list');
+        Route::get('da-thanh-toan/{id}','PayController@paidList')->name('pays.paid_List');
+        Route::get('chi-tiet-da-thanh-toan/{id}','PayController@detaiPaidlList')->name('pays.detail_paid');
+    });
+    //---------------------Công nợ------------------------
     Route::group(['prefix'=>'cong-no','middleware'=>'can:accountant'],function(){
         Route::get('danh-sach-khach-hang','LiabilityController@list')->name('liabilities.list_customer');
         Route::get('don-chua-thanh-toan/{id}','LiabilityController@unpaidList')->name('liabilities.unpaid_list');

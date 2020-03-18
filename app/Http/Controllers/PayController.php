@@ -10,7 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use DB;
 
-class LiabilityController extends Controller
+class PayController extends Controller
 {
     public function list(){
         $data['orders'] = Order::all();
@@ -24,7 +24,7 @@ class LiabilityController extends Controller
         $data['totalMoney'] = Order::where('total_money_paid', '!=', 0)->sum('total_money');
         $data['totalWeight'] = Order::where('total_money_paid', '!=', 0)->sum('total_weight');
         $data['totalMoneyPaid'] = Order::where('total_money_paid', '!=', 0)->sum('total_money_paid');
-        return view('liabilities.customer_list',$data);
+        return view('pays.customer_list',$data);
     }
     public function unpaidList($id){
         $data['order'] = Order::find($id);
@@ -35,9 +35,14 @@ class LiabilityController extends Controller
         $data['sum_money'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->sum('total_money');
         $data['sum_paid'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->sum('total_money_paid');
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
-        return view('liabilities.unpaid_list',$data);
+        return view('pays.unpaid_list',$data);
     }
     public function postPayOrder($id,Request $req){
+        $this->validate($req,[
+            'id_order' => 'required',
+        ],[
+            'id_order.required' => 'Vui lòng chọn đơn rồi thanh toán!'
+        ]);
         $data['order'] = Order::find($id);
         $arrayIdOrder = $req->id_order;
         foreach($arrayIdOrder as $idOrder){
@@ -66,7 +71,7 @@ class LiabilityController extends Controller
             'totalPrice' => OrderDetail::where('order_id',$id)->sum('price'),
             'totalPay' => Pay::where('order_id',$id)->sum('money'),
         ];
-        return view('liabilities.detail_unpaid_list',$data);
+        return view('pays.detail_unpaid_list',$data);
     }
     public function postPayUnpaid($id,Request $req){
         $this->validate($req,[
@@ -97,7 +102,7 @@ class LiabilityController extends Controller
         $data['totalMoney'] = Order::where('total_money_paid', '=', 0)->sum('total_money');
         $data['totalMoneyPaid'] = Order::where('total_money_paid', '=', 0)->sum('total_money_paid');
         $data['totalWeight'] = Order::where('total_money_paid', '=', 0)->sum('total_weight');
-        return view('liabilities.paid_customer_list',$data);
+        return view('pays.paid_customer_list',$data);
     }
     public function paidList($id){
         $data['order'] = Order::find($id);
@@ -107,7 +112,7 @@ class LiabilityController extends Controller
         $data['sum_money'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->sum('total_money');
         $data['sum_paid'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->sum('total_money_paid');
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
-        return view('liabilities.paid_list',$data);
+        return view('pays.paid_list',$data);
     }
     public function detaiPaidlList($id){
         $data = [
@@ -118,7 +123,6 @@ class LiabilityController extends Controller
             'weightlast' => OrderDetail::where('order_id',$id)->sum('weight_last'),
             'totalPrice' => OrderDetail::where('order_id',$id)->sum('price'),
         ];
-        return view('liabilities.detail_paid_list',$data);
+        return view('pays.detail_paid_list',$data);
     }
-    
 }

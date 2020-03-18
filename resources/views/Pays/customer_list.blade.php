@@ -1,5 +1,5 @@
 @extends('master-layout')
-@section('title','Danh sách công nợ')
+@section('title','Danh sách đơn hàng')
 @section('content')
 <section id="loan-control-main" class="home-page">
 			
@@ -8,7 +8,7 @@
 	
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
-				<h3>Danh sách công nợ</h3>
+				<h3>Danh sách đơn hàng</h3>
 				<input
 					type="text"
 					class="search-box search-box-list-customer"
@@ -54,7 +54,7 @@
 								<td>{{ number_format($value->sum_money) }} đ</td>
 								<td class="text-success">{{ number_format($value->sum_money - $value->sum_money_paid) }} đ</td>
 								<td class="text-danger">{{ number_format($value->sum_money_paid) }} đ</td>
-								<td><a href="{{route('liabilities.unpaid_list',['id'=>$value->orderCustomer->id])}}">View</a></td>
+								<td><a href="{{route('pays.unpaid_list',['id'=>$value->orderCustomer->id])}}">View</a></td>
 							</tr>
 							@endforeach
 						@else
@@ -67,16 +67,6 @@
 							</td>
 						</tr>
 						@endif
-						{{-- @php
-							$t = 0;
-						@endphp
-						@foreach($modal as $row)
-							@php
-								$t += $row->total_money;
-							@endphp
-							
-						@endforeach
-						{{ $t }} --}}
 					</tbody>
 					<tfoot class="tfoot-light">
 						<tr>
