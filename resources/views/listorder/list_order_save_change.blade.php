@@ -34,15 +34,16 @@
 										</button>
 									</div>
 									<div class="modal-body">
-									<form action="{{route('listorder.update_item')}}" method="post">
+										<form action="{{route('listorder.save_add',[$order->id])}}" method="post">
 										@csrf
 										<div class="dev-hoa">
-											<input type="text" id="productId" style="display: none;" name="id">
+											<!-- <input type="text" value="{{$products[0]->id}}" id="productId" style="display: none;" name="id"> -->
 											<div class="form-group">
 												<label for="item_id">Tên loại chè</label>
 												<select class="form-control" id="item_id" name="item_id" onchange="changeProduct()">
 													@foreach($sp as $s)
-													<option value="{{$s['id']}}">{{$s['name']}}</option>
+													<option <?php echo ($cate['product_id']==$s['id'])?"selected":''; ?> 
+													value="{{$s['id']}}">{{$s['name']}}</option>
 													@endforeach
 												</select>
 											</div>
@@ -52,7 +53,7 @@
 												<input
 													type="text"
 													class="form-control"
-													value="{{$cate->weight}}" name="weight"
+													value="" name="weight"
 													id="weight"
 												/>
 												<div class="text-danger mt-2"></div>
@@ -65,7 +66,7 @@
 													type="text"
 													class="form-control"									
 													id="tea-mass-rate-deduction"
-													value="{{$cate->orderDetail->deduction}}" name="deduction_per"
+													value="" name="deduction_per"
 												/>
 												<div class="text-danger mt-2"></div>
 													<div class="text-danger"></div>
@@ -76,7 +77,7 @@
 												<input
 													type="text"
 													class="form-control"
-													value="{{$cate->deduction_kg}}" name="deduction_kg"
+													value="" name="deduction_kg"
 												/>
 												<div class="text-danger mt-2"></div>
 													<div class="text-danger"></div>
@@ -100,7 +101,7 @@
 												<input
 													type="text"
 													class="form-control"
-													value="{{$cate->note}}" name="note"
+													value="" name="note"
 												/>
 												<div class="text-danger mt-2"></div>
 													<div class="text-danger"></div>
@@ -279,7 +280,7 @@
 							data-toggle="modal"
 							data-target="#change-order-info"
 						>
-							Chỉnh sửa
+							Gửi cho kế toán
 						</a>
 						<!-- Modal -->
 						<div
@@ -331,4 +332,19 @@
 		</div>
 	</main>
 </section>
+@endsection
+@section('script')
+
+<script>
+	var products = @json($products->toArray());
+	function changeProduct(){
+		let select = document.getElementById('item_id');
+		let product = products.find(product=>product.id == (select.selectedIndex+1));
+		document.getElementById('tea-mass-rate-deduction').value = product.deduction;
+		$('#defaultDeduction').text(product.deduction);
+		document.getElementById('tea-mass-rate-price').value = product.price;
+		$('#defaultPrice').text(product.price);
+		document.getElementById('productId').value = product.id;
+	}
+</script>
 @endsection
