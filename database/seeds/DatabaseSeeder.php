@@ -59,7 +59,7 @@ class TableSeeder extends Seeder
 
         DB::table('customer')->insert([
             [
-            'name'=>'Nông hộ A',
+            'name'=>'Nguyễn Văn A',
             'phone'=>'0837 462 632',
             'address'=>'Thôn A',
             'state'=>1,
@@ -67,7 +67,7 @@ class TableSeeder extends Seeder
             'updated_at'=>now()
             ],
             [
-            'name'=>'Nông hộ B',
+            'name'=>'Trần Văn B',
             'phone'=>'0947 166 772',
             'address'=>'Thôn B',
             'state'=>1,
@@ -146,7 +146,7 @@ class TableSeeder extends Seeder
             ],
             [
             'customer_id' => '2',
-            'total_weight' => '45',
+            'total_weight' => '215',
             'total_money'=>'151500000',
             'total_money_paid'=>'134500000',
             'status' => '0',
@@ -155,7 +155,7 @@ class TableSeeder extends Seeder
             ],
             [
             'customer_id' => 3,
-            'total_weight' => '50',
+            'total_weight' => '305',
             'total_money'=>'202500000',
             'total_money_paid'=>'200700000',
             'status'=>'0',
@@ -164,7 +164,7 @@ class TableSeeder extends Seeder
             ],
             [
             'customer_id' => 4,
-            'total_weight' => '45',
+            'total_weight' => '70',
             'total_money'=>'63000000',
             'total_money_paid'=>'61100000',
             'status' => '0',
@@ -173,7 +173,7 @@ class TableSeeder extends Seeder
             ],
             [
             'customer_id' => '1',
-            'total_weight' => '190',
+            'total_weight' => '290',
             'total_money'=>'261000000',
             'total_money_paid'=>'261000000',
             'status' => '1',
