@@ -38,6 +38,11 @@ class LiabilityController extends Controller
         return view('liabilities.unpaid_list',$data);
     }
     public function postPayOrder($id,Request $req){
+        $this->validate($req,[
+            'id_order' => 'required',
+        ],[
+            'id_order.required' => 'Vui lòng chọn đơn trước khi thanh toán!'
+        ]);
         $data['order'] = Order::find($id);
         $arrayIdOrder = $req->id_order;
         foreach($arrayIdOrder as $idOrder){

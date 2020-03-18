@@ -14,26 +14,26 @@ class PayController extends Controller
 {
     public function list(){
         $data['orders'] = Order::all();
-        $data['order'] = Order::where('total_money_paid', '!=', 0)->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
+        $data['order'] = Order::where('total_money_paid', '!=', 0)->whereDate('created_at', '=', now())->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
         ->groupBy('customer_id')
         ->get();
         // dd($data['order']);
         $data['customer'] = Customer::all();
         // $data['modal'] = Order::where('customer_id','1')->get();
         // dd($data['modal']); 
-        $data['totalMoney'] = Order::where('total_money_paid', '!=', 0)->sum('total_money');
-        $data['totalWeight'] = Order::where('total_money_paid', '!=', 0)->sum('total_weight');
-        $data['totalMoneyPaid'] = Order::where('total_money_paid', '!=', 0)->sum('total_money_paid');
+        $data['totalMoney'] = Order::where('total_money_paid', '!=', 0)->whereDate('created_at', '=', now())->sum('total_money');
+        $data['totalWeight'] = Order::where('total_money_paid', '!=', 0)->whereDate('created_at', '=', now())->sum('total_weight');
+        $data['totalMoneyPaid'] = Order::where('total_money_paid', '!=', 0)->whereDate('created_at', '=', now())->sum('total_money_paid');
         return view('pays.customer_list',$data);
     }
     public function unpaidList($id){
         $data['order'] = Order::find($id);
-        $data['order_list'] = Order::where('customer_id',$id)->where('total_money_paid', '!=', 0)->get();
+        $data['order_list'] = Order::where('customer_id',$id)->where('total_money_paid', '!=', 0)->whereDate('created_at', '=', now())->get();
         // dd($data['order_list']);
         $data['orderDetails'] = OrderDetail::where('order_id',$id)->get();
-        $data['sum_weight'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->sum('total_weight');
-        $data['sum_money'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->sum('total_money');
-        $data['sum_paid'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->sum('total_money_paid');
+        $data['sum_weight'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->whereDate('created_at', '=', now())->sum('total_weight');
+        $data['sum_money'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->whereDate('created_at', '=', now())->sum('total_money');
+        $data['sum_paid'] = Order::where('total_money_paid', '!=', 0)->where('customer_id',$id)->whereDate('created_at', '=', now())->sum('total_money_paid');
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
         return view('pays.unpaid_list',$data);
     }
@@ -41,7 +41,7 @@ class PayController extends Controller
         $this->validate($req,[
             'id_order' => 'required',
         ],[
-            'id_order.required' => 'Vui lòng chọn đơn rồi thanh toán!'
+            'id_order.required' => 'Vui lòng chọn đơn trước khi thanh toán!'
         ]);
         $data['order'] = Order::find($id);
         $arrayIdOrder = $req->id_order;
@@ -95,22 +95,22 @@ class PayController extends Controller
 
     // Đơn hàng đã thanh toán
     public function customerPaidList(){
-        $data['order'] = Order::where('total_money_paid', '=', 0)->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
+        $data['order'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
         ->groupBy('customer_id')
         ->get();
         $data['customer'] = Customer::all();
-        $data['totalMoney'] = Order::where('total_money_paid', '=', 0)->sum('total_money');
-        $data['totalMoneyPaid'] = Order::where('total_money_paid', '=', 0)->sum('total_money_paid');
-        $data['totalWeight'] = Order::where('total_money_paid', '=', 0)->sum('total_weight');
+        $data['totalMoney'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->sum('total_money');
+        $data['totalMoneyPaid'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->sum('total_money_paid');
+        $data['totalWeight'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->sum('total_weight');
         return view('pays.paid_customer_list',$data);
     }
     public function paidList($id){
         $data['order'] = Order::find($id);
-        $data['order_list'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->get();
+        $data['order_list'] = Order::where('customer_id',$id)->whereDate('created_at', '=', now())->where('total_money_paid', '=', 0)->get();
         $data['orderDetails'] = OrderDetail::where('order_id',$id)->get();
-        $data['sum_weight'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->sum('total_weight');
-        $data['sum_money'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->sum('total_money');
-        $data['sum_paid'] = Order::where('customer_id',$id)->where('total_money_paid', '=', 0)->sum('total_money_paid');
+        $data['sum_weight'] = Order::where('customer_id',$id)->whereDate('created_at', '=', now())->where('total_money_paid', '=', 0)->sum('total_weight');
+        $data['sum_money'] = Order::where('customer_id',$id)->whereDate('created_at', '=', now())->where('total_money_paid', '=', 0)->sum('total_money');
+        $data['sum_paid'] = Order::where('customer_id',$id)->whereDate('created_at', '=', now())->where('total_money_paid', '=', 0)->sum('total_money_paid');
         $data['totalMoneyPaid'] = Order::get()->sum('total_money_paid');
         return view('pays.paid_list',$data);
     }
