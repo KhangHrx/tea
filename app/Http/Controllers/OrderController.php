@@ -333,8 +333,25 @@ class OrderController extends Controller
 
 
     // Để function này dưới cùng
-    public function export()
+    public function excel()
     {
-        return Excel::download(new OrderExport, 'order.xlsx');
+        return view('excel.excel');
+    }
+
+    public function export(Request $request)
+    {
+        $this->validate($request,[
+            'start'=>'required|date',
+            'end'=>'required|date',
+        ],[
+            'start.required'=>'Nhập ngày bắt đầu',
+            'start.date'=>'Ngày bắt đầu không hợp lệ',
+            'end.required'=>'Nhập ngày kết thúc',
+            'end.date'=>'Ngày kết thúc không hợp lệ',
+        ]);
+        $start = $request->start.' 00:00:00';
+        $end = $request->start.' 23:59:59';
+        return Excel::download(new OrderExport($start,$end), 'bao-cao.xlsx');
+        return redirect()->back();
     }
 }
