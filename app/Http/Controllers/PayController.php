@@ -125,7 +125,7 @@ class PayController extends Controller
         }else{
             $data['searching'] = false;
         }
-        
+
         $data['customer'] = Customer::all();
         $data['totalMoney'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->sum('total_money');
         $data['totalMoneyPaid'] = Order::where('total_money_paid', '=', 0)->whereDate('created_at', '=', now())->sum('total_money_paid');
@@ -152,13 +152,5 @@ class PayController extends Controller
             'totalPrice' => OrderDetail::where('order_id',$id)->sum('price'),
         ];
         return view('pays.detail_paid_list',$data);
-    }
-
-    public function searchListPaid(Request $request)
-    {
-        $search = $request->get('search');
-        $customer = Customer::where('name', 'like', '%'.$search.'%')->first();
-        $list = Order::where('customer_id', $customer->id)->whereDate('created_at', '=', now())->paginate(5);        
-        return view('pays.customer_list',['order'=>$list]);
     }
 }
