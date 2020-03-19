@@ -1,340 +1,344 @@
-@media(max-width : 1200px) {
- 
-  .list-customer-header h3 {
-    font-size: 1.2rem;
-  }
+@media (max-width: 1200px) {
+    .list-customer-header h3 {
+        font-size: 1.2rem;
+    }
 }
-@media(max-width : 1025px) {
-  .list-customer-header h3 {
-    font-size: 1.2rem;
-  }
-  body {
-    font-size: 0.9rem;
-  }
-  h3 {
-    font-size: 1.4rem;
-  }
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 970px;
-  }
+@media (max-width: 1025px) {
+    .list-customer-header h3 {
+        font-size: 1.2rem;
+    }
+    body {
+        font-size: 0.9rem;
+    }
+    h3 {
+        font-size: 1.4rem;
+    }
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 970px;
+    }
 }
-@media (max-width : 960px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 900px;
-  }
+@media (max-width: 960px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 900px;
+    }
 }
-@media (max-width : 990px) {
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 900px;
-  }
-  .list-customer-header {
-    flex-direction: column;
-  }
-  .order main.container {
-    width: 900px;
-  }
-  .search-box  {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 930px;
-  }
+@media (max-width: 990px) {
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 900px;
+    }
+    .list-customer-header {
+        flex-direction: column;
+    }
+    .order main.container {
+        width: 900px;
+    }
+    .search-box {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 930px;
+    }
 }
-@media (max-width : 930px) {
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 860px;
-  }
-  section.home-page main.right-content .list-customer-header .search-box {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 885px;
-  }
+@media (max-width: 930px) {
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 860px;
+    }
+    section.home-page main.right-content .list-customer-header .search-box {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 885px;
+    }
 }
-@media (max-width : 900px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 850px;
-  }
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 810px;
-  }
+@media (max-width: 900px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 850px;
+    }
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 810px;
+    }
 }
-@media (max-width : 830px) {
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 780px;
-  }
-  .list-customer-order-details {
-    flex-direction: column;
-    float: left;
-  }
-  section.home-page main.right-content .list-customer-order-details .form-group {
-    padding-right: 100px;
-    margin-left: 0;
+@media (max-width: 830px) {
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 780px;
+    }
+    .list-customer-order-details {
+        flex-direction: column;
+        float: left;
+    }
+    section.home-page
+        main.right-content
+        .list-customer-order-details
+        .form-group {
+        padding-right: 100px;
+        margin-left: 0;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 780px;
+    }
 }
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 780px;
-  }
+@media (max-width: 800px) {
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 740px;
+    }
+    #payment-list table {
+        width: 760px;
+    }
 }
-@media (max-width : 800px) {
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 740px;
-  }
-  #payment-list table {
-    width: 760px;
-  }
-}
-@media (max-width : 769px) {
-  #new-order main {
-    margin: 0;
-  }
-  .list-customer-header {
-    font-size: 1rem;
-    padding: 0;
-    float: left;
-    margin: 0;
-  }
-  #report-day .list-customer-header h3 {
-    margin-right: 4.5rem;
-  }
-  #report-day .list-customer-header form input[type="submit"] {
-    margin: 0.5rem 0;
-  }
+@media (max-width: 769px) {
+    #user .container {
+        width: 700px !important;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    #user .container table {
+        width: 700px;
+    }
+    #new-order main {
+        margin: 0;
+    }
+    .list-customer-header {
+        font-size: 1rem;
+        padding: 0;
+        float: left;
+        margin: 0;
+    }
+    #report-day .list-customer-header h3 {
+        margin-right: 4.5rem;
+    }
+    #report-day .list-customer-header form input[type="submit"] {
+        margin: 0.5rem 0;
+    }
 
-  .giao-dich-moi {
-    display: none;
-    
-  }
-  .giao-dich-moi + i {
-    font-size: 0.7rem;
-    
-  }
-  .list-customer-header {
-      margin-left: 1rem;
-  }
-  .list-customer-header form input:first-child,
-  .list-customer-header form input:last-child
-   {
-    margin: 0.5rem 0.5rem;
-  }
-  section.home-page main.right-content .list-customer-header {
-    margin-right: 310px;
-  }
-  section.home-page .right-content {
-    width: 80%;
-    font-size: 0.9rem;
-  }
-  main {
-    width: 100%;
-  }
-  .container {
-     width: 99vw;
-  }
-  .search-box {
-    margin-left: 0;
-  }
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 710px;
-  }
-.list-customer-header {
-  flex-direction: column;
+    .giao-dich-moi {
+        display: none;
+    }
+    .giao-dich-moi + i {
+        font-size: 0.7rem;
+    }
+    .list-customer-header {
+        margin-left: 1rem;
+    }
+    .list-customer-header form input:first-child,
+    .list-customer-header form input:last-child {
+        margin: 0.5rem 0.5rem;
+    }
+    section.home-page main.right-content .list-customer-header {
+        margin-right: 310px;
+    }
+    section.home-page .right-content {
+        width: 80%;
+        font-size: 0.9rem;
+    }
+    main {
+        width: 100%;
+    }
+    .container {
+        width: 99vw;
+    }
+    .search-box {
+        margin-left: 0;
+    }
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 710px;
+    }
+    .list-customer-header {
+        flex-direction: column;
+    }
+    .list-customer-header input {
+        margin: 0.5rem 0;
+    }
 }
-.list-customer-header input {
-  margin: 0.5rem 0;
+@media (max-width: 750px) {
+    .list-customer-header {
+        flex-direction: column;
+    }
+    .list-customer-header input {
+        margin: 0.5rem 0;
+    }
+    section.home-page main.right-content .list-customer-header {
+        margin-right: 310px;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+        font-size: 0.9rem;
+    }
+    section.home-page .right-content .container table {
+        width: 710px;
+    }
+    .list-customer-header {
+        flex-direction: column;
+    }
+    .list-customer-header input {
+        margin: 0.5rem 0;
+    }
 }
-
-}
-@media (max-width : 750px) {
-  
-  .list-customer-header {
-    flex-direction: column;
-  }
-  .list-customer-header input {
-    margin: 0.5rem 0;
-  }
-  section.home-page main.right-content .list-customer-header {
-    margin-right: 310px;
-  }
-  section.home-page .right-content .container{
-    margin-left: 0;
-    font-size: 0.9rem;
- }
- section.home-page .right-content .container table{
-  width: 710px;
-}
-.list-customer-header {
-  flex-direction: column;
-}
-.list-customer-header input {
-  margin: 0.5rem 0;
-}
-}
-@media (max-width : 730px) {
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 690px;
-  }
-}
-
-@media (max-width : 700px)  {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  
-  }
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 640px;
-  }
- 
+@media (max-width: 730px) {
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 690px;
+    }
 }
 
-@media (max-width : 680px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-   
-  #new-order main {
-    margin: 0;
-  }
-  #new-order main table{
-    width: 690px;
-  }
-}
-@media (max-width : 630px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 595px;
-  }
-}
-@media (max-width : 600px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 560px;
-  }
-}
-@media (max-width : 759px) {
-  #order-add-by-customer  main {
-    margin: 0 0.5rem;
-  }
-  #order-add-by-customer table {
-    width: 710px;
-  }
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 720px;
-  }
-  #payment-list table {
-    width: 725px;
-  }
-}
-@media (max-width : 580px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 540px;
-   
-  }
-  section.home-page main.right-content .list-customer-header {
-    margin-right: 340px;
-  }
+@media (max-width: 700px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 640px;
+    }
 }
 
-@media (max-width : 550px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 500px;
-  }
-  section.home-page main.right-content .list-customer-header {
-    margin-right: 280px;
-  }
+@media (max-width: 680px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+
+    #new-order main {
+        margin: 0;
+    }
+    #new-order main table {
+        width: 690px;
+    }
 }
-@media (max-width : 510px) {
-  section.home-page .right-content .container table{
-    width: 400px;
-  }
+@media (max-width: 630px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 595px;
+    }
 }
-@media (max-width : 500px) {
-  section.home-page main.right-content .list-customer-order-details .form-group {
-    padding-right: 0;
-    margin-left: 0;
+@media (max-width: 600px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 560px;
+    }
 }
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 460px;
-   
-  }
+@media (max-width: 759px) {
+    #order-add-by-customer main {
+        margin: 0 0.5rem;
+    }
+    #order-add-by-customer table {
+        width: 710px;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 720px;
+    }
+    #payment-list table {
+        width: 725px;
+    }
 }
-@media (max-width : 480px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 460px;
-  }
+@media (max-width: 580px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 540px;
+    }
+    section.home-page main.right-content .list-customer-header {
+        margin-right: 340px;
+    }
 }
-@media (max-width : 450px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 410px;
-  }
+
+@media (max-width: 550px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 500px;
+    }
+    section.home-page main.right-content .list-customer-header {
+        margin-right: 280px;
+    }
 }
-@media (max-width : 410px) {
-  section.home-page .right-content .container {
-    margin-left: 0;
-  }
-  section.home-page .right-content .container table{
-    width: 380px;
-  }
+@media (max-width: 510px) {
+    section.home-page .right-content .container table {
+        width: 400px;
+    }
+}
+@media (max-width: 500px) {
+    section.home-page
+        main.right-content
+        .list-customer-order-details
+        .form-group {
+        padding-right: 0;
+        margin-left: 0;
+    }
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 460px;
+    }
+}
+@media (max-width: 480px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 460px;
+    }
+}
+@media (max-width: 450px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 410px;
+    }
+}
+@media (max-width: 410px) {
+    section.home-page .right-content .container {
+        margin-left: 0;
+    }
+    section.home-page .right-content .container table {
+        width: 380px;
+    }
 }
