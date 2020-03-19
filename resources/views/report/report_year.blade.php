@@ -1,7 +1,7 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
-		<section id="home-page-admin" class="home-page">	
+		<section id="report-year" class="home-page">	
 			<main class="right-content list-customer-content">
 				
 				<!-- table info section -->
