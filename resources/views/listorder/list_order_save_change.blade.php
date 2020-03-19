@@ -266,7 +266,7 @@
 								{{ number_format($total).' '.'Đ' }}
 							</td>
 							<td>-</td>
-						
+
 						</tr>
 						<tr>
 							<td>Dòng mới</td>
@@ -279,6 +279,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
+							
 						</tr>
 					</tfoot>
 				</table>
