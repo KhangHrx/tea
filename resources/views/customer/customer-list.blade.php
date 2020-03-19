@@ -7,9 +7,9 @@
 				
 				<!-- table info section -->
 				<div class="container mt-5">
-					<div class="list-customer-header mt-4 d-flex">
+					<div class="list-customer-header d-flex">
 						<h3>Danh sách nông hộ</h3>
-						<form action="{{route('customer.search')}}" method="get">
+						<form action="{{route('customer.search')}}" method="get" class="mt-4">
 						
 							<input
 								type="text"
