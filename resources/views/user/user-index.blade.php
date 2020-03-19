@@ -1,14 +1,14 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
-<section>
+<section id="tai-khoan" class="mt-5">
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-12">
 				@if(session('message'))
 				<div class="alert alert-success">{{session('message')}}</div>
 				@endif
-				<table class="table table-bordered">
+				<table class="table table-bordered rounded" >
 					<thead>
 						<tr>
 							<th>Loại tài khoản</th>

@@ -72,6 +72,7 @@ a.btn-light:hover {
 #main-header {
   position: sticky;
   top: 0px;
+  z-index: 1;
 }
 #main-header .user-wrap {
   padding-right: 1.9rem;

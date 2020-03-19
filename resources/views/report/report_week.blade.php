@@ -17,7 +17,7 @@
 	<div class="alert alert-danger mt-4">{{session('message')}}</div>
 </div>
 @else
-		<section id="home-page-admin" class="home-page">
+		<section id="report-week" class="home-page">
 			<main class="right-content list-customer-content">
 				
 
