@@ -26,7 +26,7 @@
 							<td>{{$m['email']}}</td>
 							<td>{{$m['phone']}}</td>
 							<td>
-								<a href="{{route('user.reset_password',['id'=>$m['id']])}}" class="btn btn-warning">Reset Mật khẩu</a>
+								<a href="{{route('user.reset_password',['id'=>$m['id']])}}" class="btn btn-warning text-white">Reset Mật khẩu</a>
 								<a href="{{route('user.delete',['id'=>$m['id']])}}" class="btn btn-danger delete-user">Xóa</a>
 							</td>
 						</tr>
