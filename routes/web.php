@@ -76,7 +76,6 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         Route::post('/tao-moi','ProductController@post_add')->name('product.add')->middleware(['can:admin']);
         Route::post('/chinh-sua','ProductController@post_edit')->name('product.edit')->middleware(['can:admin']);
     });
-
     Route::group(['prefix'=>'/don-hang','middleware'=>'can:employee'],function(){
         Route::group(['prefix'=>'/tao-moi'],function(){
             Route::get('/khach-hang-moi','OrderController@add_with_new_customer')->name('order.add.new_customer');
@@ -87,9 +86,10 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
         });
         Route::get('/don-hang/{id}','OrderController@list_by_id')->name('order.list_by_id');
     });
-    
+    //---------------------danh sách đơn------------------------
     Route::group(['prefix'=>'/danh-sach-don'],function(){
         Route::get('/danh-sach-da-luu','ListController@list_order_save')->name('listorder.list_order_save');
+        Route::post('/danh-sach-da-luu','ListController@searchListSave')->name('listorder.list_order_save');
         Route::get('/chi-tiet/{id}','ListController@list_order_save_change')->name('listorder.list_order_save_change');
         Route::post('/chi-tiet/{id}/send-to-accounttant','ListController@send_to_accountant')->name('listorder.send_to_accountant');
         Route::delete('/xoa-sp/{id}','ListController@delete_item')->name('listorder.delete_item');
@@ -99,6 +99,7 @@ Route::group(['prefix'=>'/','middleware'=>'auth'],function(){
 
         Route::get('/danh-sach-da-gui','ListController@list_order_send')->name('listorder.list_order_send');
         Route::get('/chi-tiet-don-gui/{id}','ListController@list_order_send_detail')->name('listorder.list_order_send_detail');
+
     });
     
     Route::group(['prefix'=>'/bao-cao'],function(){

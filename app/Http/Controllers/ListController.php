@@ -11,10 +11,21 @@ class ListController extends Controller
 {
     public function list_order_save()
     {   
-        
         $orders = Order::with('orderCustomer')->where('status', 0)->get();
+        $search = request()->get('search');
+        if ($search) {
+            $searching = true;
+            $customer = Customer::where('name', 'like', '%'.$search.'%')->first();
+            $orders = $orders->filter(function ($order) use ($search)
+            {
+                $regex = '/.*' .$search. '.*/';
+                return preg_match($regex, $order->orderCustomer->name);
+            });
+        }else{
+            $searching = false;
+        }
 
-        return view('listorder.list_order_save', ['orders'=>$orders]);
+        return view('listorder.list_order_save', compact('orders','searching'));
     }
 
     public function list_order_save_change($id)
@@ -108,7 +119,21 @@ class ListController extends Controller
     public function list_order_send()
     {   
         $orders = Order::with('orderCustomer')->where('status', 1)->get();
-        return view('listorder.list_order_send', ['orders'=>$orders]);
+
+        $search = request()->get('search');
+        if ($search) {
+            $searching = true;
+            $customer = Customer::where('name', 'like', '%'.$search.'%')->first();
+            $orders = $orders->filter(function ($order) use ($search)
+            {
+                $regex = '/.*' .$search. '.*/';
+                return preg_match($regex, $order->orderCustomer->name);
+            });
+        }else{
+            $searching = false;
+        }
+
+        return view('listorder.list_order_send', compact('searching', 'orders'));
     }
     public function list_order_send_detail($id)
     {

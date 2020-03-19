@@ -11,13 +11,16 @@
             <div class="d-flex justify-content-between">
               <h3>Danh sách đơn đã lưu</h3>
               <div>
+              <form method="get">
                 <input
-                  type="text"
+                  type="search"
                   placeholder="Tìm kiếm ..."
                   class="search-box"
+                  name="search"
                 />
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+              </form>
               </div>
-              
             </div>
   
             <table class="table mt-4 text-center ">
