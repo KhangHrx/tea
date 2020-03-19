@@ -1,7 +1,7 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
-<section>
+<section id="user">
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-12">
@@ -27,7 +27,7 @@
 							<td>{{$m['phone']}}</td>
 							<td>
 								<a href="{{route('user.reset_password',['id'=>$m['id']])}}" class="btn btn-warning">Reset Mật khẩu</a>
-								<a href="{{route('user.delete',['id'=>$m['id']])}}" class="btn btn-danger">Xóa</a>
+								<a href="{{route('user.delete',['id'=>$m['id']])}}" class="btn btn-danger delete-user">Xóa</a>
 							</td>
 						</tr>
 						@endforeach

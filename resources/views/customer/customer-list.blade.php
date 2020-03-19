@@ -77,7 +77,7 @@
 									<td>{{number_format($total_money)}}đ</td>
 									<td>
 										@can('admin')
-										<button class="btn btn-primary change-btn" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
+										<button class="btn btn-primary edit-btn" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
 										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
 											<div class="modal-dialog">
 												<div class="modal-content">
