@@ -28,10 +28,10 @@
 			<div class="container">
 				
 				<div class="row">
-					<div class="logo col-4">
+					<div class="logo col-lg-4">
 						<img src="./IMG/logo.png" alt="" />
 					</div>
-					<div id="sign-in-box" class="sign-box col-4 p-4">
+					<div id="sign-in-box" class="sign-box col-lg-4 p-4">
 						<div class="container">
 							<p class="text-center lead">Đăng nhập vào hệ thống</p>
 							<form action="" method="post" onsubmit="return submitLogin()">

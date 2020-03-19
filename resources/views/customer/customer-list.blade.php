@@ -77,7 +77,7 @@
 									<td>{{number_format($total_money)}}đ</td>
 									<td>
 										@can('admin')
-										<button class="btn btn-primary" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
+										<button class="btn btn-primary change-btn" data-toggle="modal" data-target="#edit-customer-{{$m->id}}">Sửa</button>
 										<div class="modal fade" id="edit-customer-{{$m->id}}" role="dialog">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -130,7 +130,7 @@
 										</div>
 										@endcan
 									</td>
-									<td><a href="{{route('order.list_by_customer',['id'=>($m->id)])}}" class="btn btn-warning">Danh sách đơn</a></td>
+									<td><a href="{{route('order.list_by_customer',['id'=>($m->id)])}}" class="btn btn-warning text-white">Danh sách đơn</a></td>
 									@can('employee')
 									<td><a href="{{route('order.add.old_customer',['id'=>($m->id)])}}" class="btn btn-success">Giao dịch mới
 										 <i class="fas fa-plus"></i></a></td>
