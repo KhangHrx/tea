@@ -3,7 +3,7 @@
 @section('content')
 		<section id="report-year" class="home-page">	
 			<main class="right-content list-customer-content">
-				
+					<span></span>
 				<!-- table info section -->
 				<div class="container mt-3">
 					<div class="list-customer-header pt-3 d-flex justify-content-between">
@@ -15,6 +15,7 @@
 							<div class="text-danger mt-2 ml-2" id="yearMessage"></div>
 						</form>
 					</div>
+				
 					<div class="customer-table mt-3">
 						<table class="table text-center">
 							<thead class="thead-light">

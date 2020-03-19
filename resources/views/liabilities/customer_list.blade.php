@@ -9,12 +9,15 @@
 		<div class="container mt-5">
 			<div class="list-customer-loan-header mt-4 d-flex justify-content-between">
 				<h3>Danh sách công nợ</h3>
-				<input
-					type="text"
-					class="search-box search-box-list-customer"
-					id=""
-					placeholder="Tìm kiếm..."
-				/>
+				<form method="get">
+					<input
+					  type="search"
+					  placeholder="Tìm kiếm ..."
+					  class="search-box"
+					  name="search"
+					/>
+					<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+				  </form>
 			</div>
 			<!-- table info section -->
 			<div class="customer-table pt-3">
@@ -78,6 +81,7 @@
 						@endforeach
 						{{ $t }} --}}
 					</tbody>
+					@if (!$searching)
 					<tfoot class="tfoot-light">
 						<tr>
 							<td class="font-weight-bold">Tổng</td>
@@ -89,6 +93,7 @@
 							<td>-</td>
 						</tr>
 					</tfoot>
+					@endif
 				</table>
 			</div>
 			<!-- add new customer section -->

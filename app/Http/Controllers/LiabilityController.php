@@ -17,6 +17,20 @@ class LiabilityController extends Controller
         $data['order'] = Order::where('total_money_paid', '!=', 0)->where('status', 1)->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
         ->groupBy('customer_id')
         ->get();
+
+        $search = request()->get('search');
+        if ($search) {
+            $data['searching'] = true;
+            $customer = Customer::where('name', 'like', '%'.$search.'%')->first();
+            $data['order'] = $data['order']->filter(function ($order) use ($search)
+            {
+                $regex = '/.*' .$search. '.*/';
+                return preg_match($regex, $order->orderCustomer->name);
+            });
+        }else{
+            $data['searching'] = false;
+        }
+       
         // dd($data['order']);
         $data['customer'] = Customer::all();
         // $data['modal'] = Order::where('customer_id','1')->get();
@@ -98,6 +112,20 @@ class LiabilityController extends Controller
         $data['order'] = Order::where('total_money_paid', '=', 0)->select('customer_id',DB::Raw('sum(total_weight) as sum_weight,sum(total_money) as sum_money, sum(total_money_paid) as sum_money_paid'))
         ->groupBy('customer_id')
         ->get();
+        
+        $search = request()->get('search');
+        if ($search) {
+            $data['searching'] = true;
+            $customer = Customer::where('name', 'like', '%'.$search.'%')->first();
+            $data['order'] = $data['order']->filter(function ($order) use ($search)
+            {
+                    $regex = '/.*' .$search. '.*/';
+                return preg_match($regex, $order->orderCustomer->name);
+            });
+        }else{
+            $data['searching'] = false;
+        }
+       
         $data['customer'] = Customer::all();
         $data['totalMoney'] = Order::where('total_money_paid', '=', 0)->sum('total_money');
         $data['totalMoneyPaid'] = Order::where('total_money_paid', '=', 0)->sum('total_money_paid');
