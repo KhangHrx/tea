@@ -268,6 +268,7 @@
 							<td>-</td>
 						
 						</tr>
+						<tr>Dòng mới</tr>
 					</tfoot>
 				</table>
 			</div>
