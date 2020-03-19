@@ -1,11 +1,7 @@
 @extends('master-layout')
 @section('title','Trang chủ')
 @section('content')
-<<<<<<< HEAD
-<section id="tai-khoan" class="mt-5">
-=======
 <section id="user">
->>>>>>> 192a31235bbf5e73e919ead9a8a03052a3517cd9
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-12">
