@@ -21,7 +21,8 @@ class OrderExport implements FromCollection, ShouldAutoSize
     
     public function collection()
     {
-        $orders = Order::where('status',1)->whereDate('created_at','>=',$this->start)->whereDate('created_at','<=',$this->end)->orderBy('created_at')->orderBy('customer_id')->get();
+        $orders = Order::where('status',1)->whereDate('created_at','>=',$this->start)->whereDate('created_at','<=',$this->end)
+            ->orderBy('created_at')->orderBy('customer_id')->get();
         $result = [];
         if(date('d/m/Y',strtotime($this->start))==date('d/m/Y',strtotime($this->end)))
         {
@@ -74,31 +75,33 @@ class OrderExport implements FromCollection, ShouldAutoSize
             array_push($result,$order);
         }
         $count = count($result);
-        $sum = [
-            '0' => "Tổng",
-            '1' => "",
-            '2' => "",
-            '3' => "",
-            '4' => "",
-            '5' => '=SUM(F3:F'.$count.')',
-            '6' => '=SUM(G3:G'.$count.')',
-            '7' => '=SUM(H3:H'.$count.')',
-        ];
+        if($count == 2)
+        {
+            $sum = [
+                '0' => "Tổng",
+                '1' => "",
+                '2' => "",
+                '3' => "",
+                '4' => "",
+                '5' => '0',
+                '6' => '0',
+                '7' => '0',
+            ];
+        }
+        else
+        {
+            $sum = [
+                '0' => "Tổng",
+                '1' => "",
+                '2' => "",
+                '3' => "",
+                '4' => "",
+                '5' => '=SUM(F3:F'.$count.')',
+                '6' => '=SUM(G3:G'.$count.')',
+                '7' => '=SUM(H3:H'.$count.')',
+            ];
+        }
         array_push($result,$sum);
         return (collect($result));
     }
-    
-    // public function headings(): array
-    // {
-    //     return [
-    //         'Ngày thu mua',
-    //         'Mã đơn hàng',
-    //         'Họ tên',
-    //         'Địa chỉ',
-    //         'Số điện thoại',
-    //         'Khối lượng sau khấu trừ',
-    //         'Tiền giao dịch',
-    //         'Dư nợ'
-    //     ];
-    // }
 }
