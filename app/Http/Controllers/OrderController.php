@@ -350,7 +350,7 @@ class OrderController extends Controller
             'end.date'=>'Ngày kết thúc không hợp lệ',
         ]);
         $start = $request->start.' 00:00:00';
-        $end = $request->start.' 23:59:59';
+        $end = $request->end.' 23:59:59';
         return Excel::download(new OrderExport($start,$end), 'bao-cao.xlsx');
         return redirect()->back();
     }
