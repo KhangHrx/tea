@@ -220,7 +220,21 @@ button.navbar-toggler {
 button.navbar-toggler i.fa-bars {
     font-size: 2rem;
 }
-#home-page-admin .change-btn {
+#home-page-admin .edit-btn {
     position: relative;
     top: -7px;
+}
+.change-btn-tea-type {
+    background-color: rgba(0, 0, 0, 0);
+}
+.change-btn-tea-type:focus {
+    outline: none;
+}
+.change-btn-tea-type i.fa-edit {
+    position: relative;
+    top: 8px;
+}
+#user .delete-user {
+    position: relative;
+    top: 4px;
 }

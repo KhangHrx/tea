@@ -123,7 +123,7 @@
 								<td>
 									<div class="container d-inline">
 										<button
-											class="change-btn"
+											class="change-btn-tea-type border-0"
 											type="button"
 											data-toggle="modal"
 											data-target="#change-tea-type-{{$m->id}}"

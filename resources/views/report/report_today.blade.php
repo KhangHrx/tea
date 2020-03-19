@@ -11,8 +11,8 @@
 						<form action="{{route('report.search.day')}}" class="form-inline" method="post">
 							@csrf
 							<div class="form-group form-inline">
-								<label for="" class="mr-2">Ngày </label>
-								<input type="date" name="date" class="form-control" style="width:70%">
+							
+								<input type="date" name="date" class="form-control" style="width:80%">
 							</div>
 							<input type="submit" class="btn btn-secondary" value="Tìm kiếm">
 						</form>
