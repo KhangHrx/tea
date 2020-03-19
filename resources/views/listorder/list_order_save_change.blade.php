@@ -268,7 +268,18 @@
 							<td>-</td>
 						
 						</tr>
-						<tr>Dòng mới</tr>
+						<tr>
+							<td>Dòng mới</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
 					</tfoot>
 				</table>
 			</div>
